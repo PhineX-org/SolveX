@@ -7,409 +7,239 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<link rel="icon" href="solvex.png" type="image/png">
-
-<!-- ═══════════════════════ INLINE SVG ICON LIBRARY ═══════════════════════ -->
 <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
-  <symbol id="ic-calculator" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8" y2="10" stroke-width="2.5"/><line x1="12" y1="10" x2="12" y2="10" stroke-width="2.5"/><line x1="16" y1="10" x2="16" y2="10" stroke-width="2.5"/><line x1="8" y1="14" x2="8" y2="14" stroke-width="2.5"/><line x1="12" y1="14" x2="12" y2="14" stroke-width="2.5"/><line x1="16" y1="14" x2="16" y2="14" stroke-width="2.5"/><line x1="8" y1="18" x2="12" y2="18"/><line x1="16" y1="18" x2="16" y2="18" stroke-width="2.5"/>
-  </symbol>
-  <symbol id="ic-shapes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1z"/><rect x="3" y="14" width="7" height="7" rx="1"/><circle cx="17.5" cy="17.5" r="3.5"/>
-  </symbol>
-  <symbol id="ic-angle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M20 20H4V4"/><path d="m4 20 14-14"/><path d="M12 20a8 8 0 0 0-8-8"/>
-  </symbol>
-  <symbol id="ic-triangle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M13.73 4a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3z"/>
-  </symbol>
-  <symbol id="ic-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
-  </symbol>
-  <symbol id="ic-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>
-  </symbol>
-  <symbol id="ic-ruler" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M5 8h14M5 12h3m8 0h3M5 16h14M3 6a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/>
-  </symbol>
-  <symbol id="ic-sigma" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M18 7V4H6l6 8-6 8h12v-3"/>
-  </symbol>
-  <symbol id="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
-  </symbol>
-  <symbol id="ic-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-  </symbol>
-  <symbol id="ic-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20A14.5 14.5 0 0 0 12 2"/><line x1="2" y1="12" x2="22" y2="12"/>
-  </symbol>
-  <symbol id="ic-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
-  </symbol>
-  <symbol id="ic-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/>
-  </symbol>
-  <symbol id="ic-check-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>
-  </symbol>
-  <symbol id="ic-slash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-    <circle cx="12" cy="12" r="10"/><line x1="16" y1="8" x2="8" y2="16"/>
-  </symbol>
-  <symbol id="ic-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-  </symbol>
-  <symbol id="ic-function" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M7 20h2V8h3a3 3 0 0 0 3-3 3 3 0 0 0-3-3H9v6H7z"/><path d="M17 20h-2v-4h2a3 3 0 0 0 3-3 3 3 0 0 0-3-3h-2v6h2"/>
-  </symbol>
-  <symbol id="ic-keyboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M6 14h.01M18 14h.01M10 14h4"/>
-  </symbol>
-  <symbol id="ic-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-  </symbol>
-  <symbol id="ic-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="m9 18 6-6-6-6"/>
-  </symbol>
+  <symbol id="ic-calculator" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8" y2="10" stroke-width="2.5"/><line x1="12" y1="10" x2="12" y2="10" stroke-width="2.5"/><line x1="16" y1="10" x2="16" y2="10" stroke-width="2.5"/><line x1="8" y1="14" x2="8" y2="14" stroke-width="2.5"/><line x1="12" y1="14" x2="12" y2="14" stroke-width="2.5"/><line x1="16" y1="14" x2="16" y2="14" stroke-width="2.5"/><line x1="8" y1="18" x2="12" y2="18"/><line x1="16" y1="18" x2="16" y2="18" stroke-width="2.5"/></symbol>
+  <symbol id="ic-shapes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1z"/><rect x="3" y="14" width="7" height="7" rx="1"/><circle cx="17.5" cy="17.5" r="3.5"/></symbol>
+  <symbol id="ic-angle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20H4V4"/><path d="m4 20 14-14"/><path d="M12 20a8 8 0 0 0-8-8"/></symbol>
+  <symbol id="ic-triangle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13.73 4a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3z"/></symbol>
+  <symbol id="ic-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></symbol>
+  <symbol id="ic-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
+  <symbol id="ic-ruler" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14M5 12h3m8 0h3M5 16h14M3 6a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="ic-sigma" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 7V4H6l6 8-6 8h12v-3"/></symbol>
+  <symbol id="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></symbol>
+  <symbol id="ic-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+  <symbol id="ic-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20A14.5 14.5 0 0 0 12 2"/><line x1="2" y1="12" x2="22" y2="12"/></symbol>
+  <symbol id="ic-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="ic-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol>
+  <symbol id="ic-check-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="ic-slash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="16" y1="8" x2="8" y2="16"/></symbol>
+  <symbol id="ic-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="ic-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></symbol>
+  <symbol id="ic-upload" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></symbol>
+  <symbol id="ic-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3"/></symbol>
+  <symbol id="ic-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275z"/><path d="M5 3v4"/><path d="M3 5h4"/><path d="M19 17v4"/><path d="M17 19h4"/></symbol>
+  <symbol id="ic-function" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h2V8h3a3 3 0 0 0 3-3 3 3 0 0 0-3-3H9v6H7z"/><path d="M17 20h-2v-4h2a3 3 0 0 0 3-3 3 3 0 0 0-3-3h-2v6h2"/></symbol>
+  <symbol id="ic-keyboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M6 14h.01M18 14h.01M10 14h4"/></symbol>
+  <symbol id="ic-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
 </svg>
-
 <style>
-/* ═══ CORE VARS ════════════════════════════════════ */
-:root{
-  --bg:#03030a;--surface:rgba(255,255,255,.03);--border:rgba(100,220,255,.12);
-  --accent:#00d4ff;--accent2:#ff6b35;--gold:#f5c842;--green:#00ff9d;
-  --purple:#a855f7;--text:#e8f4ff;--muted:#5a7a99;
-  --glow:0 0 40px rgba(0,212,255,.15);
-  --font-ui:'Space Mono',monospace;
-  --font-display:'Syne',sans-serif;
-  --font-body:'DM Sans',sans-serif;
-  --font-ar:'Cairo',sans-serif;
-}
-[lang="ar"]{
-  --font-ui:'Cairo',sans-serif;
-  --font-display:'Cairo',sans-serif;
-  --font-body:'Cairo',sans-serif;
-}
+:root{--bg:#03030a;--surface:rgba(255,255,255,.03);--border:rgba(100,220,255,.12);--accent:#00d4ff;--accent2:#ff6b35;--gold:#f5c842;--green:#00ff9d;--purple:#a855f7;--text:#e8f4ff;--muted:#5a7a99;--glow:0 0 40px rgba(0,212,255,.15);--font-ui:'Space Mono',monospace;--font-display:'Syne',sans-serif;--font-body:'DM Sans',sans-serif;--font-ar:'Cairo',sans-serif;}
+[lang="ar"]{--font-ui:'Cairo',sans-serif;--font-display:'Cairo',sans-serif;--font-body:'Cairo',sans-serif;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-height:100vh;overflow-x:hidden;transition:font-family .2s;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-height:100vh;overflow-x:hidden;}
 [lang="ar"] body,[lang="ar"]{font-family:var(--font-ar)!important;letter-spacing:0!important;}
-[lang="ar"] .space-mono,[lang="ar"] .cat-label,[lang="ar"] label,[lang="ar"] .tab,
-[lang="ar"] .chip,[lang="ar"] .badge,[lang="ar"] .hero-tag,[lang="ar"] .ex-type,
-[lang="ar"] .find-chip,[lang="ar"] .amode,[lang="ar"] .utn,[lang="ar"] .pal-lbl,
-[lang="ar"] .pal-group,[lang="ar"] .afield-name,[lang="ar"] .ang-lbl,
-[lang="ar"] .result-title,[lang="ar"] .copy-btn,[lang="ar"] .pal-close{
-  font-family:var(--font-ar)!important;letter-spacing:0!important;
-}
-
-/* ═══ ICON HELPER ══════════════════════════════════ */
+[lang="ar"] .cat-label,[lang="ar"] label,[lang="ar"] .tab,[lang="ar"] .chip,[lang="ar"] .badge,[lang="ar"] .hero-tag,[lang="ar"] .ex-type,[lang="ar"] .find-chip,[lang="ar"] .amode,[lang="ar"] .utn,[lang="ar"] .pal-lbl,[lang="ar"] .pal-group,[lang="ar"] .afield-name,[lang="ar"] .ang-lbl,[lang="ar"] .result-title,[lang="ar"] .copy-btn,[lang="ar"] .pal-close{font-family:var(--font-ar)!important;letter-spacing:0!important;}
 svg.icon{width:1em;height:1em;vertical-align:middle;flex-shrink:0;display:inline-block;}
-svg.icon-sm{width:.85em;height:.85em;}
-svg.icon-lg{width:1.2em;height:1.2em;}
-
-/* ═══ BG ═══════════════════════════════════════════ */
+svg.icon-sm{width:.85em;height:.85em;}svg.icon-lg{width:1.2em;height:1.2em;}
 #bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
-body::before{content:'';position:fixed;inset:0;opacity:.35;pointer-events:none;z-index:1;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");}
+body::before{content:'';position:fixed;inset:0;opacity:.35;pointer-events:none;z-index:1;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");}
 #app{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;}
-
-/* ═══ HEADER ════════════════════════════════════════ */
-header{padding:18px 36px;display:flex;align-items:center;justify-content:space-between;
-  border-bottom:1px solid var(--border);backdrop-filter:blur(14px);background:rgba(3,3,10,.65);}
-.logo{font-family:var(--font-display);font-weight:800;font-size:1.5rem;letter-spacing:-.04em;
-  color:var(--accent);text-shadow:0 0 28px rgba(0,212,255,.55);}
+header{padding:18px 36px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);backdrop-filter:blur(14px);background:rgba(3,3,10,.65);}
+.logo{font-family:var(--font-display);font-weight:800;font-size:1.5rem;letter-spacing:-.04em;color:var(--accent);text-shadow:0 0 28px rgba(0,212,255,.55);}
 .logo span{color:var(--gold);}
 .header-right{display:flex;align-items:center;gap:12px;}
-.badge{font-family:var(--font-ui);font-size:.6rem;color:var(--muted);
-  border:1px solid var(--border);padding:4px 10px;border-radius:20px;letter-spacing:.1em;}
-
-/* Language toggle */
-.lang-btn{display:flex;align-items:center;gap:7px;padding:7px 13px;border-radius:10px;
-  border:1px solid var(--border);background:rgba(255,255,255,.03);cursor:pointer;
-  color:var(--muted);font-family:var(--font-ui);font-size:.7rem;letter-spacing:.06em;
-  transition:all .22s;white-space:nowrap;}
-.lang-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,212,255,.06);
-  box-shadow:0 0 14px rgba(0,212,255,.1);}
-.lang-btn svg.icon{font-size:1rem;}
+.badge{font-family:var(--font-ui);font-size:.6rem;color:var(--muted);border:1px solid var(--border);padding:4px 10px;border-radius:20px;letter-spacing:.1em;}
+.lang-btn{display:flex;align-items:center;gap:7px;padding:7px 13px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,.03);cursor:pointer;color:var(--muted);font-family:var(--font-ui);font-size:.7rem;letter-spacing:.06em;transition:all .22s;white-space:nowrap;}
+.lang-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,212,255,.06);box-shadow:0 0 14px rgba(0,212,255,.1);}
 .lang-flag{font-size:.8rem;line-height:1;}
-
-/* ═══ HERO ══════════════════════════════════════════ */
 .hero{text-align:center;padding:48px 20px 32px;}
-.hero-tag{display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--font-ui);font-size:.66rem;color:var(--accent);
-  border:1px solid rgba(0,212,255,.3);padding:5px 14px;border-radius:20px;
-  margin-bottom:18px;letter-spacing:.12em;animation:pulse-border 3s ease infinite;}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-ui);font-size:.66rem;color:var(--accent);border:1px solid rgba(0,212,255,.3);padding:5px 14px;border-radius:20px;margin-bottom:18px;letter-spacing:.12em;animation:pulse-border 3s ease infinite;}
 @keyframes pulse-border{0%,100%{border-color:rgba(0,212,255,.3);}50%{border-color:rgba(0,212,255,.7);box-shadow:0 0 18px rgba(0,212,255,.18);}}
-.hero h1{font-family:var(--font-display);font-size:clamp(2.1rem,5.5vw,3.7rem);font-weight:800;
-  line-height:1.06;letter-spacing:-.04em;margin-bottom:14px;
-  background:linear-gradient(135deg,#e8f4ff 0%,#00d4ff 50%,#f5c842 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero h1{font-family:var(--font-display);font-size:clamp(2.1rem,5.5vw,3.7rem);font-weight:800;line-height:1.06;letter-spacing:-.04em;margin-bottom:14px;background:linear-gradient(135deg,#e8f4ff 0%,#00d4ff 50%,#f5c842 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 [lang="ar"] .hero h1{letter-spacing:0;line-height:1.3;}
-.hero p{color:var(--muted);font-size:.98rem;max-width:460px;margin:0 auto;line-height:1.75;font-weight:300;}
-
-/* ═══ LAYOUT ════════════════════════════════════════ */
+.hero p{color:var(--muted);font-size:.98rem;max-width:480px;margin:0 auto;line-height:1.75;font-weight:300;}
 .solver-wrap{max-width:880px;margin:0 auto;padding:0 20px 80px;width:100%;}
-.solver-card{background:rgba(6,8,20,.9);border:1px solid var(--border);border-radius:24px;
-  backdrop-filter:blur(20px);overflow:visible;box-shadow:var(--glow),0 40px 80px rgba(0,0,0,.6);}
-
-/* ═══ TABS ══════════════════════════════════════════ */
-.tabs{display:flex;border-bottom:1px solid var(--border);padding:0 16px;gap:0;
-  overflow-x:auto;scrollbar-width:none;border-radius:24px 24px 0 0;}
+.solver-card{background:rgba(6,8,20,.9);border:1px solid var(--border);border-radius:24px;backdrop-filter:blur(20px);overflow:visible;box-shadow:var(--glow),0 40px 80px rgba(0,0,0,.6);}
+.tabs{display:flex;border-bottom:1px solid var(--border);padding:0 16px;gap:0;overflow-x:auto;scrollbar-width:none;border-radius:24px 24px 0 0;}
 .tabs::-webkit-scrollbar{display:none;}
-.tab{font-family:var(--font-ui);font-size:.66rem;letter-spacing:.04em;color:var(--muted);
-  padding:15px 14px 13px;border:none;background:none;cursor:pointer;
-  border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;
-  display:flex;align-items:center;gap:7px;}
+.tab{font-family:var(--font-ui);font-size:.66rem;letter-spacing:.04em;color:var(--muted);padding:15px 14px 13px;border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;display:flex;align-items:center;gap:7px;}
 .tab svg.icon{font-size:1rem;opacity:.7;transition:opacity .2s;}
 .tab.active{color:var(--accent);border-bottom-color:var(--accent);}
 .tab.active svg.icon{opacity:1;}
 .tab:hover:not(.active){color:var(--text);}
-
-/* ═══ BODY ══════════════════════════════════════════ */
+.tab-new-badge{font-size:.48rem;font-family:var(--font-ui);background:linear-gradient(135deg,var(--purple),#7c3aed);color:#fff;padding:2px 6px;border-radius:4px;letter-spacing:.06em;margin-left:2px;animation:new-pulse 2s ease infinite;}
+@keyframes new-pulse{0%,100%{opacity:1;}50%{opacity:.65;}}
 .solver-body{padding:26px;}
-
-/* ═══ CHIPS ═════════════════════════════════════════ */
 .cat-label{font-family:var(--font-ui);font-size:.6rem;color:var(--muted);letter-spacing:.12em;margin-bottom:9px;}
 .chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px;}
-.chip{padding:6px 14px;border-radius:30px;border:1px solid var(--border);
-  background:var(--surface);color:var(--muted);font-size:.78rem;cursor:pointer;transition:all .2s;}
-.chip.selected{border-color:var(--accent);color:var(--accent);
-  background:rgba(0,212,255,.08);box-shadow:0 0 14px rgba(0,212,255,.12);}
+.chip{padding:6px 14px;border-radius:30px;border:1px solid var(--border);background:var(--surface);color:var(--muted);font-size:.78rem;cursor:pointer;transition:all .2s;}
+.chip.selected{border-color:var(--accent);color:var(--accent);background:rgba(0,212,255,.08);box-shadow:0 0 14px rgba(0,212,255,.12);}
 .chip:hover:not(.selected){border-color:rgba(255,255,255,.2);color:var(--text);}
-
-/* ═══ INPUTS ════════════════════════════════════════ */
 label{font-family:var(--font-ui);font-size:.6rem;color:var(--muted);letter-spacing:.1em;}
 .field{display:flex;flex-direction:column;gap:7px;}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
 .field-full{grid-column:1/-1;}
-input[type="text"],textarea,select{
-  width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);
-  border-radius:10px;color:var(--text);font-family:var(--font-ui);
-  font-size:.84rem;padding:12px 15px;outline:none;transition:all .25s;
-  resize:none;-webkit-appearance:none;}
-[lang="ar"] input[type="text"],[lang="ar"] textarea,[lang="ar"] select{
-  font-family:var(--font-ar);font-size:.9rem;text-align:right;}
-input[type="text"]:focus,textarea:focus,select:focus{
-  border-color:var(--accent);background:rgba(0,212,255,.04);
-  box-shadow:0 0 0 3px rgba(0,212,255,.07);}
+input[type="text"],textarea,select{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--font-ui);font-size:.84rem;padding:12px 15px;outline:none;transition:all .25s;resize:none;-webkit-appearance:none;}
+[lang="ar"] input[type="text"],[lang="ar"] textarea,[lang="ar"] select{font-family:var(--font-ar);font-size:.9rem;text-align:right;}
+input[type="text"]:focus,textarea:focus,select:focus{border-color:var(--accent);background:rgba(0,212,255,.04);box-shadow:0 0 0 3px rgba(0,212,255,.07);}
 textarea{min-height:78px;line-height:1.6;}
 select option{background:#0d1117;color:var(--text);}
-
-/* ═══ SOLVE BUTTON ══════════════════════════════════ */
-.solve-btn{width:100%;margin-top:8px;padding:15px;border:none;border-radius:12px;
-  background:linear-gradient(135deg,#00a8cc,#0070ff);color:#fff;
-  font-family:var(--font-display);font-weight:700;font-size:.93rem;
-  letter-spacing:.04em;cursor:pointer;position:relative;overflow:hidden;
-  transition:all .25s;box-shadow:0 8px 28px rgba(0,120,255,.3);}
+.solve-btn{width:100%;margin-top:8px;padding:15px;border:none;border-radius:12px;background:linear-gradient(135deg,#00a8cc,#0070ff);color:#fff;font-family:var(--font-display);font-weight:700;font-size:.93rem;letter-spacing:.04em;cursor:pointer;position:relative;overflow:hidden;transition:all .25s;box-shadow:0 8px 28px rgba(0,120,255,.3);}
 [lang="ar"] .solve-btn{font-family:var(--font-ar);letter-spacing:0;}
 .solve-btn:hover{transform:translateY(-2px);box-shadow:0 14px 38px rgba(0,120,255,.46);}
 .solve-btn:active{transform:translateY(0);}
 .solve-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
 .btn-inner{display:flex;align-items:center;justify-content:center;gap:9px;}
 .btn-inner svg.icon{font-size:1.05rem;}
-.loader{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);
-  border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0;}
+.loader{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0;}
 @keyframes spin{to{transform:rotate(360deg);}}
-
-/* ═══ RESULT PANEL ══════════════════════════════════ */
-.result-panel{margin-top:22px;border:1px solid rgba(0,255,157,.2);border-radius:16px;
-  background:rgba(0,20,15,.72);overflow:hidden;animation:slideUp .4s cubic-bezier(.2,.8,.2,1) both;}
+/* IMAGE TAB */
+.img-upload-zone{border:2px dashed rgba(168,85,247,.35);border-radius:18px;background:rgba(168,85,247,.04);padding:40px 24px;text-align:center;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;margin-bottom:16px;}
+.img-upload-zone::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(168,85,247,.08) 0%,transparent 70%);pointer-events:none;}
+.img-upload-zone:hover,.img-upload-zone.drag-over{border-color:rgba(168,85,247,.7);background:rgba(168,85,247,.09);box-shadow:0 0 32px rgba(168,85,247,.14);}
+.upload-icon-wrap{width:64px;height:64px;border-radius:16px;background:rgba(168,85,247,.14);border:1px solid rgba(168,85,247,.25);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:1.7rem;color:var(--purple);transition:all .3s;}
+.img-upload-zone:hover .upload-icon-wrap{background:rgba(168,85,247,.24);transform:translateY(-2px);box-shadow:0 8px 24px rgba(168,85,247,.2);}
+.upload-title{font-family:var(--font-display);font-weight:700;font-size:1.05rem;color:var(--text);margin-bottom:6px;}
+.upload-sub{font-size:.8rem;color:var(--muted);line-height:1.6;}
+.upload-sub strong{color:var(--purple);}
+.upload-formats{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:12px;}
+.fmt-pill{font-family:var(--font-ui);font-size:.58rem;padding:3px 9px;border-radius:20px;border:1px solid rgba(168,85,247,.25);color:var(--purple);letter-spacing:.06em;background:rgba(168,85,247,.07);}
+#img-input{display:none;}
+.img-preview-wrap{position:relative;margin-bottom:16px;animation:slideUp .35s ease both;}
+.img-preview{width:100%;max-height:340px;object-fit:contain;border-radius:12px;border:1px solid rgba(168,85,247,.3);background:rgba(0,0,0,.4);display:block;}
+.img-preview-bar{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);border-radius:0 0 12px 12px;margin-top:-4px;}
+.img-fname{font-family:var(--font-ui);font-size:.66rem;color:var(--purple);display:flex;align-items:center;gap:7px;overflow:hidden;}
+.img-fname span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.img-remove{display:flex;align-items:center;gap:5px;background:none;border:1px solid rgba(255,100,60,.25);color:rgba(255,100,60,.7);font-size:.62rem;font-family:var(--font-ui);padding:4px 10px;border-radius:6px;cursor:pointer;transition:all .18s;white-space:nowrap;}
+.img-remove:hover{background:rgba(255,60,30,.1);border-color:rgba(255,80,40,.5);color:#ff6040;}
+.img-modes{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px;}
+.img-mode-chip{padding:7px 14px;border-radius:30px;border:1px solid var(--border);background:var(--surface);color:var(--muted);font-size:.76rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;}
+.img-mode-chip svg.icon{font-size:.9rem;}
+.img-mode-chip.selected{border-color:var(--purple);color:var(--purple);background:rgba(168,85,247,.09);box-shadow:0 0 14px rgba(168,85,247,.12);}
+.img-mode-chip:hover:not(.selected){border-color:rgba(255,255,255,.2);color:var(--text);}
+.img-caps{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin-bottom:20px;}
+.img-cap{background:rgba(255,255,255,.025);border:1px solid rgba(168,85,247,.12);border-radius:10px;padding:11px 13px;display:flex;align-items:flex-start;gap:10px;}
+.img-cap-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px;}
+.img-cap-text{font-size:.76rem;color:var(--muted);line-height:1.5;}
+.img-cap-text strong{color:var(--text);display:block;margin-bottom:2px;font-size:.78rem;}
+.solve-btn.img-btn{background:linear-gradient(135deg,#7c3aed,#a855f7);}
+.solve-btn.img-btn:hover{box-shadow:0 14px 38px rgba(168,85,247,.4);}
+.cam-note{display:flex;align-items:center;gap:9px;padding:10px 14px;background:rgba(245,200,66,.05);border:1px dashed rgba(245,200,66,.2);border-radius:9px;margin-bottom:14px;}
+.cam-note svg.icon{color:var(--gold);flex-shrink:0;}
+.cam-note p{font-size:.74rem;color:var(--muted);line-height:1.5;}
+.cam-note p strong{color:var(--gold);}
+/* RESULT */
+.result-panel{margin-top:22px;border:1px solid rgba(0,255,157,.2);border-radius:16px;background:rgba(0,20,15,.72);overflow:hidden;animation:slideUp .4s cubic-bezier(.2,.8,.2,1) both;}
 @keyframes slideUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
-.result-header{display:flex;align-items:center;justify-content:space-between;padding:13px 20px;
-  border-bottom:1px solid rgba(0,255,157,.12);background:rgba(0,255,157,.04);}
-.result-title{font-family:var(--font-ui);font-size:.64rem;color:var(--green);
-  letter-spacing:.12em;display:flex;align-items:center;gap:8px;}
-.result-dot{width:7px;height:7px;border-radius:50%;background:var(--green);
-  box-shadow:0 0 10px var(--green);animation:blink 1.5s ease infinite;}
+.result-header{display:flex;align-items:center;justify-content:space-between;padding:13px 20px;border-bottom:1px solid rgba(0,255,157,.12);background:rgba(0,255,157,.04);}
+.result-title{font-family:var(--font-ui);font-size:.64rem;color:var(--green);letter-spacing:.12em;display:flex;align-items:center;gap:8px;}
+.result-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:blink 1.5s ease infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
-.copy-btn{display:flex;align-items:center;gap:6px;background:none;
-  border:1px solid var(--border);color:var(--muted);font-size:.66rem;
-  font-family:var(--font-ui);padding:5px 11px;border-radius:6px;cursor:pointer;transition:all .2s;}
-.copy-btn svg.icon{font-size:.9rem;}
+.copy-btn{display:flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);color:var(--muted);font-size:.66rem;font-family:var(--font-ui);padding:5px 11px;border-radius:6px;cursor:pointer;transition:all .2s;}
 .copy-btn:hover{color:var(--text);border-color:rgba(255,255,255,.28);}
 .result-body{padding:22px;font-family:var(--font-body);font-size:.93rem;line-height:1.78;color:#c8e8ff;}
 [lang="ar"] .result-body{font-family:var(--font-ar);font-size:1rem;text-align:right;direction:rtl;}
-.result-body .answer-box{background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.2);
-  border-radius:10px;padding:14px 18px;margin:12px 0;
-  font-family:'Space Mono',monospace;font-size:.88rem;color:var(--accent);}
-.result-body .step{margin:7px 0;padding-left:14px;border-left:2px solid rgba(245,200,66,.3);
-  color:#a8c8e8;font-size:.86rem;}
+.result-body .answer-box{background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.2);border-radius:10px;padding:14px 18px;margin:12px 0;font-family:'Space Mono',monospace;font-size:.88rem;color:var(--accent);}
+.result-body .step{margin:7px 0;padding-left:14px;border-left:2px solid rgba(245,200,66,.3);color:#a8c8e8;font-size:.86rem;}
 [lang="ar"] .result-body .step{padding-left:0;padding-right:14px;border-left:none;border-right:2px solid rgba(245,200,66,.3);}
-.result-body .step-num{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--gold);
-  letter-spacing:.07em;margin-bottom:2px;}
+.result-body .step-num{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--gold);letter-spacing:.07em;margin-bottom:2px;}
 .result-body h3{font-family:var(--font-display);font-weight:700;color:var(--gold);font-size:.95rem;margin:14px 0 7px;}
-.result-body .formula{font-family:'Space Mono',monospace;font-size:.83rem;
-  background:rgba(245,200,66,.06);border:1px solid rgba(245,200,66,.15);
-  border-radius:8px;padding:9px 15px;color:var(--gold);margin:5px 0;}
-.error-panel{margin-top:20px;padding:15px 18px;border:1px solid rgba(255,100,50,.3);
-  border-radius:12px;background:rgba(255,80,30,.06);color:#ff8060;font-size:.86rem;
-  display:flex;gap:10px;align-items:flex-start;animation:slideUp .3s ease both;}
+.result-body .formula{font-family:'Space Mono',monospace;font-size:.83rem;background:rgba(245,200,66,.06);border:1px solid rgba(245,200,66,.15);border-radius:8px;padding:9px 15px;color:var(--gold);margin:5px 0;}
+.result-body .warn-box{background:rgba(255,200,50,.07);border:1px solid rgba(255,200,50,.25);border-radius:10px;padding:12px 16px;margin:10px 0;font-size:.85rem;color:#ffe08a;}
+.result-body .alt-box{background:rgba(168,85,247,.06);border:1px solid rgba(168,85,247,.2);border-radius:10px;padding:12px 16px;margin:10px 0;font-size:.84rem;color:#c4a0f5;}
+.error-panel{margin-top:20px;padding:15px 18px;border:1px solid rgba(255,100,50,.3);border-radius:12px;background:rgba(255,80,30,.06);color:#ff8060;font-size:.86rem;display:flex;gap:10px;align-items:flex-start;animation:slideUp .3s ease both;}
 .error-panel svg.icon{font-size:1rem;flex-shrink:0;margin-top:1px;}
-
-/* ═══ SLASH COMMAND SYSTEM ══════════════════════════ */
-.fb-hint{display:flex;align-items:center;gap:11px;padding:11px 16px;
-  background:rgba(168,85,247,.07);border:1px dashed rgba(168,85,247,.28);
-  border-radius:10px;cursor:pointer;transition:all .2s;user-select:none;}
+/* SLASH */
+.fb-hint{display:flex;align-items:center;gap:11px;padding:11px 16px;background:rgba(168,85,247,.07);border:1px dashed rgba(168,85,247,.28);border-radius:10px;cursor:pointer;transition:all .2s;user-select:none;}
 .fb-hint:hover{background:rgba(168,85,247,.13);border-color:rgba(168,85,247,.52);}
-.fb-slash-badge{display:flex;align-items:center;gap:5px;
-  font-family:var(--font-ui);font-size:.82rem;color:var(--purple);font-weight:700;
-  background:rgba(168,85,247,.18);border:1px solid rgba(168,85,247,.35);
-  border-radius:5px;padding:3px 9px;}
-.fb-slash-badge svg.icon{font-size:.85rem;}
+.fb-slash-badge{display:flex;align-items:center;gap:5px;font-family:var(--font-ui);font-size:.82rem;color:var(--purple);font-weight:700;background:rgba(168,85,247,.18);border:1px solid rgba(168,85,247,.35);border-radius:5px;padding:3px 9px;}
 .fb-hint-text{font-family:var(--font-ui);font-size:.68rem;color:var(--muted);letter-spacing:.05em;}
 [lang="ar"] .fb-hint-text{font-family:var(--font-ar);font-size:.8rem;}
-.fb-hint-text em{color:var(--purple);font-style:normal;}
-.fb-hint-text kbd{font-family:var(--font-ui);font-size:.62rem;
-  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);
-  border-radius:4px;padding:1px 6px;color:var(--text);}
-
-/* ADDED FIELD ROWS */
+.fb-hint-text kbd{font-family:var(--font-ui);font-size:.62rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:4px;padding:1px 6px;color:var(--text);}
 .added-fields{display:flex;flex-direction:column;gap:8px;margin-bottom:10px;}
-.afield-row{display:flex;align-items:center;gap:10px;
-  background:rgba(255,255,255,.03);border:1px solid var(--border);
-  border-radius:10px;padding:9px 13px;animation:fadeIn .2s ease;}
+.afield-row{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;padding:9px 13px;animation:fadeIn .2s ease;}
 @keyframes fadeIn{from{opacity:0;transform:translateX(-6px);}to{opacity:1;transform:translateX(0);}}
-[lang="ar"] .afield-row{animation-name:fadeInRtl;}
-@keyframes fadeInRtl{from{opacity:0;transform:translateX(6px);}to{opacity:1;transform:translateX(0);}}
-.afield-name{font-family:var(--font-ui);font-size:.71rem;color:var(--accent);
-  min-width:146px;display:flex;align-items:center;gap:7px;flex-shrink:0;}
+.afield-name{font-family:var(--font-ui);font-size:.71rem;color:var(--accent);min-width:146px;display:flex;align-items:center;gap:7px;flex-shrink:0;}
 [lang="ar"] .afield-name{font-family:var(--font-ar);font-size:.8rem;}
 .afield-sym{font-size:.78rem;color:var(--muted);font-family:'Space Mono',monospace;}
-.afield-val{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(0,212,255,.18);
-  border-radius:7px;color:var(--text);font-family:'Space Mono',monospace;
-  font-size:.85rem;padding:8px 11px;outline:none;transition:all .2s;min-width:0;}
+.afield-val{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(0,212,255,.18);border-radius:7px;color:var(--text);font-family:'Space Mono',monospace;font-size:.85rem;padding:8px 11px;outline:none;transition:all .2s;min-width:0;}
 .afield-val:focus{border-color:var(--accent);background:rgba(0,212,255,.06);}
-.afield-unit{font-family:'Space Mono',monospace;font-size:.66rem;color:var(--muted);
-  min-width:28px;text-align:right;flex-shrink:0;}
-.afield-del{display:flex;align-items:center;justify-content:center;
-  background:none;border:none;color:var(--muted);cursor:pointer;
-  padding:4px;border-radius:5px;transition:all .15s;flex-shrink:0;}
-.afield-del svg.icon{font-size:.85rem;}
+.afield-unit{font-family:'Space Mono',monospace;font-size:.66rem;color:var(--muted);min-width:28px;text-align:right;flex-shrink:0;}
+.afield-del{display:flex;align-items:center;justify-content:center;background:none;border:none;color:var(--muted);cursor:pointer;padding:4px;border-radius:5px;transition:all .15s;flex-shrink:0;}
 .afield-del:hover{color:#ff6060;background:rgba(255,60,60,.1);}
-
-/* COMMAND PALETTE */
 .pal-wrap{position:relative;margin-bottom:20px;}
-.cmd-pal{position:absolute;top:calc(100% + 5px);left:0;right:0;
-  background:#090c1c;border:1px solid rgba(168,85,247,.38);border-radius:14px;
-  z-index:200;overflow:hidden;
-  box-shadow:0 24px 64px rgba(0,0,0,.78),0 0 28px rgba(168,85,247,.1);
-  animation:palIn .17s cubic-bezier(.2,.8,.2,1);}
+.cmd-pal{position:absolute;top:calc(100% + 5px);left:0;right:0;background:#090c1c;border:1px solid rgba(168,85,247,.38);border-radius:14px;z-index:200;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.78),0 0 28px rgba(168,85,247,.1);animation:palIn .17s cubic-bezier(.2,.8,.2,1);}
 @keyframes palIn{from{opacity:0;transform:translateY(-7px) scale(.97);}to{opacity:1;transform:translateY(0) scale(1);}}
-.pal-head{padding:10px 14px 8px;border-bottom:1px solid rgba(168,85,247,.14);
-  display:flex;align-items:center;gap:9px;}
+.pal-head{padding:10px 14px 8px;border-bottom:1px solid rgba(168,85,247,.14);display:flex;align-items:center;gap:9px;}
 .pal-head svg.icon{font-size:1rem;color:var(--purple);flex-shrink:0;}
-.pal-search{flex:1;background:none;border:none;color:var(--text);
-  font-family:var(--font-ui);font-size:.78rem;outline:none;}
-[lang="ar"] .pal-search{font-family:var(--font-ar);font-size:.88rem;text-align:right;}
+.pal-search{flex:1;background:none;border:none;color:var(--text);font-family:var(--font-ui);font-size:.78rem;outline:none;}
 .pal-search::placeholder{color:var(--muted);}
-.pal-close{display:flex;align-items:center;gap:5px;
-  background:none;border:1px solid var(--border);color:var(--muted);cursor:pointer;
-  font-size:.66rem;font-family:var(--font-ui);padding:4px 9px;border-radius:5px;transition:all .15s;}
+.pal-close{display:flex;align-items:center;gap:5px;background:none;border:1px solid var(--border);color:var(--muted);cursor:pointer;font-size:.66rem;font-family:var(--font-ui);padding:4px 9px;border-radius:5px;transition:all .15s;}
 .pal-close:hover{color:var(--text);background:rgba(255,255,255,.07);}
 .pal-list{max-height:268px;overflow-y:auto;padding:5px;}
 .pal-list::-webkit-scrollbar{width:4px;}
 .pal-list::-webkit-scrollbar-thumb{background:rgba(168,85,247,.3);border-radius:10px;}
-.pal-group{font-family:var(--font-ui);font-size:.56rem;color:var(--purple);
-  letter-spacing:.14em;padding:9px 12px 4px;opacity:.75;
-  display:flex;align-items:center;gap:7px;}
-.pal-group svg.icon{font-size:.8rem;}
-.pal-item{display:flex;align-items:center;gap:10px;padding:9px 11px;
-  border-radius:8px;cursor:pointer;transition:all .13s;border:1px solid transparent;}
+.pal-group{font-family:var(--font-ui);font-size:.56rem;color:var(--purple);letter-spacing:.14em;padding:9px 12px 4px;opacity:.75;display:flex;align-items:center;gap:7px;}
+.pal-item{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:8px;cursor:pointer;transition:all .13s;border:1px solid transparent;}
 .pal-item:hover,.pal-item.hi{background:rgba(168,85,247,.1);border-color:rgba(168,85,247,.22);}
 .pal-item.done{opacity:.32;pointer-events:none;}
-.pal-sym{font-family:'Space Mono',monospace;font-size:.74rem;color:var(--accent);
-  min-width:20px;text-align:center;}
+.pal-sym{font-family:'Space Mono',monospace;font-size:.74rem;color:var(--accent);min-width:20px;text-align:center;}
 .pal-lbl{font-family:var(--font-ui);font-size:.77rem;color:var(--text);}
-[lang="ar"] .pal-lbl{font-family:var(--font-ar);font-size:.85rem;}
 .pal-desc{font-size:.68rem;color:var(--muted);margin-left:auto;text-align:right;flex-shrink:0;}
-[lang="ar"] .pal-desc{margin-left:0;margin-right:auto;text-align:left;}
-.pal-badge{font-family:'Space Mono',monospace;font-size:.56rem;padding:2px 7px;
-  border-radius:4px;margin-left:5px;flex-shrink:0;}
-[lang="ar"] .pal-badge{margin-left:0;margin-right:5px;}
+.pal-badge{font-family:'Space Mono',monospace;font-size:.56rem;padding:2px 7px;border-radius:4px;margin-left:5px;flex-shrink:0;}
 .pal-badge.angle{background:rgba(255,107,53,.12);color:var(--accent2);border:1px solid rgba(255,107,53,.2);}
 .pal-badge.area{background:rgba(0,255,157,.08);color:var(--green);border:1px solid rgba(0,255,157,.14);}
 .pal-badge.volume{background:rgba(0,212,255,.08);color:var(--accent);border:1px solid rgba(0,212,255,.14);}
 .pal-badge.length{background:rgba(245,200,66,.07);color:var(--gold);border:1px solid rgba(245,200,66,.14);}
 .pal-empty{padding:22px;text-align:center;font-family:var(--font-ui);font-size:.72rem;color:var(--muted);}
-
-/* FIND ROW */
 .find-row{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:6px;}
-.find-chip{padding:7px 13px;border-radius:8px;border:1px solid var(--border);
-  background:var(--surface);color:var(--muted);font-family:var(--font-ui);
-  font-size:.67rem;cursor:pointer;transition:all .2s;letter-spacing:.04em;}
+.find-chip{padding:7px 13px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--muted);font-family:var(--font-ui);font-size:.67rem;cursor:pointer;transition:all .2s;letter-spacing:.04em;}
 [lang="ar"] .find-chip{font-family:var(--font-ar);font-size:.78rem;letter-spacing:0;}
 .find-chip.active{border-color:var(--gold);color:var(--gold);background:rgba(245,200,66,.07);}
 .find-chip:hover:not(.active){border-color:rgba(255,255,255,.17);color:var(--text);}
-
-/* ANGLE TAB */
 .amode-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;}
-.amode{font-family:var(--font-ui);font-size:.65rem;padding:7px 13px;border-radius:8px;
-  border:1px solid var(--border);background:var(--surface);color:var(--muted);
-  cursor:pointer;transition:all .2s;letter-spacing:.04em;}
+.amode{font-family:var(--font-ui);font-size:.65rem;padding:7px 13px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;transition:all .2s;letter-spacing:.04em;}
 [lang="ar"] .amode{font-family:var(--font-ar);font-size:.78rem;letter-spacing:0;}
 .amode.active{border-color:var(--accent2);color:var(--accent2);background:rgba(255,107,53,.07);}
-.unit-toggle{display:flex;border:1px solid var(--border);border-radius:8px;
-  overflow:hidden;margin-bottom:18px;width:fit-content;}
-.utn{font-family:var(--font-ui);font-size:.67rem;padding:7px 15px;border:none;
-  background:transparent;color:var(--muted);cursor:pointer;transition:all .18s;}
+.unit-toggle{display:flex;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:18px;width:fit-content;}
+.utn{font-family:var(--font-ui);font-size:.67rem;padding:7px 15px;border:none;background:transparent;color:var(--muted);cursor:pointer;transition:all .18s;}
 .utn.active{background:rgba(255,107,53,.14);color:var(--accent2);}
 .utn:not(:last-child){border-right:1px solid var(--border);}
 .ang-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(174px,1fr));gap:10px;margin-bottom:14px;}
 .ang-box{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;padding:12px 13px;}
 .ang-lbl{font-family:var(--font-ui);font-size:.59rem;color:var(--muted);letter-spacing:.1em;margin-bottom:7px;}
 [lang="ar"] .ang-lbl{font-family:var(--font-ar);font-size:.72rem;letter-spacing:0;text-align:right;}
-.ang-inp{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,107,53,.2);
-  border-radius:7px;color:var(--text);font-family:'Space Mono',monospace;
-  font-size:.85rem;padding:9px 11px;outline:none;transition:all .2s;}
+.ang-inp{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,107,53,.2);border-radius:7px;color:var(--text);font-family:'Space Mono',monospace;font-size:.85rem;padding:9px 11px;outline:none;transition:all .2s;}
 .ang-inp:focus{border-color:var(--accent2);background:rgba(255,107,53,.05);}
 .ang-ta{resize:none;min-height:68px;line-height:1.6;font-family:var(--font-body);}
 [lang="ar"] .ang-ta{font-family:var(--font-ar);text-align:right;}
-
-/* EXAMPLES */
 .ex-wrap{margin-top:24px;padding-top:20px;border-top:1px solid var(--border);}
 .ex-title{font-family:var(--font-ui);font-size:.6rem;color:var(--muted);letter-spacing:.12em;margin-bottom:11px;}
 [lang="ar"] .ex-title{font-family:var(--font-ar);font-size:.75rem;letter-spacing:0;}
 .ex-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(206px,1fr));gap:9px;}
-.ex-card{background:var(--surface);border:1px solid var(--border);
-  border-radius:10px;padding:12px 14px;cursor:pointer;transition:all .2s;}
+.ex-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;cursor:pointer;transition:all .2s;}
 .ex-card:hover{border-color:rgba(0,212,255,.35);background:rgba(0,212,255,.04);transform:translateY(-1px);}
 .ex-type{font-family:var(--font-ui);font-size:.57rem;color:var(--accent2);letter-spacing:.1em;margin-bottom:4px;}
 [lang="ar"] .ex-type{font-family:var(--font-ar);font-size:.7rem;letter-spacing:0;text-align:right;}
 .ex-eq{font-family:'Space Mono',monospace;font-size:.74rem;color:var(--text);margin-bottom:3px;}
 .ex-find{display:flex;align-items:center;gap:5px;font-size:.7rem;color:var(--muted);}
-.ex-find svg.icon{font-size:.75rem;flex-shrink:0;}
-
-footer{margin-top:auto;padding:16px 36px;border-top:1px solid var(--border);
-  display:flex;align-items:center;justify-content:space-between;
-  backdrop-filter:blur(12px);background:rgba(3,3,10,.62);}
+footer{margin-top:auto;padding:16px 36px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(12px);background:rgba(3,3,10,.62);}
 footer p{font-family:var(--font-ui);font-size:.59rem;color:var(--muted);letter-spacing:.07em;}
 [lang="ar"] footer p{font-family:var(--font-ar);font-size:.72rem;letter-spacing:0;}
-
 ::-webkit-scrollbar{width:5px;height:5px;}
 ::-webkit-scrollbar-track{background:transparent;}
 ::-webkit-scrollbar-thumb{background:rgba(100,150,200,.2);border-radius:10px;}
-
-@media(max-width:600px){
-  header{padding:14px 16px;}
-  .hero{padding:28px 14px 20px;}
-  .solver-body{padding:14px;}
-  footer{padding:13px 16px;flex-direction:column;gap:5px;text-align:center;}
-  .tabs{padding:0 8px;} .tab{padding:12px 10px;font-size:.6rem;}
-  .field-row{grid-template-columns:1fr;}
-  .afield-name{min-width:108px;font-size:.65rem;}
-  .badge{display:none;}
-}
+@media(max-width:600px){header{padding:14px 16px;}.hero{padding:28px 14px 20px;}.solver-body{padding:14px;}footer{padding:13px 16px;flex-direction:column;gap:5px;text-align:center;}.tabs{padding:0 8px;}.tab{padding:12px 10px;font-size:.6rem;}.field-row{grid-template-columns:1fr;}.afield-name{min-width:108px;}.img-caps{grid-template-columns:1fr 1fr;}.badge{display:none;}}
 </style>
 </head>
 <body>
 <canvas id="bg-canvas"></canvas>
 <div id="app">
-
-<!-- ═══ HEADER ═══════════════════════════════════════ -->
 <header>
   <div class="logo">Σolve<span>X</span></div>
   <div class="header-right">
-    <span class="badge" data-i18n="badge">AI MATH ENGINE v1.0</span>
+    <span class="badge" data-i18n="badge">AI MATH ENGINE v4.0</span>
     <button class="lang-btn" id="lang-toggle" onclick="toggleLang()">
       <svg class="icon"><use href="#ic-globe"/></svg>
       <span class="lang-flag" id="lang-flag">🇸🇦</span>
@@ -417,46 +247,25 @@ footer p{font-family:var(--font-ui);font-size:.59rem;color:var(--muted);letter-s
     </button>
   </div>
 </header>
-
-<!-- ═══ HERO ══════════════════════════════════════════ -->
 <div class="hero">
   <div class="hero-tag">
     <svg class="icon icon-sm"><use href="#ic-zap"/></svg>
-    <span data-i18n="hero_tag">POWERED BY | PhineX</span>
+    <span data-i18n="hero_tag">POWERED BY CLAUDE AI</span>
   </div>
   <h1 data-i18n="hero_h1">Solve Any<br>Math Problem</h1>
-  <p data-i18n="hero_p">Algebra, geometry, trigonometry — describe your problem and get a full step-by-step solution instantly.</p>
+  <p data-i18n="hero_p">Algebra, geometry, trigonometry — type your problem or snap a photo and get a rigorous step-by-step solution instantly.</p>
 </div>
-
-<!-- ═══ SOLVER CARD ═══════════════════════════════════ -->
 <div class="solver-wrap">
 <div class="solver-card">
-
-<!-- TABS -->
 <div class="tabs">
-  <button class="tab active" data-tab="solver">
-    <svg class="icon"><use href="#ic-calculator"/></svg>
-    <span data-i18n="tab_solver">SOLVER</span>
-  </button>
-  <button class="tab" data-tab="geometry">
-    <svg class="icon"><use href="#ic-shapes"/></svg>
-    <span data-i18n="tab_geometry">GEOMETRY</span>
-  </button>
-  <button class="tab" data-tab="angles">
-    <svg class="icon"><use href="#ic-angle"/></svg>
-    <span data-i18n="tab_angles">ANGLES</span>
-  </button>
-  <button class="tab" data-tab="triangle">
-    <svg class="icon"><use href="#ic-triangle"/></svg>
-    <span data-i18n="tab_triangle">TRIANGLE</span>
-  </button>
-  <button class="tab" data-tab="system">
-    <svg class="icon"><use href="#ic-grid"/></svg>
-    <span data-i18n="tab_system">SYSTEMS</span>
-  </button>
+  <button class="tab active" data-tab="solver"><svg class="icon"><use href="#ic-calculator"/></svg><span data-i18n="tab_solver">SOLVER</span></button>
+  <button class="tab" data-tab="geometry"><svg class="icon"><use href="#ic-shapes"/></svg><span data-i18n="tab_geometry">GEOMETRY</span></button>
+  <button class="tab" data-tab="angles"><svg class="icon"><use href="#ic-angle"/></svg><span data-i18n="tab_angles">ANGLES</span></button>
+  <button class="tab" data-tab="triangle"><svg class="icon"><use href="#ic-triangle"/></svg><span data-i18n="tab_triangle">TRIANGLE</span></button>
+  <button class="tab" data-tab="system"><svg class="icon"><use href="#ic-grid"/></svg><span data-i18n="tab_system">SYSTEMS</span></button>
+  <button class="tab" data-tab="image"><svg class="icon"><use href="#ic-camera"/></svg><span data-i18n="tab_image">IMAGE</span><span class="tab-new-badge">NEW</span></button>
 </div>
-
-<!-- ═══ TAB: SOLVER ════════════════════════════════ -->
+<!-- SOLVER TAB -->
 <div class="solver-body" id="tab-solver">
   <div class="cat-label" data-i18n="eq_type">EQUATION TYPE</div>
   <div class="chips" id="type-chips">
@@ -469,695 +278,307 @@ footer p{font-family:var(--font-ui);font-size:.59rem;color:var(--muted);letter-s
     <div class="chip" data-type="differential" data-i18n-chip="chip_differential">Derivative</div>
     <div class="chip" data-type="integral" data-i18n-chip="chip_integral">Integral</div>
   </div>
+  <div class="field-row"><div class="field field-full">
+    <label data-i18n="lbl_equation">EQUATION OR EXPRESSION</label>
+    <textarea id="equation-input" data-i18n-ph="ph_equation" placeholder="e.g.  2x² + 5x - 3 = 0   or   sin(x) + cos(x) = 1"></textarea>
+  </div></div>
   <div class="field-row">
-    <div class="field field-full">
-      <label data-i18n="lbl_equation">EQUATION OR EXPRESSION</label>
-      <textarea id="equation-input" data-i18n-ph="ph_equation" placeholder="e.g.  2x² + 5x - 3 = 0   or   sin(x) + cos(x) = 1"></textarea>
-    </div>
+    <div class="field"><label data-i18n="lbl_find_for">FIND / SOLVE FOR</label><input type="text" id="solve-for" data-i18n-ph="ph_solve_for" placeholder="x, y, z, angle …"/></div>
+    <div class="field"><label data-i18n="lbl_context">ADDITIONAL CONTEXT (optional)</label><input type="text" id="extra-context" data-i18n-ph="ph_context" placeholder="x > 0, degrees, domain …"/></div>
   </div>
-  <div class="field-row">
-    <div class="field">
-      <label data-i18n="lbl_find_for">FIND / SOLVE FOR</label>
-      <input type="text" id="solve-for" data-i18n-ph="ph_solve_for" placeholder="x, y, z, angle …" />
-    </div>
-    <div class="field">
-      <label data-i18n="lbl_context">ADDITIONAL CONTEXT (optional)</label>
-      <input type="text" id="extra-context" data-i18n-ph="ph_context" placeholder="x > 0, degrees, domain …" />
-    </div>
-  </div>
-  <button class="solve-btn" id="solve-btn" onclick="solveGeneral()">
-    <div class="btn-inner">
-      <svg class="icon"><use href="#ic-zap"/></svg>
-      <span data-i18n="btn_solve">SOLVE NOW</span>
-    </div>
-  </button>
+  <button class="solve-btn" id="solve-btn" onclick="solveGeneral()"><div class="btn-inner"><svg class="icon"><use href="#ic-zap"/></svg><span data-i18n="btn_solve">SOLVE NOW</span></div></button>
   <div id="result-area"></div>
-  <div class="ex-wrap">
-    <div class="ex-title" data-i18n="ex_title">QUICK EXAMPLES — CLICK TO LOAD</div>
-    <div class="ex-grid" id="ex-grid"></div>
-  </div>
+  <div class="ex-wrap"><div class="ex-title" data-i18n="ex_title">QUICK EXAMPLES — CLICK TO LOAD</div><div class="ex-grid" id="ex-grid"></div></div>
 </div>
-
-<!-- ═══ TAB: GEOMETRY ══════════════════════════════ -->
+<!-- GEOMETRY TAB -->
 <div class="solver-body" id="tab-geometry" style="display:none">
   <div class="cat-label" data-i18n="lbl_shape">SHAPE</div>
   <div class="chips" id="shape-chips">
-    <div class="chip selected" data-shape="circle"   data-i18n-chip="shape_circle">Circle</div>
-    <div class="chip" data-shape="rectangle"         data-i18n-chip="shape_rectangle">Rectangle</div>
-    <div class="chip" data-shape="square"            data-i18n-chip="shape_square">Square</div>
-    <div class="chip" data-shape="triangle"          data-i18n-chip="shape_triangle">Triangle</div>
-    <div class="chip" data-shape="sphere"            data-i18n-chip="shape_sphere">Sphere</div>
-    <div class="chip" data-shape="cylinder"          data-i18n-chip="shape_cylinder">Cylinder</div>
-    <div class="chip" data-shape="cone"              data-i18n-chip="shape_cone">Cone</div>
-    <div class="chip" data-shape="ellipse"           data-i18n-chip="shape_ellipse">Ellipse</div>
-    <div class="chip" data-shape="trapezoid"         data-i18n-chip="shape_trapezoid">Trapezoid</div>
-    <div class="chip" data-shape="rhombus"           data-i18n-chip="shape_rhombus">Rhombus</div>
+    <div class="chip selected" data-shape="circle" data-i18n-chip="shape_circle">Circle</div>
+    <div class="chip" data-shape="rectangle" data-i18n-chip="shape_rectangle">Rectangle</div>
+    <div class="chip" data-shape="square" data-i18n-chip="shape_square">Square</div>
+    <div class="chip" data-shape="triangle" data-i18n-chip="shape_triangle">Triangle</div>
+    <div class="chip" data-shape="sphere" data-i18n-chip="shape_sphere">Sphere</div>
+    <div class="chip" data-shape="cylinder" data-i18n-chip="shape_cylinder">Cylinder</div>
+    <div class="chip" data-shape="cone" data-i18n-chip="shape_cone">Cone</div>
+    <div class="chip" data-shape="ellipse" data-i18n-chip="shape_ellipse">Ellipse</div>
+    <div class="chip" data-shape="trapezoid" data-i18n-chip="shape_trapezoid">Trapezoid</div>
+    <div class="chip" data-shape="rhombus" data-i18n-chip="shape_rhombus">Rhombus</div>
   </div>
-
   <div class="cat-label" style="margin-bottom:9px" data-i18n="lbl_known">KNOWN VALUES</div>
   <div class="added-fields" id="added-fields"></div>
-
-  <!-- Slash palette -->
   <div class="pal-wrap" id="pal-wrap">
     <div class="fb-hint" id="slash-trigger" onclick="openPalette()">
-      <div class="fb-slash-badge">
-        <svg class="icon icon-sm"><use href="#ic-slash"/></svg>
-        <span>/</span>
-      </div>
-      <span class="fb-hint-text">
-        <span data-i18n="slash_hint_1">Click here or press</span>
-        <kbd>/</kbd>
-        <span data-i18n="slash_hint_2">to add a known property</span>
-      </span>
+      <div class="fb-slash-badge"><svg class="icon icon-sm"><use href="#ic-slash"/></svg><span>/</span></div>
+      <span class="fb-hint-text"><span data-i18n="slash_hint_1">Click here or press</span> <kbd>/</kbd> <span data-i18n="slash_hint_2">to add a known property</span></span>
     </div>
     <div class="cmd-pal" id="cmd-pal" style="display:none">
-      <div class="pal-head">
-        <svg class="icon"><use href="#ic-search"/></svg>
-        <input class="pal-search" id="pal-search" data-i18n-ph="pal_search_ph" placeholder="Search property…"
-          oninput="renderPalList()" onkeydown="palNav(event)" autocomplete="off" />
-        <button class="pal-close" onclick="closePalette()">
-          <svg class="icon icon-sm"><use href="#ic-x"/></svg>
-          ESC
-        </button>
-      </div>
+      <div class="pal-head"><svg class="icon"><use href="#ic-search"/></svg><input class="pal-search" id="pal-search" data-i18n-ph="pal_search_ph" placeholder="Search property…" oninput="renderPalList()" onkeydown="palNav(event)" autocomplete="off"/><button class="pal-close" onclick="closePalette()"><svg class="icon icon-sm"><use href="#ic-x"/></svg>ESC</button></div>
       <div class="pal-list" id="pal-list"></div>
     </div>
   </div>
-
   <div class="cat-label" style="margin:18px 0 9px" data-i18n="lbl_find">FIND</div>
   <div class="find-row" id="find-row"></div>
-
   <div class="field-row" style="margin-top:16px">
-    <div class="field">
-      <label data-i18n="lbl_units">MEASUREMENT UNITS</label>
-      <select id="geo-units" onchange="refreshUnitLabels()">
-        <option value="cm">Centimeters (cm)</option>
-        <option value="m">Meters (m)</option>
-        <option value="mm">Millimeters (mm)</option>
-        <option value="in">Inches (in)</option>
-        <option value="ft">Feet (ft)</option>
-        <option value="km">Kilometers (km)</option>
-      </select>
-    </div>
-    <div class="field" style="justify-content:flex-end;align-items:flex-end">
-      <div style="font-family:var(--font-ui);font-size:.62rem;color:var(--muted);line-height:1.9;padding-bottom:4px" data-i18n="geo_tip">
-        <span style="color:var(--purple)">TIP</span> — Add known values,<br>then choose what to find above
-      </div>
-    </div>
+    <div class="field"><label data-i18n="lbl_units">MEASUREMENT UNITS</label><select id="geo-units" onchange="refreshUnitLabels()"><option value="cm">Centimeters (cm)</option><option value="m">Meters (m)</option><option value="mm">Millimeters (mm)</option><option value="in">Inches (in)</option><option value="ft">Feet (ft)</option><option value="km">Kilometers (km)</option></select></div>
+    <div class="field" style="justify-content:flex-end;align-items:flex-end"><div style="font-family:var(--font-ui);font-size:.62rem;color:var(--muted);line-height:1.9;padding-bottom:4px" data-i18n="geo_tip"><span style="color:var(--purple)">TIP</span> — Add known values,<br>then choose what to find above</div></div>
   </div>
-  <button class="solve-btn" id="geo-btn" onclick="solveGeo()">
-    <div class="btn-inner">
-      <svg class="icon"><use href="#ic-ruler"/></svg>
-      <span data-i18n="btn_calculate">CALCULATE</span>
-    </div>
-  </button>
+  <button class="solve-btn" id="geo-btn" onclick="solveGeo()"><div class="btn-inner"><svg class="icon"><use href="#ic-ruler"/></svg><span data-i18n="btn_calculate">CALCULATE</span></div></button>
   <div id="geo-result"></div>
 </div>
-
-<!-- ═══ TAB: ANGLES ════════════════════════════════ -->
+<!-- ANGLES TAB -->
 <div class="solver-body" id="tab-angles" style="display:none">
   <div class="cat-label" data-i18n="lbl_angle_mode">ANGLE MODE</div>
   <div class="amode-row" id="amode-row">
-    <div class="amode active" data-am="convert"    data-i18n-amode="am_convert">Convert Units</div>
-    <div class="amode" data-am="complement"        data-i18n-amode="am_complement">Complement &amp; Supplement</div>
-    <div class="amode" data-am="arc"               data-i18n-amode="am_arc">Arc Length &amp; Sector</div>
-    <div class="amode" data-am="central"           data-i18n-amode="am_central">Central Angle</div>
-    <div class="amode" data-am="inscribed"         data-i18n-amode="am_inscribed">Inscribed Angle</div>
-    <div class="amode" data-am="polygon"           data-i18n-amode="am_polygon">Polygon Angles</div>
-    <div class="amode" data-am="bearing"           data-i18n-amode="am_bearing">Bearing / Direction</div>
-    <div class="amode" data-am="custom"            data-i18n-amode="am_custom">Custom Problem</div>
+    <div class="amode active" data-am="convert" data-i18n-amode="am_convert">Convert Units</div>
+    <div class="amode" data-am="complement" data-i18n-amode="am_complement">Complement &amp; Supplement</div>
+    <div class="amode" data-am="arc" data-i18n-amode="am_arc">Arc Length &amp; Sector</div>
+    <div class="amode" data-am="central" data-i18n-amode="am_central">Central Angle</div>
+    <div class="amode" data-am="inscribed" data-i18n-amode="am_inscribed">Inscribed Angle</div>
+    <div class="amode" data-am="polygon" data-i18n-amode="am_polygon">Polygon Angles</div>
+    <div class="amode" data-am="bearing" data-i18n-amode="am_bearing">Bearing / Direction</div>
+    <div class="amode" data-am="custom" data-i18n-amode="am_custom">Custom Problem</div>
   </div>
-  <div class="unit-toggle">
-    <button class="utn active" data-u="deg">DEG °</button>
-    <button class="utn" data-u="rad">RAD</button>
-    <button class="utn" data-u="grad">GRAD</button>
-    <button class="utn" data-u="turn">TURN</button>
-  </div>
+  <div class="unit-toggle"><button class="utn active" data-u="deg">DEG °</button><button class="utn" data-u="rad">RAD</button><button class="utn" data-u="grad">GRAD</button><button class="utn" data-u="turn">TURN</button></div>
   <div id="ang-fields"></div>
-  <button class="solve-btn" id="ang-btn" onclick="solveAngle()">
-    <div class="btn-inner">
-      <svg class="icon"><use href="#ic-angle"/></svg>
-      <span data-i18n="btn_calc_angle">CALCULATE ANGLE</span>
-    </div>
-  </button>
+  <button class="solve-btn" id="ang-btn" onclick="solveAngle()"><div class="btn-inner"><svg class="icon"><use href="#ic-angle"/></svg><span data-i18n="btn_calc_angle">CALCULATE ANGLE</span></div></button>
   <div id="ang-result"></div>
 </div>
-
-<!-- ═══ TAB: TRIANGLE ══════════════════════════════ -->
+<!-- TRIANGLE TAB -->
 <div class="solver-body" id="tab-triangle" style="display:none">
   <div class="cat-label" data-i18n="lbl_tri_config">KNOWN CONFIGURATION</div>
   <div class="chips" id="tri-chips">
-    <div class="chip selected" data-tri="SSS">SSS</div>
-    <div class="chip" data-tri="SAS">SAS</div>
-    <div class="chip" data-tri="ASA">ASA</div>
-    <div class="chip" data-tri="AAS">AAS</div>
+    <div class="chip selected" data-tri="SSS">SSS</div><div class="chip" data-tri="SAS">SAS</div>
+    <div class="chip" data-tri="ASA">ASA</div><div class="chip" data-tri="AAS">AAS</div>
     <div class="chip" data-tri="right" data-i18n-chip="chip_right_tri">Right △</div>
     <div class="chip" data-tri="custom" data-i18n-chip="chip_custom">Custom</div>
   </div>
+  <div class="field-row"><div class="field field-full"><label data-i18n="lbl_known">KNOWN VALUES</label><textarea id="tri-input" data-i18n-ph="ph_tri" placeholder="e.g.  a = 3, b = 4, c = 5&#10;or  A = 30°, B = 60°, c = 10"></textarea></div></div>
   <div class="field-row">
-    <div class="field field-full">
-      <label data-i18n="lbl_known">KNOWN VALUES</label>
-      <textarea id="tri-input" data-i18n-ph="ph_tri" placeholder="e.g.  a = 3, b = 4, c = 5&#10;or  A = 30°, B = 60°, c = 10"></textarea>
-    </div>
+    <div class="field"><label data-i18n="lbl_find">FIND</label><select id="tri-find"><option value="all" data-i18n-opt="tri_all">All sides and angles</option><option value="angles" data-i18n-opt="tri_angles">All angles</option><option value="sides" data-i18n-opt="tri_sides">All sides</option><option value="area" data-i18n-opt="tri_area">Area</option><option value="specific_angle" data-i18n-opt="tri_specific_angle">Specific angle</option><option value="specific_side" data-i18n-opt="tri_specific_side">Specific side</option></select></div>
+    <div class="field"><label data-i18n="lbl_specific_unk">SPECIFIC UNKNOWN (if applicable)</label><input type="text" id="tri-unknown" data-i18n-ph="ph_tri_unk" placeholder="e.g. angle C, side b …"/></div>
   </div>
-  <div class="field-row">
-    <div class="field">
-      <label data-i18n="lbl_find">FIND</label>
-      <select id="tri-find">
-        <option value="all"            data-i18n-opt="tri_all">All sides and angles</option>
-        <option value="angles"         data-i18n-opt="tri_angles">All angles</option>
-        <option value="sides"          data-i18n-opt="tri_sides">All sides</option>
-        <option value="area"           data-i18n-opt="tri_area">Area</option>
-        <option value="specific_angle" data-i18n-opt="tri_specific_angle">Specific angle</option>
-        <option value="specific_side"  data-i18n-opt="tri_specific_side">Specific side</option>
-      </select>
-    </div>
-    <div class="field">
-      <label data-i18n="lbl_specific_unk">SPECIFIC UNKNOWN (if applicable)</label>
-      <input type="text" id="tri-unknown" data-i18n-ph="ph_tri_unk" placeholder="e.g. angle C, side b …" />
-    </div>
-  </div>
-  <button class="solve-btn" id="tri-btn" onclick="solveTriangle()">
-    <div class="btn-inner">
-      <svg class="icon"><use href="#ic-triangle"/></svg>
-      <span data-i18n="btn_solve_tri">SOLVE TRIANGLE</span>
-    </div>
-  </button>
+  <button class="solve-btn" id="tri-btn" onclick="solveTriangle()"><div class="btn-inner"><svg class="icon"><use href="#ic-triangle"/></svg><span data-i18n="btn_solve_tri">SOLVE TRIANGLE</span></div></button>
   <div id="tri-result"></div>
 </div>
-
-<!-- ═══ TAB: SYSTEMS ═══════════════════════════════ -->
+<!-- SYSTEMS TAB -->
 <div class="solver-body" id="tab-system" style="display:none">
   <div class="cat-label" data-i18n="lbl_sys_type">SYSTEM TYPE</div>
   <div class="chips" id="sys-chips">
-    <div class="chip selected" data-sys="linear"    data-i18n-chip="sys_linear">Linear System</div>
-    <div class="chip" data-sys="nonlinear"          data-i18n-chip="sys_nonlinear">Non-linear</div>
-    <div class="chip" data-sys="matrix"             data-i18n-chip="sys_matrix">Matrix</div>
-    <div class="chip" data-sys="word"               data-i18n-chip="sys_word">Word Problem</div>
+    <div class="chip selected" data-sys="linear" data-i18n-chip="sys_linear">Linear System</div>
+    <div class="chip" data-sys="nonlinear" data-i18n-chip="sys_nonlinear">Non-linear</div>
+    <div class="chip" data-sys="matrix" data-i18n-chip="sys_matrix">Matrix</div>
+    <div class="chip" data-sys="word" data-i18n-chip="sys_word">Word Problem</div>
   </div>
+  <div class="field-row"><div class="field field-full"><label data-i18n="lbl_sys_eq">ENTER SYSTEM (one equation per line)</label><textarea id="sys-input" style="min-height:110px" data-i18n-ph="ph_sys" placeholder="2x + 3y = 12&#10;x - y = 1"></textarea></div></div>
   <div class="field-row">
-    <div class="field field-full">
-      <label data-i18n="lbl_sys_eq">ENTER SYSTEM (one equation per line)</label>
-      <textarea id="sys-input" style="min-height:110px" data-i18n-ph="ph_sys" placeholder="2x + 3y = 12&#10;x - y = 1"></textarea>
-    </div>
+    <div class="field"><label data-i18n="lbl_find_for">SOLVE FOR</label><input type="text" id="sys-solve" data-i18n-ph="ph_sys_solve" placeholder="x, y, z  or  all"/></div>
+    <div class="field"><label data-i18n="lbl_method">METHOD</label><select id="sys-method"><option value="best" data-i18n-opt="method_auto">Auto (best method)</option><option value="substitution" data-i18n-opt="method_sub">Substitution</option><option value="elimination" data-i18n-opt="method_elim">Elimination</option><option value="matrix" data-i18n-opt="method_matrix">Matrix / Cramer's Rule</option></select></div>
   </div>
-  <div class="field-row">
-    <div class="field">
-      <label data-i18n="lbl_find_for">SOLVE FOR</label>
-      <input type="text" id="sys-solve" data-i18n-ph="ph_sys_solve" placeholder="x, y, z  or  all" />
-    </div>
-    <div class="field">
-      <label data-i18n="lbl_method">METHOD</label>
-      <select id="sys-method">
-        <option value="best"         data-i18n-opt="method_auto">Auto (best method)</option>
-        <option value="substitution" data-i18n-opt="method_sub">Substitution</option>
-        <option value="elimination"  data-i18n-opt="method_elim">Elimination</option>
-        <option value="matrix"       data-i18n-opt="method_matrix">Matrix / Cramer's Rule</option>
-      </select>
-    </div>
-  </div>
-  <button class="solve-btn" id="sys-btn" onclick="solveSystem()">
-    <div class="btn-inner">
-      <svg class="icon"><use href="#ic-sigma"/></svg>
-      <span data-i18n="btn_solve_sys">SOLVE SYSTEM</span>
-    </div>
-  </button>
+  <button class="solve-btn" id="sys-btn" onclick="solveSystem()"><div class="btn-inner"><svg class="icon"><use href="#ic-sigma"/></svg><span data-i18n="btn_solve_sys">SOLVE SYSTEM</span></div></button>
   <div id="sys-result"></div>
 </div>
-
-</div><!-- /solver-card -->
-</div><!-- /solver-wrap -->
-
+<!-- IMAGE TAB -->
+<div class="solver-body" id="tab-image" style="display:none">
+  <div class="img-caps">
+    <div class="img-cap"><span class="img-cap-icon">📐</span><div class="img-cap-text"><strong data-i18n="img_cap1_title">Handwritten Problems</strong><span data-i18n="img_cap1_desc">Reads and solves handwritten equations & diagrams</span></div></div>
+    <div class="img-cap"><span class="img-cap-icon">📚</span><div class="img-cap-text"><strong data-i18n="img_cap2_title">Textbook Pages</strong><span data-i18n="img_cap2_desc">Extract and solve problems from photos of books</span></div></div>
+    <div class="img-cap"><span class="img-cap-icon">📊</span><div class="img-cap-text"><strong data-i18n="img_cap3_title">Graphs & Charts</strong><span data-i18n="img_cap3_desc">Analyze mathematical graphs and interpret data</span></div></div>
+    <div class="img-cap"><span class="img-cap-icon">🔢</span><div class="img-cap-text"><strong data-i18n="img_cap4_title">Printed Formulas</strong><span data-i18n="img_cap4_desc">Typed math expressions, tables and matrices</span></div></div>
+  </div>
+  <div class="cat-label" data-i18n="lbl_img_mode">ANALYSIS MODE</div>
+  <div class="img-modes" id="img-modes">
+    <div class="img-mode-chip selected" data-imode="solve"><svg class="icon"><use href="#ic-zap"/></svg><span data-i18n="imode_solve">Solve the Problem</span></div>
+    <div class="img-mode-chip" data-imode="explain"><svg class="icon"><use href="#ic-function"/></svg><span data-i18n="imode_explain">Explain Step-by-Step</span></div>
+    <div class="img-mode-chip" data-imode="check"><svg class="icon"><use href="#ic-check-circle"/></svg><span data-i18n="imode_check">Check My Work</span></div>
+    <div class="img-mode-chip" data-imode="extract"><svg class="icon"><use href="#ic-keyboard"/></svg><span data-i18n="imode_extract">Extract & Transcribe</span></div>
+    <div class="img-mode-chip" data-imode="graph"><svg class="icon"><use href="#ic-ruler"/></svg><span data-i18n="imode_graph">Analyze Graph</span></div>
+  </div>
+  <input type="file" id="img-input" accept="image/*" onchange="handleImgFile(event)"/>
+  <div id="img-upload-area">
+    <div class="img-upload-zone" id="img-drop-zone" onclick="document.getElementById('img-input').click()" ondragover="imgDragOver(event)" ondragleave="imgDragLeave(event)" ondrop="imgDrop(event)">
+      <div class="upload-icon-wrap"><svg class="icon" style="font-size:1.6rem"><use href="#ic-upload"/></svg></div>
+      <div class="upload-title" data-i18n="upload_title">Drop your image here</div>
+      <div class="upload-sub"><span data-i18n="upload_sub1">Click to browse or drag & drop a photo of your math problem.</span><br><strong data-i18n="upload_sub2">Works with photos, screenshots & scanned pages.</strong></div>
+      <div class="upload-formats"><span class="fmt-pill">JPG</span><span class="fmt-pill">PNG</span><span class="fmt-pill">WEBP</span><span class="fmt-pill">GIF</span><span class="fmt-pill">HEIC</span></div>
+    </div>
+  </div>
+  <div id="img-preview-area" style="display:none">
+    <div class="img-preview-wrap">
+      <img id="img-preview" class="img-preview" src="" alt="Preview"/>
+      <div class="img-preview-bar">
+        <div class="img-fname"><svg class="icon"><use href="#ic-image"/></svg><span id="img-fname-text">image.jpg</span></div>
+        <button class="img-remove" onclick="clearImage()"><svg class="icon icon-sm"><use href="#ic-x"/></svg><span data-i18n="btn_remove_img">Remove</span></button>
+      </div>
+    </div>
+  </div>
+  <div class="cam-note" style="margin-top:12px"><svg class="icon"><use href="#ic-sparkles"/></svg><p data-i18n="cam_tip"><strong>Pro tip:</strong> For best results, ensure good lighting, keep the image flat, and make sure all numbers and symbols are clearly visible.</p></div>
+  <div class="field" style="margin-top:14px"><label data-i18n="lbl_img_hint">EXTRA INSTRUCTION (optional)</label><input type="text" id="img-hint" data-i18n-ph="ph_img_hint" placeholder="e.g. Find x, explain each step, check if my answer is correct …"/></div>
+  <button class="solve-btn img-btn" id="img-btn" onclick="solveImage()" style="margin-top:14px"><div class="btn-inner"><svg class="icon"><use href="#ic-sparkles"/></svg><span data-i18n="btn_analyze">ANALYZE IMAGE</span></div></button>
+  <div id="img-result"></div>
+</div>
+</div></div>
 <footer>
   <p data-i18n="footer_l">ΣolveX — Advanced Math Engine</p>
   <p data-i18n="footer_c">© 2026 PhineX · All rights reserved</p>
-  <p data-i18n="footer_r">Powered by PhineX · All math domains supported</p>
+  <p data-i18n="footer_r">Powered by Claude AI · All math domains supported</p>
 </footer>
-</div><!-- /app -->
-
-<!-- ═══════════════════════ THREE.JS BG ═══════════════════════════ -->
+</div>
 <script>
-(function(){
-  const cv=document.getElementById('bg-canvas');
-  const rr=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});
-  rr.setPixelRatio(Math.min(devicePixelRatio,2)); rr.setClearColor(0,0);
-  const sc=new THREE.Scene();
-  const cam=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,.1,200);
-  cam.position.z=50;
-  function rsz(){rr.setSize(innerWidth,innerHeight);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();}
-  rsz(); window.addEventListener('resize',rsz);
-  const pg=new THREE.BufferGeometry();
-  const pp=new Float32Array(1400*3);
-  for(let i=0;i<1400;i++){pp[i*3]=(Math.random()-.5)*210;pp[i*3+1]=(Math.random()-.5)*210;pp[i*3+2]=(Math.random()-.5)*120;}
-  pg.setAttribute('position',new THREE.BufferAttribute(pp,3));
-  sc.add(new THREE.Points(pg,new THREE.PointsMaterial({color:0x00d4ff,size:.28,transparent:true,opacity:.42})));
-  const gs=[new THREE.OctahedronGeometry(2.5),new THREE.IcosahedronGeometry(2),new THREE.TetrahedronGeometry(2.2),new THREE.BoxGeometry(2.8,2.8,2.8),new THREE.TorusGeometry(2,.55,8,22)];
-  const ms=[new THREE.MeshBasicMaterial({color:0x00d4ff,wireframe:true,transparent:true,opacity:.10}),new THREE.MeshBasicMaterial({color:0xf5c842,wireframe:true,transparent:true,opacity:.08}),new THREE.MeshBasicMaterial({color:0x00ff9d,wireframe:true,transparent:true,opacity:.08}),new THREE.MeshBasicMaterial({color:0xa855f7,wireframe:true,transparent:true,opacity:.08})];
-  const sh=[];
-  for(let i=0;i<16;i++){
-    const m=new THREE.Mesh(gs[i%gs.length],ms[i%ms.length].clone());
-    m.position.set((Math.random()-.5)*110,(Math.random()-.5)*85,-20-Math.random()*45);
-    m.scale.setScalar(.5+Math.random()*1.6);
-    m.ud={rx:(Math.random()-.5)*.005,ry:(Math.random()-.5)*.007,fa:1+Math.random()*3,ph:Math.random()*Math.PI*2,oy:m.position.y};
-    sc.add(m); sh.push(m);
-  }
-  let mx=0,my=0;
-  document.addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*.35;my=(e.clientY/innerHeight-.5)*.35;});
-  let t=0;
-  (function loop(){requestAnimationFrame(loop);t+=.005;
-    sh.forEach(m=>{m.rotation.x+=m.ud.rx;m.rotation.y+=m.ud.ry;m.position.y=m.ud.oy+Math.sin(t+m.ud.ph)*m.ud.fa;});
-    cam.position.x+=(mx*8-cam.position.x)*.02;
-    cam.position.y+=(-my*5-cam.position.y)*.02;
-    cam.lookAt(0,0,0); rr.render(sc,cam);
-  })();
-})();
+(function(){const cv=document.getElementById('bg-canvas');const rr=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});rr.setPixelRatio(Math.min(devicePixelRatio,2));rr.setClearColor(0,0);const sc=new THREE.Scene();const cam=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,.1,200);cam.position.z=50;function rsz(){rr.setSize(innerWidth,innerHeight);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();}rsz();window.addEventListener('resize',rsz);const pg=new THREE.BufferGeometry();const pp=new Float32Array(1400*3);for(let i=0;i<1400;i++){pp[i*3]=(Math.random()-.5)*210;pp[i*3+1]=(Math.random()-.5)*210;pp[i*3+2]=(Math.random()-.5)*120;}pg.setAttribute('position',new THREE.BufferAttribute(pp,3));sc.add(new THREE.Points(pg,new THREE.PointsMaterial({color:0x00d4ff,size:.28,transparent:true,opacity:.42})));const gs=[new THREE.OctahedronGeometry(2.5),new THREE.IcosahedronGeometry(2),new THREE.TetrahedronGeometry(2.2),new THREE.BoxGeometry(2.8,2.8,2.8),new THREE.TorusGeometry(2,.55,8,22)];const ms=[new THREE.MeshBasicMaterial({color:0x00d4ff,wireframe:true,transparent:true,opacity:.10}),new THREE.MeshBasicMaterial({color:0xf5c842,wireframe:true,transparent:true,opacity:.08}),new THREE.MeshBasicMaterial({color:0x00ff9d,wireframe:true,transparent:true,opacity:.08}),new THREE.MeshBasicMaterial({color:0xa855f7,wireframe:true,transparent:true,opacity:.08})];const sh=[];for(let i=0;i<16;i++){const m=new THREE.Mesh(gs[i%gs.length],ms[i%ms.length].clone());m.position.set((Math.random()-.5)*110,(Math.random()-.5)*85,-20-Math.random()*45);m.scale.setScalar(.5+Math.random()*1.6);m.ud={rx:(Math.random()-.5)*.005,ry:(Math.random()-.5)*.007,fa:1+Math.random()*3,ph:Math.random()*Math.PI*2,oy:m.position.y};sc.add(m);sh.push(m);}let mx=0,my=0;document.addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*.35;my=(e.clientY/innerHeight-.5)*.35;});let t=0;(function loop(){requestAnimationFrame(loop);t+=.005;sh.forEach(m=>{m.rotation.x+=m.ud.rx;m.rotation.y+=m.ud.ry;m.position.y=m.ud.oy+Math.sin(t+m.ud.ph)*m.ud.fa;});cam.position.x+=(mx*8-cam.position.x)*.02;cam.position.y+=(-my*5-cam.position.y)*.02;cam.lookAt(0,0,0);rr.render(sc,cam);})();})();
 </script>
-
-<!-- ═══════════════════════ APP LOGIC ════════════════════════════ -->
 <script>
-// ═══════════════════════════════════════════════════════════
-//  TRANSLATION SYSTEM
-// ═══════════════════════════════════════════════════════════
+
+
+// ─── TRANSLATIONS ────────────────────────────────────────────────
 const I18N = {
   en: {
-    badge:'AI MATH ENGINE v1.0', hero_tag:'POWERED BY PhineX',
+    badge:'AI MATH ENGINE v4.0', hero_tag:'POWERED BY CLAUDE AI',
     hero_h1:'Solve Any<br>Math Problem',
-    hero_p:'Algebra, geometry, trigonometry — describe your problem and get a full step-by-step solution instantly.',
-    tab_solver:'SOLVER', tab_geometry:'GEOMETRY', tab_angles:'ANGLES',
-    tab_triangle:'TRIANGLE', tab_system:'SYSTEMS',
+    hero_p:'Algebra, geometry, trigonometry — type your problem or snap a photo and get a rigorous step-by-step solution instantly.',
+    tab_solver:'SOLVER', tab_geometry:'GEOMETRY', tab_angles:'ANGLES', tab_triangle:'TRIANGLE', tab_system:'SYSTEMS', tab_image:'IMAGE',
     eq_type:'EQUATION TYPE',
-    chip_algebraic:'Algebraic', chip_quadratic:'Quadratic', chip_polynomial:'Polynomial',
-    chip_trigonometric:'Trigonometric', chip_logarithmic:'Logarithmic',
-    chip_exponential:'Exponential', chip_differential:'Derivative', chip_integral:'Integral',
-    lbl_equation:'EQUATION OR EXPRESSION', lbl_find_for:'FIND / SOLVE FOR',
-    lbl_context:'ADDITIONAL CONTEXT (optional)', btn_solve:'SOLVE NOW',
-    ph_equation:'e.g.  2x² + 5x - 3 = 0   or   sin(x) + cos(x) = 1',
-    ph_solve_for:'x, y, z, angle …', ph_context:'x > 0, degrees, domain …',
+    chip_algebraic:'Algebraic', chip_quadratic:'Quadratic', chip_polynomial:'Polynomial', chip_trigonometric:'Trigonometric', chip_logarithmic:'Logarithmic', chip_exponential:'Exponential', chip_differential:'Derivative', chip_integral:'Integral',
+    lbl_equation:'EQUATION OR EXPRESSION', lbl_find_for:'FIND / SOLVE FOR', lbl_context:'ADDITIONAL CONTEXT (optional)', btn_solve:'SOLVE NOW',
+    ph_equation:'e.g.  2x² + 5x - 3 = 0   or   sin(x) + cos(x) = 1', ph_solve_for:'x, y, z, angle …', ph_context:'x > 0, degrees, domain …',
     ex_title:'QUICK EXAMPLES — CLICK TO LOAD',
-    lbl_shape:'SHAPE',
-    shape_circle:'Circle', shape_rectangle:'Rectangle', shape_square:'Square',
-    shape_triangle:'Triangle', shape_sphere:'Sphere', shape_cylinder:'Cylinder',
-    shape_cone:'Cone', shape_ellipse:'Ellipse', shape_trapezoid:'Trapezoid', shape_rhombus:'Rhombus',
+    lbl_shape:'SHAPE', shape_circle:'Circle', shape_rectangle:'Rectangle', shape_square:'Square', shape_triangle:'Triangle', shape_sphere:'Sphere', shape_cylinder:'Cylinder', shape_cone:'Cone', shape_ellipse:'Ellipse', shape_trapezoid:'Trapezoid', shape_rhombus:'Rhombus',
     lbl_known:'KNOWN VALUES', lbl_find:'FIND', lbl_units:'MEASUREMENT UNITS',
-    slash_hint_1:'Click here or press', slash_hint_2:'to add a known property',
-    pal_search_ph:'Search property…', geo_tip:'<span style="color:var(--purple)">TIP</span> — Add known values,<br>then choose what to find above',
-    btn_calculate:'CALCULATE',
-    lbl_angle_mode:'ANGLE MODE',
-    am_convert:'Convert Units', am_complement:'Complement & Supplement',
-    am_arc:'Arc Length & Sector', am_central:'Central Angle',
-    am_inscribed:'Inscribed Angle', am_polygon:'Polygon Angles',
-    am_bearing:'Bearing / Direction', am_custom:'Custom Problem',
-    btn_calc_angle:'CALCULATE ANGLE',
-    lbl_tri_config:'KNOWN CONFIGURATION',
-    chip_right_tri:'Right △', chip_custom:'Custom',
-    tri_all:'All sides and angles', tri_angles:'All angles', tri_sides:'All sides',
-    tri_area:'Area', tri_specific_angle:'Specific angle', tri_specific_side:'Specific side',
-    lbl_specific_unk:'SPECIFIC UNKNOWN (if applicable)',
-    ph_tri:'e.g.  a = 3, b = 4, c = 5\nor  A = 30°, B = 60°, c = 10',
-    ph_tri_unk:'e.g. angle C, side b …',
-    btn_solve_tri:'SOLVE TRIANGLE',
-    lbl_sys_type:'SYSTEM TYPE',
-    sys_linear:'Linear System', sys_nonlinear:'Non-linear',
-    sys_matrix:'Matrix', sys_word:'Word Problem',
-    lbl_sys_eq:'ENTER SYSTEM (one equation per line)',
-    ph_sys:'2x + 3y = 12\nx - y = 1',
-    ph_sys_solve:'x, y, z  or  all', lbl_method:'METHOD',
-    method_auto:'Auto (best method)', method_sub:'Substitution',
-    method_elim:'Elimination', method_matrix:"Matrix / Cramer's Rule",
-    btn_solve_sys:'SOLVE SYSTEM',
-    footer_l:'ΣolveX — Advanced Math Engine',
-    footer_r:'Powered by PhineX · All math domains supported',
+    slash_hint_1:'Click here or press', slash_hint_2:'to add a known property', pal_search_ph:'Search property…',
+    geo_tip:'<span style="color:var(--purple)">TIP</span> — Add known values,<br>then choose what to find above', btn_calculate:'CALCULATE',
+    lbl_angle_mode:'ANGLE MODE', am_convert:'Convert Units', am_complement:'Complement & Supplement', am_arc:'Arc Length & Sector', am_central:'Central Angle', am_inscribed:'Inscribed Angle', am_polygon:'Polygon Angles', am_bearing:'Bearing / Direction', am_custom:'Custom Problem',
+    btn_calc_angle:'CALCULATE ANGLE', lbl_tri_config:'KNOWN CONFIGURATION', chip_right_tri:'Right △', chip_custom:'Custom',
+    tri_all:'All sides and angles', tri_angles:'All angles', tri_sides:'All sides', tri_area:'Area', tri_specific_angle:'Specific angle', tri_specific_side:'Specific side',
+    lbl_specific_unk:'SPECIFIC UNKNOWN (if applicable)', ph_tri:'e.g.  a = 3, b = 4, c = 5\nor  A = 30°, B = 60°, c = 10', ph_tri_unk:'e.g. angle C, side b …', btn_solve_tri:'SOLVE TRIANGLE',
+    lbl_sys_type:'SYSTEM TYPE', sys_linear:'Linear System', sys_nonlinear:'Non-linear', sys_matrix:'Matrix', sys_word:'Word Problem',
+    lbl_sys_eq:'ENTER SYSTEM (one equation per line)', ph_sys:'2x + 3y = 12\nx - y = 1', ph_sys_solve:'x, y, z  or  all', lbl_method:'METHOD',
+    method_auto:'Auto (best method)', method_sub:'Substitution', method_elim:'Elimination', method_matrix:"Matrix / Cramer's Rule", btn_solve_sys:'SOLVE SYSTEM',
+    lbl_img_mode:'ANALYSIS MODE', imode_solve:'Solve the Problem', imode_explain:'Explain Step-by-Step', imode_check:'Check My Work', imode_extract:'Extract & Transcribe', imode_graph:'Analyze Graph',
+    img_cap1_title:'Handwritten Problems', img_cap1_desc:'Reads and solves handwritten equations & diagrams',
+    img_cap2_title:'Textbook Pages', img_cap2_desc:'Extract and solve problems from photos of books',
+    img_cap3_title:'Graphs & Charts', img_cap3_desc:'Analyze mathematical graphs and interpret data',
+    img_cap4_title:'Printed Formulas', img_cap4_desc:'Typed math expressions, tables and matrices',
+    upload_title:'Drop your image here', upload_sub1:'Click to browse or drag & drop a photo of your math problem.', upload_sub2:'Works with photos, screenshots & scanned pages.',
+    btn_remove_img:'Remove', cam_tip:'<strong>Pro tip:</strong> Ensure good lighting, keep image flat, and make all numbers/symbols clearly visible.',
+    lbl_img_hint:'EXTRA INSTRUCTION (optional)', ph_img_hint:'e.g. Find x, explain each step, check if my answer is correct …', btn_analyze:'ANALYZE IMAGE',
+    footer_l:'ΣolveX — Advanced Math Engine', footer_c:'© 2026 PhineX · All rights reserved', footer_r:'Powered by Claude AI · All math domains supported',
     result_ready:'SOLUTION READY', btn_copy:'COPY', solving:'SOLVING…',
-    err_no_eq:'Please enter an equation first.',
-    err_no_fields:'Please add at least one known value (press /).',
-    err_no_vals:'Please enter values for the added fields.',
-    err_no_known:'Please enter known values.',
-    err_no_sys:'Please enter the system of equations.',
-    err_no_ang:'Please fill in at least one field.',
+    err_no_eq:'Please enter an equation first.', err_no_fields:'Please add at least one known value (press /).', err_no_vals:'Please enter values for the added fields.', err_no_known:'Please enter known values.', err_no_sys:'Please enter the system of equations.', err_no_ang:'Please fill in at least one field.', err_no_img:'Please upload an image first.',
     ex_find_prefix:'Find:',
-    // Palette groups
-    grp_angle:'ANGLES & ROTATIONS', grp_length:'LENGTHS & DISTANCES',
-    grp_area:'AREAS', grp_volume:'VOLUMES', grp_other:'OTHER',
-    // Palette / property labels
-    prop_radius:'Radius', prop_diameter:'Diameter', prop_circumference:'Circumference',
-    prop_area:'Area', prop_chord:'Chord Length', prop_arc_length:'Arc Length',
-    prop_sector_area:'Sector Area', prop_central_angle:'Central Angle',
-    prop_inscribed_angle:'Inscribed Angle', prop_sagitta:'Sagitta',
-    prop_length:'Length', prop_width:'Width', prop_perimeter:'Perimeter',
-    prop_diagonal:'Diagonal', prop_side:'Side', prop_side_a:'Side a',
-    prop_side_b:'Side b', prop_side_c:'Side c',
-    prop_angle_A:'Angle A', prop_angle_B:'Angle B', prop_angle_C:'Angle C',
-    prop_height:'Height', prop_volume:'Volume', prop_surface_area:'Surface Area',
-    prop_lateral:'Lateral Area', prop_total_area:'Total Area',
-    prop_slant:'Slant Height', prop_half_angle:'Half-Angle',
-    prop_semi_a:'Semi-major a', prop_semi_b:'Semi-minor b',
-    prop_eccentricity:'Eccentricity', prop_base1:'Base 1 (a)', prop_base2:'Base 2 (b)',
-    prop_leg1:'Leg 1', prop_leg2:'Leg 2', prop_median:'Median',
-    prop_diag1:'Diagonal 1', prop_diag2:'Diagonal 2',
-    prop_diag_p:'Diagonal p', prop_diag_q:'Diagonal q', prop_angle:'Acute Angle',
-    prop_great_circle:'Great Circle',
-    // Find options
-    fo_all:'All measurements', fo_radius:'Radius', fo_diameter:'Diameter',
-    fo_circumference:'Circumference', fo_area:'Area', fo_chord:'Chord Length',
-    fo_arc_length:'Arc Length', fo_sector_area:'Sector Area',
-    fo_central_angle:'Central Angle', fo_sagitta:'Sagitta',
-    fo_length:'Length', fo_width:'Width', fo_perimeter:'Perimeter',
-    fo_diagonal:'Diagonal', fo_side:'Side',
-    fo_side_a:'Side a', fo_side_b:'Side b', fo_side_c:'Side c',
-    fo_angle_A:'Angle A', fo_angle_B:'Angle B', fo_angle_C:'Angle C',
-    fo_height:'Height', fo_volume:'Volume', fo_surface_area:'Surface Area',
-    fo_lateral:'Lateral Area', fo_total_area:'Total Area', fo_slant:'Slant Height',
-    fo_eccentricity:'Eccentricity', fo_diagonals:'Diagonals',
-    footer_c:'© 2026 PhineX · All rights reserved'
+    grp_angle:'ANGLES & ROTATIONS', grp_length:'LENGTHS & DISTANCES', grp_area:'AREAS', grp_volume:'VOLUMES', grp_other:'OTHER',
+    prop_radius:'Radius', prop_diameter:'Diameter', prop_circumference:'Circumference', prop_area:'Area', prop_chord:'Chord Length', prop_arc_length:'Arc Length', prop_sector_area:'Sector Area', prop_central_angle:'Central Angle', prop_inscribed_angle:'Inscribed Angle', prop_sagitta:'Sagitta', prop_length:'Length', prop_width:'Width', prop_perimeter:'Perimeter', prop_diagonal:'Diagonal', prop_side:'Side', prop_side_a:'Side a', prop_side_b:'Side b', prop_side_c:'Side c', prop_angle_A:'Angle A', prop_angle_B:'Angle B', prop_angle_C:'Angle C', prop_height:'Height', prop_volume:'Volume', prop_surface_area:'Surface Area', prop_lateral:'Lateral Area', prop_total_area:'Total Area', prop_slant:'Slant Height', prop_half_angle:'Half-Angle', prop_semi_a:'Semi-major a', prop_semi_b:'Semi-minor b', prop_eccentricity:'Eccentricity', prop_base1:'Base 1 (a)', prop_base2:'Base 2 (b)', prop_leg1:'Leg 1', prop_leg2:'Leg 2', prop_median:'Median', prop_diag1:'Diagonal 1', prop_diag2:'Diagonal 2', prop_diag_p:'Diagonal p', prop_diag_q:'Diagonal q', prop_angle:'Acute Angle', prop_great_circle:'Great Circle',
+    fo_all:'All measurements', fo_radius:'Radius', fo_diameter:'Diameter', fo_circumference:'Circumference', fo_area:'Area', fo_chord:'Chord Length', fo_arc_length:'Arc Length', fo_sector_area:'Sector Area', fo_central_angle:'Central Angle', fo_sagitta:'Sagitta', fo_length:'Length', fo_width:'Width', fo_perimeter:'Perimeter', fo_diagonal:'Diagonal', fo_side:'Side', fo_side_a:'Side a', fo_side_b:'Side b', fo_side_c:'Side c', fo_angle_A:'Angle A', fo_angle_B:'Angle B', fo_angle_C:'Angle C', fo_height:'Height', fo_volume:'Volume', fo_surface_area:'Surface Area', fo_lateral:'Lateral Area', fo_total_area:'Total Area', fo_slant:'Slant Height', fo_eccentricity:'Eccentricity', fo_diagonals:'Diagonals',
   },
   ar: {
-    badge:'محرك الرياضيات الذكي v1.0', hero_tag:'مدعوم بتقنية PhineX الذكية',
-    hero_h1:'حل أي<br>مسألة رياضية',
-    hero_p:'الجبر، الهندسة، المثلثات — صف مسألتك واحصل على الحل خطوة بخطوة فوراً.',
-    tab_solver:'الحل', tab_geometry:'الهندسة', tab_angles:'الزوايا',
-    tab_triangle:'المثلث', tab_system:'الأنظمة',
-    eq_type:'نوع المعادلة',
-    chip_algebraic:'جبري', chip_quadratic:'تربيعي', chip_polynomial:'متعدد الحدود',
-    chip_trigonometric:'مثلثاتي', chip_logarithmic:'لوغاريتمي',
-    chip_exponential:'أسي', chip_differential:'مشتقة', chip_integral:'تكامل',
-    lbl_equation:'المعادلة أو التعبير', lbl_find_for:'إيجاد / حل لأجل',
-    lbl_context:'سياق إضافي (اختياري)', btn_solve:'احسب الآن',
-    ph_equation:'مثال:  2س² + 5س - 3 = 0   أو   sin(x) + cos(x) = 1',
-    ph_solve_for:'س، ص، ع، زاوية …', ph_context:'س > 0، درجات، نطاق …',
+    badge:'محرك الرياضيات الذكي v4.0', hero_tag:'مدعوم بتقنية كلود الذكي',
+    hero_h1:'احل أي<br>مسألة رياضية',
+    hero_p:'الجبر، الهندسة، المثلثات — اكتب مسألتك أو التقط صورة واحصل على الحل خطوة بخطوة فوراً.',
+    tab_solver:'الحل', tab_geometry:'الهندسة', tab_angles:'الزوايا', tab_triangle:'المثلث', tab_system:'الأنظمة', tab_image:'صورة',
+    eq_type:'نوع المعادلة', chip_algebraic:'جبري', chip_quadratic:'تربيعي', chip_polynomial:'متعدد الحدود', chip_trigonometric:'مثلثاتي', chip_logarithmic:'لوغاريتمي', chip_exponential:'أسي', chip_differential:'مشتقة', chip_integral:'تكامل',
+    lbl_equation:'المعادلة أو التعبير', lbl_find_for:'إيجاد / حل لأجل', lbl_context:'سياق إضافي (اختياري)', btn_solve:'احسب الآن',
+    ph_equation:'مثال:  2س² + 5س - 3 = 0', ph_solve_for:'س، ص، ع، زاوية …', ph_context:'س > 0، درجات، نطاق …',
     ex_title:'أمثلة سريعة — انقر للتحميل',
-    lbl_shape:'الشكل الهندسي',
-    shape_circle:'دائرة', shape_rectangle:'مستطيل', shape_square:'مربع',
-    shape_triangle:'مثلث', shape_sphere:'كرة', shape_cylinder:'اسطوانة',
-    shape_cone:'مخروط', shape_ellipse:'قطع ناقص', shape_trapezoid:'شبه منحرف', shape_rhombus:'معين',
+    lbl_shape:'الشكل الهندسي', shape_circle:'دائرة', shape_rectangle:'مستطيل', shape_square:'مربع', shape_triangle:'مثلث', shape_sphere:'كرة', shape_cylinder:'اسطوانة', shape_cone:'مخروط', shape_ellipse:'قطع ناقص', shape_trapezoid:'شبه منحرف', shape_rhombus:'معين',
     lbl_known:'القيم المعروفة', lbl_find:'إيجاد', lbl_units:'وحدات القياس',
-    slash_hint_1:'انقر هنا أو اضغط', slash_hint_2:'لإضافة قيمة معروفة',
-    pal_search_ph:'ابحث عن خاصية…', geo_tip:'<span style="color:var(--purple)">تلميح</span> — أضف القيم المعروفة،<br>ثم اختر ما تريد إيجاده أعلاه',
-    btn_calculate:'احسب',
-    lbl_angle_mode:'نوع حساب الزاوية',
-    am_convert:'تحويل الوحدات', am_complement:'المتمم والمكمل',
-    am_arc:'طول القوس والقطاع', am_central:'الزاوية المركزية',
-    am_inscribed:'الزاوية المحيطية', am_polygon:'زوايا المضلع',
-    am_bearing:'الاتجاه والحمل', am_custom:'مسألة مخصصة',
-    btn_calc_angle:'احسب الزاوية',
-    lbl_tri_config:'التكوين المعروف',
-    chip_right_tri:'قائم الزاوية', chip_custom:'مخصص',
-    tri_all:'جميع الأضلاع والزوايا', tri_angles:'جميع الزوايا', tri_sides:'جميع الأضلاع',
-    tri_area:'المساحة', tri_specific_angle:'زاوية محددة', tri_specific_side:'ضلع محدد',
-    lbl_specific_unk:'المجهول المحدد (إن وجد)',
-    ph_tri:'مثال:  أ = 3، ب = 4، ج = 5\nأو  الزاوية أ = 30°، الزاوية ب = 60°، ج = 10',
-    ph_tri_unk:'مثال: الزاوية ج، الضلع ب …',
-    btn_solve_tri:'حل المثلث',
-    lbl_sys_type:'نوع النظام',
-    sys_linear:'نظام خطي', sys_nonlinear:'غير خطي',
-    sys_matrix:'مصفوفة', sys_word:'مسألة نصية',
-    lbl_sys_eq:'أدخل المعادلات (معادلة في كل سطر)',
-    ph_sys:'2س + 3ص = 12\nس - ص = 1',
-    ph_sys_solve:'س، ص، ع  أو  الكل', lbl_method:'الطريقة',
-    method_auto:'تلقائي (أفضل طريقة)', method_sub:'الإحلال',
-    method_elim:'الحذف', method_matrix:'المصفوفات / قاعدة كرامر',
-    btn_solve_sys:'حل النظام',
-    footer_l:'ΣolveX — محرك الرياضيات المتقدم',
-    footer_r:'مدعوم ب تقنية PhineX الذكية · جميع فروع الرياضيات',
-    footer_c:'© 2026 PhineX · جميع الحقوق محفوظة',
+    slash_hint_1:'انقر هنا أو اضغط', slash_hint_2:'لإضافة قيمة معروفة', pal_search_ph:'ابحث عن خاصية…',
+    geo_tip:'<span style="color:var(--purple)">تلميح</span> — أضف القيم المعروفة،<br>ثم اختر ما تريد إيجاده أعلاه', btn_calculate:'احسب',
+    lbl_angle_mode:'نوع حساب الزاوية', am_convert:'تحويل الوحدات', am_complement:'المتمم والمكمل', am_arc:'طول القوس والقطاع', am_central:'الزاوية المركزية', am_inscribed:'الزاوية المحيطية', am_polygon:'زوايا المضلع', am_bearing:'الاتجاه والحمل', am_custom:'مسألة مخصصة',
+    btn_calc_angle:'احسب الزاوية', lbl_tri_config:'التكوين المعروف', chip_right_tri:'قائم الزاوية', chip_custom:'مخصص',
+    tri_all:'جميع الأضلاع والزوايا', tri_angles:'جميع الزوايا', tri_sides:'جميع الأضلاع', tri_area:'المساحة', tri_specific_angle:'زاوية محددة', tri_specific_side:'ضلع محدد',
+    lbl_specific_unk:'المجهول المحدد (إن وجد)', ph_tri:'مثال: أ = 3، ب = 4، ج = 5', ph_tri_unk:'مثال: الزاوية ج، الضلع ب …', btn_solve_tri:'حل المثلث',
+    lbl_sys_type:'نوع النظام', sys_linear:'نظام خطي', sys_nonlinear:'غير خطي', sys_matrix:'مصفوفة', sys_word:'مسألة نصية',
+    lbl_sys_eq:'أدخل المعادلات (معادلة في كل سطر)', ph_sys:'2س + 3ص = 12\nس - ص = 1', ph_sys_solve:'س، ص، ع  أو  الكل', lbl_method:'الطريقة',
+    method_auto:'تلقائي (أفضل طريقة)', method_sub:'الإحلال', method_elim:'الحذف', method_matrix:'المصفوفات / قاعدة كرامر', btn_solve_sys:'حل النظام',
+    lbl_img_mode:'نوع التحليل', imode_solve:'حل المسألة', imode_explain:'شرح خطوة بخطوة', imode_check:'تحقق من إجابتي', imode_extract:'استخراج النص', imode_graph:'تحليل الرسم البياني',
+    img_cap1_title:'مسائل مكتوبة بخط اليد', img_cap1_desc:'يقرأ ويحل المعادلات المكتوبة يدوياً',
+    img_cap2_title:'صفحات الكتب المدرسية', img_cap2_desc:'استخراج وحل المسائل من صور الكتب',
+    img_cap3_title:'الرسوم البيانية', img_cap3_desc:'تحليل الرسوم الرياضية وتفسير البيانات',
+    img_cap4_title:'المعادلات المطبوعة', img_cap4_desc:'التعبيرات الرياضية والجداول والمصفوفات',
+    upload_title:'أسقط صورتك هنا', upload_sub1:'انقر للتصفح أو اسحب وأسقط صورة مسألتك.', upload_sub2:'يعمل مع الصور ولقطات الشاشة والصفحات الممسوحة.',
+    btn_remove_img:'حذف', cam_tip:'<strong>نصيحة:</strong> تأكد من الإضاءة الجيدة ووضوح الأرقام والرموز.',
+    lbl_img_hint:'تعليمات إضافية (اختياري)', ph_img_hint:'مثال: أوجد س، اشرح كل خطوة …', btn_analyze:'تحليل الصورة',
+    footer_l:'ΣolveX — محرك الرياضيات المتقدم', footer_c:'© 2026 PhineX · جميع الحقوق محفوظة', footer_r:'مدعوم بكلود الذكي · جميع فروع الرياضيات',
     result_ready:'الحل جاهز', btn_copy:'نسخ', solving:'جارٍ الحل…',
-    err_no_eq:'يرجى إدخال معادلة أولاً.',
-    err_no_fields:'يرجى إضافة قيمة واحدة على الأقل (اضغط /).',
-    err_no_vals:'يرجى إدخال قيم في الحقول المضافة.',
-    err_no_known:'يرجى إدخال القيم المعروفة.',
-    err_no_sys:'يرجى إدخال نظام المعادلات.',
-    err_no_ang:'يرجى ملء حقل واحد على الأقل.',
+    err_no_eq:'يرجى إدخال معادلة أولاً.', err_no_fields:'يرجى إضافة قيمة واحدة على الأقل (اضغط /).', err_no_vals:'يرجى إدخال قيم في الحقول المضافة.', err_no_known:'يرجى إدخال القيم المعروفة.', err_no_sys:'يرجى إدخال نظام المعادلات.', err_no_ang:'يرجى ملء حقل واحد على الأقل.', err_no_img:'يرجى رفع صورة أولاً.',
     ex_find_prefix:'إيجاد:',
-    grp_angle:'الزوايا والدورات', grp_length:'الأطوال والمسافات',
-    grp_area:'المساحات', grp_volume:'الأحجام', grp_other:'أخرى',
-    prop_radius:'نصف القطر', prop_diameter:'القطر', prop_circumference:'المحيط',
-    prop_area:'المساحة', prop_chord:'طول الوتر', prop_arc_length:'طول القوس',
-    prop_sector_area:'مساحة القطاع', prop_central_angle:'الزاوية المركزية',
-    prop_inscribed_angle:'الزاوية المحيطية', prop_sagitta:'السهم (ارتفاع القوس)',
-    prop_length:'الطول', prop_width:'العرض', prop_perimeter:'المحيط',
-    prop_diagonal:'القطر', prop_side:'الضلع', prop_side_a:'الضلع أ',
-    prop_side_b:'الضلع ب', prop_side_c:'الضلع ج',
-    prop_angle_A:'الزاوية أ', prop_angle_B:'الزاوية ب', prop_angle_C:'الزاوية ج',
-    prop_height:'الارتفاع', prop_volume:'الحجم', prop_surface_area:'مساحة السطح',
-    prop_lateral:'المساحة الجانبية', prop_total_area:'إجمالي المساحة',
-    prop_slant:'الارتفاع المائل', prop_half_angle:'نصف الزاوية',
-    prop_semi_a:'نصف المحور الأكبر أ', prop_semi_b:'نصف المحور الأصغر ب',
-    prop_eccentricity:'الانحراف المركزي', prop_base1:'القاعدة 1 (أ)', prop_base2:'القاعدة 2 (ب)',
-    prop_leg1:'الساق 1', prop_leg2:'الساق 2', prop_median:'الوسيط',
-    prop_diag1:'القطر 1', prop_diag2:'القطر 2',
-    prop_diag_p:'القطر p', prop_diag_q:'القطر q', prop_angle:'الزاوية الحادة',
-    prop_great_circle:'محيط الدائرة العظمى',
-    fo_all:'جميع القياسات', fo_radius:'نصف القطر', fo_diameter:'القطر',
-    fo_circumference:'المحيط', fo_area:'المساحة', fo_chord:'طول الوتر',
-    fo_arc_length:'طول القوس', fo_sector_area:'مساحة القطاع',
-    fo_central_angle:'الزاوية المركزية', fo_sagitta:'السهم',
-    fo_length:'الطول', fo_width:'العرض', fo_perimeter:'المحيط',
-    fo_diagonal:'القطر', fo_side:'الضلع',
-    fo_side_a:'الضلع أ', fo_side_b:'الضلع ب', fo_side_c:'الضلع ج',
-    fo_angle_A:'الزاوية أ', fo_angle_B:'الزاوية ب', fo_angle_C:'الزاوية ج',
-    fo_height:'الارتفاع', fo_volume:'الحجم', fo_surface_area:'مساحة السطح',
-    fo_lateral:'المساحة الجانبية', fo_total_area:'إجمالي المساحة', fo_slant:'الارتفاع المائل',
-    fo_eccentricity:'الانحراف', fo_diagonals:'الأقطار',
+    grp_angle:'الزوايا والدورات', grp_length:'الأطوال والمسافات', grp_area:'المساحات', grp_volume:'الأحجام', grp_other:'أخرى',
+    prop_radius:'نصف القطر', prop_diameter:'القطر', prop_circumference:'المحيط', prop_area:'المساحة', prop_chord:'طول الوتر', prop_arc_length:'طول القوس', prop_sector_area:'مساحة القطاع', prop_central_angle:'الزاوية المركزية', prop_inscribed_angle:'الزاوية المحيطية', prop_sagitta:'السهم', prop_length:'الطول', prop_width:'العرض', prop_perimeter:'المحيط', prop_diagonal:'القطر', prop_side:'الضلع', prop_side_a:'الضلع أ', prop_side_b:'الضلع ب', prop_side_c:'الضلع ج', prop_angle_A:'الزاوية أ', prop_angle_B:'الزاوية ب', prop_angle_C:'الزاوية ج', prop_height:'الارتفاع', prop_volume:'الحجم', prop_surface_area:'مساحة السطح', prop_lateral:'المساحة الجانبية', prop_total_area:'إجمالي المساحة', prop_slant:'الارتفاع المائل', prop_half_angle:'نصف الزاوية', prop_semi_a:'نصف المحور الأكبر أ', prop_semi_b:'نصف المحور الأصغر ب', prop_eccentricity:'الانحراف المركزي', prop_base1:'القاعدة 1 (أ)', prop_base2:'القاعدة 2 (ب)', prop_leg1:'الساق 1', prop_leg2:'الساق 2', prop_median:'الوسيط', prop_diag1:'القطر 1', prop_diag2:'القطر 2', prop_diag_p:'القطر p', prop_diag_q:'القطر q', prop_angle:'الزاوية الحادة', prop_great_circle:'محيط الدائرة العظمى',
+    fo_all:'جميع القياسات', fo_radius:'نصف القطر', fo_diameter:'القطر', fo_circumference:'المحيط', fo_area:'المساحة', fo_chord:'طول الوتر', fo_arc_length:'طول القوس', fo_sector_area:'مساحة القطاع', fo_central_angle:'الزاوية المركزية', fo_sagitta:'السهم', fo_length:'الطول', fo_width:'العرض', fo_perimeter:'المحيط', fo_diagonal:'القطر', fo_side:'الضلع', fo_side_a:'الضلع أ', fo_side_b:'الضلع ب', fo_side_c:'الضلع ج', fo_angle_A:'الزاوية أ', fo_angle_B:'الزاوية ب', fo_angle_C:'الزاوية ج', fo_height:'الارتفاع', fo_volume:'الحجم', fo_surface_area:'مساحة السطح', fo_lateral:'المساحة الجانبية', fo_total_area:'إجمالي المساحة', fo_slant:'الارتفاع المائل', fo_eccentricity:'الانحراف', fo_diagonals:'الأقطار',
   }
 };
 
 let lang = 'en';
-
 function t(key){ return (I18N[lang]||I18N.en)[key] || I18N.en[key] || key; }
+function toggleLang(){ lang = lang==='en'?'ar':'en'; applyTranslations(); }
 
-function applyTranslations(){
-  const isAr = lang==='ar';
-  document.documentElement.lang = lang;
-  document.documentElement.dir = isAr ? 'rtl' : 'ltr';
-
-  // data-i18n elements
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k=el.dataset.i18n;
-    if(k) el.innerHTML=t(k);
-  });
-  // data-i18n-ph placeholders
-  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
-    el.placeholder=t(el.dataset.i18nPh);
-  });
-  // data-i18n-chip chip text
-  document.querySelectorAll('[data-i18n-chip]').forEach(el=>{
-    el.textContent=t(el.dataset.i18nChip);
-  });
-  // data-i18n-amode
-  document.querySelectorAll('[data-i18n-amode]').forEach(el=>{
-    el.textContent=t(el.dataset.i18nAmode);
-  });
-  // select options
-  document.querySelectorAll('[data-i18n-opt]').forEach(el=>{
-    el.textContent=t(el.dataset.i18nOpt);
-  });
-  // find-row chips
-  renderFindRow();
-  // re-render added field labels
-  renderAddedFields();
-  // re-render angle fields
-  renderAngFields();
-  // update lang toggle button
-  document.getElementById('lang-flag').textContent = isAr ? '🇬🇧' : '🇸🇦';
-  document.getElementById('lang-label').textContent = isAr ? 'English' : 'العربية';
-}
-
-function toggleLang(){
-  lang = lang==='en' ? 'ar' : 'en';
-  applyTranslations();
-}
-
-// ─── TABS ────────────────────────────────────────────────────────
-const TABS=['solver','geometry','angles','triangle','system'];
-document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+// TABS
+const TABS=['solver','geometry','angles','triangle','system','image'];
+document.querySelectorAll('.tab').forEach(tab=>tab.addEventListener('click',()=>{
   document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
-  t.classList.add('active');
-  TABS.forEach(id=>{ document.getElementById('tab-'+id).style.display=id===t.dataset.tab?'block':'none'; });
+  tab.classList.add('active');
+  TABS.forEach(id=>{document.getElementById('tab-'+id).style.display=id===tab.dataset.tab?'block':'none';});
 }));
 
-// ─── CHIP HELPER ─────────────────────────────────────────────────
-function setupChips(id,cb){
-  document.querySelectorAll(`#${id} .chip`).forEach(c=>c.addEventListener('click',()=>{
-    document.querySelectorAll(`#${id} .chip`).forEach(x=>x.classList.remove('selected'));
-    c.classList.add('selected'); if(cb) cb(c);
-  }));
-}
-function getChip(id,attr){ const s=document.querySelector(`#${id} .chip.selected`); return s?s.dataset[attr]:''; }
-setupChips('type-chips'); setupChips('tri-chips'); setupChips('sys-chips');
+// CHIPS
+function setupChips(id,cb){document.querySelectorAll(`#${id} .chip`).forEach(c=>c.addEventListener('click',()=>{document.querySelectorAll(`#${id} .chip`).forEach(x=>x.classList.remove('selected'));c.classList.add('selected');if(cb)cb(c);}));}
+function getChip(id,attr){const s=document.querySelector(`#${id} .chip.selected`);return s?s.dataset[attr]:'';}
+setupChips('type-chips');setupChips('tri-chips');setupChips('sys-chips');
 
-// ═══════════════════════════════════════════════════
-//  SHAPE PROPERTY DATABASE
-// ═══════════════════════════════════════════════════
+// IMG MODE CHIPS
+let imgMode='solve';
+document.querySelectorAll('.img-mode-chip').forEach(c=>c.addEventListener('click',()=>{document.querySelectorAll('.img-mode-chip').forEach(x=>x.classList.remove('selected'));c.classList.add('selected');imgMode=c.dataset.imode;}));
+
+// SHAPE PROPERTY DB
 const PROPS={
-  circle:[
-    {k:'radius',          lbl:'prop_radius',           sym:'r',  unit:'length', info_en:'distance center to edge'},
-    {k:'diameter',        lbl:'prop_diameter',          sym:'d',  unit:'length', info_en:'2 × radius'},
-    {k:'circumference',   lbl:'prop_circumference',     sym:'C',  unit:'length', info_en:'perimeter = 2πr'},
-    {k:'area',            lbl:'prop_area',              sym:'A',  unit:'area',   info_en:'πr²'},
-    {k:'chord',           lbl:'prop_chord',             sym:'ℓ',  unit:'length', info_en:'straight line across circle'},
-    {k:'arc_length',      lbl:'prop_arc_length',        sym:'s',  unit:'length', info_en:'portion of circumference'},
-    {k:'sector_area',     lbl:'prop_sector_area',       sym:'Aₛ', unit:'area',   info_en:'pie-slice area'},
-    {k:'central_angle',   lbl:'prop_central_angle',     sym:'θ',  unit:'angle',  info_en:'angle at center (°)'},
-    {k:'inscribed_angle', lbl:'prop_inscribed_angle',   sym:'φ',  unit:'angle',  info_en:'angle on circumference (°)'},
-    {k:'sagitta',         lbl:'prop_sagitta',           sym:'h',  unit:'length', info_en:'height of arc segment'},
-  ],
-  rectangle:[
-    {k:'length',    lbl:'prop_length',    sym:'l', unit:'length', info_en:'longer side'},
-    {k:'width',     lbl:'prop_width',     sym:'w', unit:'length', info_en:'shorter side'},
-    {k:'area',      lbl:'prop_area',      sym:'A', unit:'area',   info_en:'l × w'},
-    {k:'perimeter', lbl:'prop_perimeter', sym:'P', unit:'length', info_en:'2(l+w)'},
-    {k:'diagonal',  lbl:'prop_diagonal',  sym:'d', unit:'length', info_en:'√(l²+w²)'},
-  ],
-  square:[
-    {k:'side',      lbl:'prop_side',      sym:'s', unit:'length', info_en:'all 4 sides equal'},
-    {k:'area',      lbl:'prop_area',      sym:'A', unit:'area',   info_en:'s²'},
-    {k:'perimeter', lbl:'prop_perimeter', sym:'P', unit:'length', info_en:'4s'},
-    {k:'diagonal',  lbl:'prop_diagonal',  sym:'d', unit:'length', info_en:'s√2'},
-  ],
-  triangle:[
-    {k:'side_a',  lbl:'prop_side_a',  sym:'a', unit:'length', info_en:'first side'},
-    {k:'side_b',  lbl:'prop_side_b',  sym:'b', unit:'length', info_en:'second side'},
-    {k:'side_c',  lbl:'prop_side_c',  sym:'c', unit:'length', info_en:'third side'},
-    {k:'angle_A', lbl:'prop_angle_A', sym:'A', unit:'angle',  info_en:'opposite to side a (°)'},
-    {k:'angle_B', lbl:'prop_angle_B', sym:'B', unit:'angle',  info_en:'opposite to side b (°)'},
-    {k:'angle_C', lbl:'prop_angle_C', sym:'C', unit:'angle',  info_en:'opposite to side c (°)'},
-    {k:'height',  lbl:'prop_height',  sym:'h', unit:'length', info_en:'perpendicular height'},
-    {k:'area',    lbl:'prop_area',    sym:'A', unit:'area',   info_en:'½ base × height'},
-  ],
-  sphere:[
-    {k:'radius',       lbl:'prop_radius',       sym:'r', unit:'length', info_en:'center to surface'},
-    {k:'diameter',     lbl:'prop_diameter',     sym:'d', unit:'length', info_en:'2r'},
-    {k:'volume',       lbl:'prop_volume',       sym:'V', unit:'volume', info_en:'(4/3)πr³'},
-    {k:'surface_area', lbl:'prop_surface_area', sym:'S', unit:'area',   info_en:'4πr²'},
-    {k:'great_circle', lbl:'prop_great_circle', sym:'C', unit:'length', info_en:'circumference of great circle'},
-  ],
-  cylinder:[
-    {k:'radius',     lbl:'prop_radius',     sym:'r',  unit:'length', info_en:'base circle radius'},
-    {k:'height',     lbl:'prop_height',     sym:'h',  unit:'length', info_en:'cylinder height'},
-    {k:'volume',     lbl:'prop_volume',     sym:'V',  unit:'volume', info_en:'πr²h'},
-    {k:'lateral',    lbl:'prop_lateral',    sym:'Sl', unit:'area',   info_en:'2πrh'},
-    {k:'total_area', lbl:'prop_total_area', sym:'St', unit:'area',   info_en:'2πr(r+h)'},
-  ],
-  cone:[
-    {k:'radius',     lbl:'prop_radius',     sym:'r',  unit:'length', info_en:'base circle radius'},
-    {k:'height',     lbl:'prop_height',     sym:'h',  unit:'length', info_en:'vertical height'},
-    {k:'slant',      lbl:'prop_slant',      sym:'l',  unit:'length', info_en:'√(r²+h²)'},
-    {k:'volume',     lbl:'prop_volume',     sym:'V',  unit:'volume', info_en:'(1/3)πr²h'},
-    {k:'lateral',    lbl:'prop_lateral',    sym:'Sl', unit:'area',   info_en:'πrl'},
-    {k:'total_area', lbl:'prop_total_area', sym:'St', unit:'area',   info_en:'πr(r+l)'},
-    {k:'half_angle', lbl:'prop_half_angle', sym:'α',  unit:'angle',  info_en:'angle at apex (°)'},
-  ],
-  ellipse:[
-    {k:'semi_a',      lbl:'prop_semi_a',      sym:'a', unit:'length', info_en:'longer radius'},
-    {k:'semi_b',      lbl:'prop_semi_b',      sym:'b', unit:'length', info_en:'shorter radius'},
-    {k:'area',        lbl:'prop_area',        sym:'A', unit:'area',   info_en:'πab'},
-    {k:'perimeter',   lbl:'prop_perimeter',   sym:'P', unit:'length', info_en:'Ramanujan approx.'},
-    {k:'eccentricity',lbl:'prop_eccentricity',sym:'e', unit:'',       info_en:'0=circle, <1=ellipse'},
-  ],
-  trapezoid:[
-    {k:'base1',     lbl:'prop_base1',    sym:'a',  unit:'length', info_en:'top parallel side'},
-    {k:'base2',     lbl:'prop_base2',    sym:'b',  unit:'length', info_en:'bottom parallel side'},
-    {k:'height',    lbl:'prop_height',   sym:'h',  unit:'length', info_en:'perpendicular distance'},
-    {k:'leg1',      lbl:'prop_leg1',     sym:'c',  unit:'length', info_en:'non-parallel side 1'},
-    {k:'leg2',      lbl:'prop_leg2',     sym:'d',  unit:'length', info_en:'non-parallel side 2'},
-    {k:'area',      lbl:'prop_area',     sym:'A',  unit:'area',   info_en:'½(a+b)h'},
-    {k:'perimeter', lbl:'prop_perimeter',sym:'P',  unit:'length', info_en:'a+b+c+d'},
-    {k:'diag1',     lbl:'prop_diag1',    sym:'d₁', unit:'length', info_en:'first diagonal'},
-    {k:'diag2',     lbl:'prop_diag2',    sym:'d₂', unit:'length', info_en:'second diagonal'},
-  ],
-  rhombus:[
-    {k:'side',      lbl:'prop_side',      sym:'a', unit:'length', info_en:'all 4 sides equal'},
-    {k:'diag_p',    lbl:'prop_diag_p',    sym:'p', unit:'length', info_en:'longer diagonal'},
-    {k:'diag_q',    lbl:'prop_diag_q',    sym:'q', unit:'length', info_en:'shorter diagonal'},
-    {k:'angle',     lbl:'prop_angle',     sym:'α', unit:'angle',  info_en:'one of the angles (°)'},
-    {k:'area',      lbl:'prop_area',      sym:'A', unit:'area',   info_en:'(p×q)/2'},
-    {k:'perimeter', lbl:'prop_perimeter', sym:'P', unit:'length', info_en:'4a'},
-    {k:'height',    lbl:'prop_height',    sym:'h', unit:'length', info_en:'perpendicular height'},
-  ],
+  circle:[{k:'radius',lbl:'prop_radius',sym:'r',unit:'length',info_en:'distance center to edge'},{k:'diameter',lbl:'prop_diameter',sym:'d',unit:'length',info_en:'2 × radius'},{k:'circumference',lbl:'prop_circumference',sym:'C',unit:'length',info_en:'perimeter = 2πr'},{k:'area',lbl:'prop_area',sym:'A',unit:'area',info_en:'πr²'},{k:'chord',lbl:'prop_chord',sym:'ℓ',unit:'length',info_en:'straight line across circle'},{k:'arc_length',lbl:'prop_arc_length',sym:'s',unit:'length',info_en:'portion of circumference'},{k:'sector_area',lbl:'prop_sector_area',sym:'Aₛ',unit:'area',info_en:'pie-slice area'},{k:'central_angle',lbl:'prop_central_angle',sym:'θ',unit:'angle',info_en:'angle at center (°)'},{k:'inscribed_angle',lbl:'prop_inscribed_angle',sym:'φ',unit:'angle',info_en:'angle on circumference (°)'},{k:'sagitta',lbl:'prop_sagitta',sym:'h',unit:'length',info_en:'height of arc segment'}],
+  rectangle:[{k:'length',lbl:'prop_length',sym:'l',unit:'length',info_en:'longer side'},{k:'width',lbl:'prop_width',sym:'w',unit:'length',info_en:'shorter side'},{k:'area',lbl:'prop_area',sym:'A',unit:'area',info_en:'l × w'},{k:'perimeter',lbl:'prop_perimeter',sym:'P',unit:'length',info_en:'2(l+w)'},{k:'diagonal',lbl:'prop_diagonal',sym:'d',unit:'length',info_en:'√(l²+w²)'}],
+  square:[{k:'side',lbl:'prop_side',sym:'s',unit:'length',info_en:'all 4 sides equal'},{k:'area',lbl:'prop_area',sym:'A',unit:'area',info_en:'s²'},{k:'perimeter',lbl:'prop_perimeter',sym:'P',unit:'length',info_en:'4s'},{k:'diagonal',lbl:'prop_diagonal',sym:'d',unit:'length',info_en:'s√2'}],
+  triangle:[{k:'side_a',lbl:'prop_side_a',sym:'a',unit:'length',info_en:'first side'},{k:'side_b',lbl:'prop_side_b',sym:'b',unit:'length',info_en:'second side'},{k:'side_c',lbl:'prop_side_c',sym:'c',unit:'length',info_en:'third side'},{k:'angle_A',lbl:'prop_angle_A',sym:'A',unit:'angle',info_en:'opposite to side a'},{k:'angle_B',lbl:'prop_angle_B',sym:'B',unit:'angle',info_en:'opposite to side b'},{k:'angle_C',lbl:'prop_angle_C',sym:'C',unit:'angle',info_en:'opposite to side c'},{k:'height',lbl:'prop_height',sym:'h',unit:'length',info_en:'perpendicular height'},{k:'area',lbl:'prop_area',sym:'A',unit:'area',info_en:'½ base × height'}],
+  sphere:[{k:'radius',lbl:'prop_radius',sym:'r',unit:'length',info_en:'center to surface'},{k:'diameter',lbl:'prop_diameter',sym:'d',unit:'length',info_en:'2r'},{k:'volume',lbl:'prop_volume',sym:'V',unit:'volume',info_en:'(4/3)πr³'},{k:'surface_area',lbl:'prop_surface_area',sym:'S',unit:'area',info_en:'4πr²'},{k:'great_circle',lbl:'prop_great_circle',sym:'C',unit:'length',info_en:'circumference of great circle'}],
+  cylinder:[{k:'radius',lbl:'prop_radius',sym:'r',unit:'length',info_en:'base circle radius'},{k:'height',lbl:'prop_height',sym:'h',unit:'length',info_en:'cylinder height'},{k:'volume',lbl:'prop_volume',sym:'V',unit:'volume',info_en:'πr²h'},{k:'lateral',lbl:'prop_lateral',sym:'Sl',unit:'area',info_en:'2πrh'},{k:'total_area',lbl:'prop_total_area',sym:'St',unit:'area',info_en:'2πr(r+h)'}],
+  cone:[{k:'radius',lbl:'prop_radius',sym:'r',unit:'length',info_en:'base circle radius'},{k:'height',lbl:'prop_height',sym:'h',unit:'length',info_en:'vertical height'},{k:'slant',lbl:'prop_slant',sym:'l',unit:'length',info_en:'√(r²+h²)'},{k:'volume',lbl:'prop_volume',sym:'V',unit:'volume',info_en:'(1/3)πr²h'},{k:'lateral',lbl:'prop_lateral',sym:'Sl',unit:'area',info_en:'πrl'},{k:'total_area',lbl:'prop_total_area',sym:'St',unit:'area',info_en:'πr(r+l)'},{k:'half_angle',lbl:'prop_half_angle',sym:'α',unit:'angle',info_en:'angle at apex (°)'}],
+  ellipse:[{k:'semi_a',lbl:'prop_semi_a',sym:'a',unit:'length',info_en:'longer radius'},{k:'semi_b',lbl:'prop_semi_b',sym:'b',unit:'length',info_en:'shorter radius'},{k:'area',lbl:'prop_area',sym:'A',unit:'area',info_en:'πab'},{k:'perimeter',lbl:'prop_perimeter',sym:'P',unit:'length',info_en:'Ramanujan approx.'},{k:'eccentricity',lbl:'prop_eccentricity',sym:'e',unit:'',info_en:'0=circle, <1=ellipse'}],
+  trapezoid:[{k:'base1',lbl:'prop_base1',sym:'a',unit:'length',info_en:'top parallel side'},{k:'base2',lbl:'prop_base2',sym:'b',unit:'length',info_en:'bottom parallel side'},{k:'height',lbl:'prop_height',sym:'h',unit:'length',info_en:'perpendicular distance'},{k:'leg1',lbl:'prop_leg1',sym:'c',unit:'length',info_en:'non-parallel side 1'},{k:'leg2',lbl:'prop_leg2',sym:'d',unit:'length',info_en:'non-parallel side 2'},{k:'area',lbl:'prop_area',sym:'A',unit:'area',info_en:'½(a+b)h'},{k:'perimeter',lbl:'prop_perimeter',sym:'P',unit:'length',info_en:'a+b+c+d'},{k:'diag1',lbl:'prop_diag1',sym:'d₁',unit:'length',info_en:'first diagonal'},{k:'diag2',lbl:'prop_diag2',sym:'d₂',unit:'length',info_en:'second diagonal'}],
+  rhombus:[{k:'side',lbl:'prop_side',sym:'a',unit:'length',info_en:'all 4 sides equal'},{k:'diag_p',lbl:'prop_diag_p',sym:'p',unit:'length',info_en:'longer diagonal'},{k:'diag_q',lbl:'prop_diag_q',sym:'q',unit:'length',info_en:'shorter diagonal'},{k:'angle',lbl:'prop_angle',sym:'α',unit:'angle',info_en:'one of the angles (°)'},{k:'area',lbl:'prop_area',sym:'A',unit:'area',info_en:'(p×q)/2'},{k:'perimeter',lbl:'prop_perimeter',sym:'P',unit:'length',info_en:'4a'},{k:'height',lbl:'prop_height',sym:'h',unit:'length',info_en:'perpendicular height'}],
 };
+const FIND_OPTS={circle:['fo_all','fo_radius','fo_diameter','fo_circumference','fo_area','fo_chord','fo_arc_length','fo_sector_area','fo_central_angle','fo_sagitta'],rectangle:['fo_all','fo_length','fo_width','fo_area','fo_perimeter','fo_diagonal'],square:['fo_all','fo_side','fo_area','fo_perimeter','fo_diagonal'],triangle:['fo_all','fo_side_a','fo_side_b','fo_side_c','fo_angle_A','fo_angle_B','fo_angle_C','fo_area','fo_height'],sphere:['fo_all','fo_radius','fo_diameter','fo_volume','fo_surface_area'],cylinder:['fo_all','fo_radius','fo_height','fo_volume','fo_lateral','fo_total_area'],cone:['fo_all','fo_radius','fo_height','fo_slant','fo_volume','fo_lateral','fo_total_area'],ellipse:['fo_all','fo_semi_a','fo_semi_b','fo_area','fo_perimeter','fo_eccentricity'],trapezoid:['fo_all','fo_area','fo_perimeter','fo_height','fo_diag1','fo_diag2'],rhombus:['fo_all','fo_side','fo_diagonals','fo_area','fo_perimeter','fo_height','fo_angle']};
 
-const FIND_OPTS={
-  circle:  ['fo_all','fo_radius','fo_diameter','fo_circumference','fo_area','fo_chord','fo_arc_length','fo_sector_area','fo_central_angle','fo_sagitta'],
-  rectangle:['fo_all','fo_length','fo_width','fo_area','fo_perimeter','fo_diagonal'],
-  square:  ['fo_all','fo_side','fo_area','fo_perimeter','fo_diagonal'],
-  triangle:['fo_all','fo_side_a','fo_side_b','fo_side_c','fo_angle_A','fo_angle_B','fo_angle_C','fo_area','fo_height'],
-  sphere:  ['fo_all','fo_radius','fo_diameter','fo_volume','fo_surface_area'],
-  cylinder:['fo_all','fo_radius','fo_height','fo_volume','fo_lateral','fo_total_area'],
-  cone:    ['fo_all','fo_radius','fo_height','fo_slant','fo_volume','fo_lateral','fo_total_area'],
-  ellipse: ['fo_all','fo_semi_a','fo_semi_b','fo_area','fo_perimeter','fo_eccentricity'],
-  trapezoid:['fo_all','fo_area','fo_perimeter','fo_height','fo_diag1','fo_diag2'],
-  rhombus: ['fo_all','fo_side','fo_diagonals','fo_area','fo_perimeter','fo_height','fo_angle'],
-};
+let addedFields=[],currentShape='circle',selectedFind='fo_all',palOpen=false,palIdx=-1;
+setupChips('shape-chips',chip=>{currentShape=chip.dataset.shape;addedFields=[];renderAddedFields();renderFindRow();if(palOpen)closePalette();});
 
-// ─── STATE ──────────────────────────────────────────────────────
-let addedFields=[], currentShape='circle', selectedFind='fo_all', palOpen=false, palIdx=-1;
-
-setupChips('shape-chips',chip=>{
-  currentShape=chip.dataset.shape; addedFields=[];
-  renderAddedFields(); renderFindRow(); if(palOpen) closePalette();
-});
-
-// ─── FIELD RENDERING ────────────────────────────────────────────
-function gUnit(){ return document.getElementById('geo-units')?.value||'cm'; }
-function unitLabel(ut){ if(ut==='angle') return '°'; if(ut==='area') return gUnit()+'²'; if(ut==='volume') return gUnit()+'³'; return gUnit(); }
-function unitColor(ut){ if(ut==='angle') return 'var(--accent2)'; if(ut==='area') return 'var(--green)'; if(ut==='volume') return 'var(--accent)'; return 'var(--gold)'; }
+function gUnit(){return document.getElementById('geo-units')?.value||'cm';}
+function unitLabel(ut){if(ut==='angle')return '°';if(ut==='area')return gUnit()+'²';if(ut==='volume')return gUnit()+'³';return gUnit();}
+function unitColor(ut){if(ut==='angle')return 'var(--accent2)';if(ut==='area')return 'var(--green)';if(ut==='volume')return 'var(--accent)';return 'var(--gold)';}
 
 function renderAddedFields(){
-  const wrap=document.getElementById('added-fields'); wrap.innerHTML='';
+  const wrap=document.getElementById('added-fields');wrap.innerHTML='';
   addedFields.forEach((f,i)=>{
-    const row=document.createElement('div'); row.className='afield-row';
-    row.innerHTML=`
-      <div class="afield-name">
-        <span class="afield-sym">${f.sym}</span>
-        ${t(f.lbl)}
-      </div>
-      <input class="afield-val" type="text" placeholder="${lang==='ar'?'أدخل القيمة…':'enter value…'}" value="${f.val||''}"
-        oninput="addedFields[${i}].val=this.value" />
+    const row=document.createElement('div');row.className='afield-row';
+    row.innerHTML=`<div class="afield-name"><span class="afield-sym">${f.sym}</span>${t(f.lbl)}</div>
+      <input class="afield-val" type="text" placeholder="${lang==='ar'?'أدخل القيمة…':'enter value…'}" value="${f.val||''}" oninput="addedFields[${i}].val=this.value"/>
       <span class="afield-unit" style="color:${unitColor(f.unit)}">${unitLabel(f.unit)}</span>
-      <button class="afield-del" onclick="delField(${i})" title="${lang==='ar'?'حذف':'Remove'}">
-        <svg class="icon"><use href="#ic-x"/></svg>
-      </button>`;
+      <button class="afield-del" onclick="delField(${i})"><svg class="icon"><use href="#ic-x"/></svg></button>`;
     wrap.appendChild(row);
   });
 }
-function refreshUnitLabels(){ renderAddedFields(); }
-function delField(i){ addedFields.splice(i,1); renderAddedFields(); renderPalList(); }
+function refreshUnitLabels(){renderAddedFields();}
+function delField(i){addedFields.splice(i,1);renderAddedFields();renderPalList();}
 
 function renderFindRow(){
-  const row=document.getElementById('find-row'); if(!row) return;
-  row.innerHTML='';
+  const row=document.getElementById('find-row');if(!row)return;row.innerHTML='';
   const opts=FIND_OPTS[currentShape]||['fo_all'];
-  if(!opts.includes(selectedFind)) selectedFind=opts[0];
-  opts.forEach(ok=>{
-    const btn=document.createElement('div');
-    btn.className='find-chip'+(ok===selectedFind?' active':'');
-    btn.textContent=t(ok);
-    btn.onclick=()=>{
-      document.querySelectorAll('#find-row .find-chip').forEach(c=>c.classList.remove('active'));
-      btn.classList.add('active'); selectedFind=ok;
-    };
-    row.appendChild(btn);
-  });
+  if(!opts.includes(selectedFind))selectedFind=opts[0];
+  opts.forEach(ok=>{const btn=document.createElement('div');btn.className='find-chip'+(ok===selectedFind?' active':'');btn.textContent=t(ok);btn.onclick=()=>{document.querySelectorAll('#find-row .find-chip').forEach(c=>c.classList.remove('active'));btn.classList.add('active');selectedFind=ok;};row.appendChild(btn);});
 }
 renderFindRow();
 
-// ─── PALETTE ─────────────────────────────────────────────────────
-function openPalette(){
-  palOpen=true; document.getElementById('cmd-pal').style.display='block';
-  renderPalList();
-  setTimeout(()=>{ document.getElementById('pal-search').focus(); palIdx=-1; },40);
-}
-function closePalette(){ palOpen=false; document.getElementById('cmd-pal').style.display='none'; }
-document.addEventListener('click',e=>{if(!document.getElementById('pal-wrap')?.contains(e.target)) closePalette();});
+function openPalette(){palOpen=true;document.getElementById('cmd-pal').style.display='block';renderPalList();setTimeout(()=>{document.getElementById('pal-search').focus();palIdx=-1;},40);}
+function closePalette(){palOpen=false;document.getElementById('cmd-pal').style.display='none';}
+document.addEventListener('click',e=>{if(!document.getElementById('pal-wrap')?.contains(e.target))closePalette();});
 document.addEventListener('keydown',e=>{
-  if(e.key==='/'&&document.getElementById('tab-geometry').style.display!=='none'){
-    const a=document.activeElement;
-    if(a&&(a.tagName==='INPUT'||a.tagName==='TEXTAREA')&&a.id!=='pal-search') return;
-    if(a?.id==='pal-search') return;
-    e.preventDefault(); if(!palOpen) openPalette();
-  }
-  if(e.key==='Escape'&&palOpen) closePalette();
+  if(e.key==='/'&&document.getElementById('tab-geometry').style.display!=='none'){const a=document.activeElement;if(a&&(a.tagName==='INPUT'||a.tagName==='TEXTAREA')&&a.id!=='pal-search')return;if(a?.id==='pal-search')return;e.preventDefault();if(!palOpen)openPalette();}
+  if(e.key==='Escape'&&palOpen)closePalette();
 });
-
 function renderPalList(){
   const q=document.getElementById('pal-search').value.toLowerCase();
   const list=document.getElementById('pal-list');
@@ -1165,196 +586,332 @@ function renderPalList(){
   const addedKeys=addedFields.map(f=>f.k);
   const filtered=props.filter(p=>!q||t(p.lbl).toLowerCase().includes(q)||p.k.includes(q)||p.info_en.toLowerCase().includes(q));
   if(!filtered.length){list.innerHTML=`<div class="pal-empty">${lang==='ar'?'لا توجد خصائص مطابقة':'No properties match your search'}</div>`;return;}
-  const groupMeta={
-    angle:{icon:'#ic-angle',key:'grp_angle'},
-    length:{icon:'#ic-ruler',key:'grp_length'},
-    area:{icon:'#ic-shapes',key:'grp_area'},
-    volume:{icon:'#ic-grid',key:'grp_volume'},
-    '':{icon:'#ic-calculator',key:'grp_other'}
-  };
-  const order=['angle','length','area','volume',''];
-  const byG={};
+  const gM={angle:{icon:'#ic-angle',key:'grp_angle'},length:{icon:'#ic-ruler',key:'grp_length'},area:{icon:'#ic-shapes',key:'grp_area'},volume:{icon:'#ic-grid',key:'grp_volume'},'':{icon:'#ic-calculator',key:'grp_other'}};
+  const order=['angle','length','area','volume',''];const byG={};
   filtered.forEach(p=>{(byG[p.unit]||(byG[p.unit]=[])).push(p);});
   list.innerHTML='';
-  order.forEach(gk=>{
-    if(!byG[gk]) return;
-    const gm=groupMeta[gk]||{icon:'#ic-calculator',key:'grp_other'};
-    const gl=document.createElement('div'); gl.className='pal-group';
-    gl.innerHTML=`<svg class="icon"><use href="${gm.icon}"/></svg>${t(gm.key)}`;
-    list.appendChild(gl);
-    byG[gk].forEach(p=>{
-      const done=addedKeys.includes(p.k);
-      const div=document.createElement('div'); div.className='pal-item'+(done?' done':''); div.dataset.k=p.k;
-      div.innerHTML=`
-        <span class="pal-sym">${p.sym}</span>
-        <span class="pal-lbl">${t(p.lbl)}</span>
-        <span class="pal-badge ${p.unit}">${p.unit||'—'}</span>
-        <span class="pal-desc">${p.info_en}</span>`;
-      if(!done) div.onclick=()=>pickField(p);
-      list.appendChild(div);
-    });
+  order.forEach(gk=>{if(!byG[gk])return;const gm=gM[gk]||{icon:'#ic-calculator',key:'grp_other'};const gl=document.createElement('div');gl.className='pal-group';gl.innerHTML=`<svg class="icon"><use href="${gm.icon}"/></svg>${t(gm.key)}`;list.appendChild(gl);
+    byG[gk].forEach(p=>{const done=addedKeys.includes(p.k);const div=document.createElement('div');div.className='pal-item'+(done?' done':'');div.innerHTML=`<span class="pal-sym">${p.sym}</span><span class="pal-lbl">${t(p.lbl)}</span><span class="pal-badge ${p.unit}">${p.unit||'—'}</span><span class="pal-desc">${p.info_en}</span>`;if(!done)div.onclick=()=>pickField(p);list.appendChild(div);});
   });
 }
+function pickField(p){if(addedFields.find(f=>f.k===p.k))return;addedFields.push({...p,val:''});renderAddedFields();document.getElementById('pal-search').value='';renderPalList();closePalette();setTimeout(()=>{const ins=document.querySelectorAll('.afield-val');if(ins.length)ins[ins.length-1].focus();},70);}
+function palNav(e){const items=[...document.querySelectorAll('#pal-list .pal-item:not(.done)')];if(e.key==='ArrowDown'){e.preventDefault();palIdx=Math.min(palIdx+1,items.length-1);}else if(e.key==='ArrowUp'){e.preventDefault();palIdx=Math.max(palIdx-1,0);}else if(e.key==='Enter'&&palIdx>=0&&items[palIdx]){items[palIdx].click();return;}items.forEach((it,i)=>it.classList.toggle('hi',i===palIdx));if(items[palIdx])items[palIdx].scrollIntoView({block:'nearest'});}
 
-function pickField(p){
-  if(addedFields.find(f=>f.k===p.k)) return;
-  addedFields.push({...p,val:''});
-  renderAddedFields();
-  document.getElementById('pal-search').value=''; renderPalList(); closePalette();
-  setTimeout(()=>{const ins=document.querySelectorAll('.afield-val');if(ins.length) ins[ins.length-1].focus();},70);
-}
-function palNav(e){
-  const items=[...document.querySelectorAll('#pal-list .pal-item:not(.done)')];
-  if(e.key==='ArrowDown'){e.preventDefault();palIdx=Math.min(palIdx+1,items.length-1);}
-  else if(e.key==='ArrowUp'){e.preventDefault();palIdx=Math.max(palIdx-1,0);}
-  else if(e.key==='Enter'&&palIdx>=0&&items[palIdx]){items[palIdx].click();return;}
-  items.forEach((it,i)=>it.classList.toggle('hi',i===palIdx));
-  if(items[palIdx]) items[palIdx].scrollIntoView({block:'nearest'});
-}
-
-// ═══════════════════════════════════════════════════
-//  ANGLE TAB
-// ═══════════════════════════════════════════════════
-const ANG_MODES_DEF={
-  convert:{   flds:[{id:'av',lbl_en:'ANGLE VALUE',lbl_ar:'قيمة الزاوية',ph:'e.g. 90'},{id:'af',lbl_en:'FROM',lbl_ar:'من',ph:'deg / rad / grad'},{id:'at',lbl_en:'TO',lbl_ar:'إلى',ph:'deg / rad / grad'}]},
-  complement:{flds:[{id:'av',lbl_en:'ANGLE (°)',lbl_ar:'الزاوية (°)',ph:'e.g. 35'}]},
-  arc:{       flds:[{id:'av',lbl_en:'CENTRAL ANGLE (°)',lbl_ar:'الزاوية المركزية (°)',ph:'e.g. 60'},{id:'ar',lbl_en:'RADIUS',lbl_ar:'نصف القطر',ph:'e.g. 10'}]},
-  central:{   flds:[{id:'aa',lbl_en:'ARC LENGTH',lbl_ar:'طول القوس',ph:'blank if unknown'},{id:'ar',lbl_en:'RADIUS',lbl_ar:'نصف القطر',ph:'e.g. 8'},{id:'av',lbl_en:'CENTRAL ANGLE (°)',lbl_ar:'الزاوية المركزية (°)',ph:'blank if unknown'}]},
-  inscribed:{ flds:[{id:'av',lbl_en:'INSCRIBED ANGLE (°)',lbl_ar:'الزاوية المحيطية (°)',ph:'blank if unknown'},{id:'ac',lbl_en:'CENTRAL ANGLE (°)',lbl_ar:'الزاوية المركزية (°)',ph:'blank if unknown'},{id:'aa',lbl_en:'INTERCEPTED ARC (°)',lbl_ar:'القوس المقابل (°)',ph:'blank if unknown'}]},
-  polygon:{   flds:[{id:'an',lbl_en:'NUMBER OF SIDES',lbl_ar:'عدد الأضلاع',ph:'e.g. 6'},{id:'av',lbl_en:'ONE INTERIOR ANGLE (optional)',lbl_ar:'زاوية داخلية (اختياري)',ph:'leave blank to calculate'}]},
-  bearing:{   flds:[{id:'ab',lbl_en:'BEARING',lbl_ar:'الاتجاه',ph:'e.g. N 45° E or 135°'},{id:'ad',lbl_en:'DISTANCE',lbl_ar:'المسافة',ph:'e.g. 100 m'}]},
-  custom:{    flds:[{id:'ax',lbl_en:'DESCRIBE YOUR ANGLE PROBLEM',lbl_ar:'صف مسألة الزاوية',ph:'e.g. Two supplementary angles: 3x+10° and 5x-20°. Find x.',ta:true}]},
-};
-
-let curAngMode='convert', curAngUnit='deg';
-
-function renderAngFields(){
-  const wrap=document.getElementById('ang-fields');
-  const m=ANG_MODES_DEF[curAngMode];
-  wrap.innerHTML=`<div class="ang-grid">` +
-    m.flds.map(f=>f.ta
-      ? `<div class="ang-box" style="grid-column:1/-1"><div class="ang-lbl">${lang==='ar'?f.lbl_ar:f.lbl_en}</div><textarea id="${f.id}" class="ang-inp ang-ta" placeholder="${f.ph}"></textarea></div>`
-      : `<div class="ang-box"><div class="ang-lbl">${lang==='ar'?f.lbl_ar:f.lbl_en}</div><input id="${f.id}" class="ang-inp" type="text" placeholder="${f.ph}" /></div>`
-    ).join('')+`</div>`;
-}
+// ANGLE TAB
+const ANG_MODES_DEF={convert:{flds:[{id:'av',lbl_en:'ANGLE VALUE',lbl_ar:'قيمة الزاوية',ph:'e.g. 90'},{id:'af',lbl_en:'FROM',lbl_ar:'من',ph:'deg/rad/grad'},{id:'at',lbl_en:'TO',lbl_ar:'إلى',ph:'deg/rad/grad'}]},complement:{flds:[{id:'av',lbl_en:'ANGLE (°)',lbl_ar:'الزاوية (°)',ph:'e.g. 35'}]},arc:{flds:[{id:'av',lbl_en:'CENTRAL ANGLE (°)',lbl_ar:'الزاوية المركزية (°)',ph:'e.g. 60'},{id:'ar',lbl_en:'RADIUS',lbl_ar:'نصف القطر',ph:'e.g. 10'}]},central:{flds:[{id:'aa',lbl_en:'ARC LENGTH',lbl_ar:'طول القوس',ph:'blank if unknown'},{id:'ar',lbl_en:'RADIUS',lbl_ar:'نصف القطر',ph:'e.g. 8'},{id:'av',lbl_en:'CENTRAL ANGLE (°)',lbl_ar:'الزاوية المركزية (°)',ph:'blank if unknown'}]},inscribed:{flds:[{id:'av',lbl_en:'INSCRIBED ANGLE (°)',lbl_ar:'الزاوية المحيطية (°)',ph:'blank if unknown'},{id:'ac',lbl_en:'CENTRAL ANGLE (°)',lbl_ar:'الزاوية المركزية (°)',ph:'blank if unknown'},{id:'aa',lbl_en:'INTERCEPTED ARC (°)',lbl_ar:'القوس المقابل (°)',ph:'blank if unknown'}]},polygon:{flds:[{id:'an',lbl_en:'NUMBER OF SIDES',lbl_ar:'عدد الأضلاع',ph:'e.g. 6'},{id:'av',lbl_en:'ONE INTERIOR ANGLE (optional)',lbl_ar:'زاوية داخلية (اختياري)',ph:'leave blank to calculate'}]},bearing:{flds:[{id:'ab',lbl_en:'BEARING',lbl_ar:'الاتجاه',ph:'e.g. N 45° E or 135°'},{id:'ad',lbl_en:'DISTANCE',lbl_ar:'المسافة',ph:'e.g. 100 m'}]},custom:{flds:[{id:'ax',lbl_en:'DESCRIBE YOUR ANGLE PROBLEM',lbl_ar:'صف مسألة الزاوية',ph:'e.g. Two supplementary angles: 3x+10° and 5x-20°. Find x.',ta:true}]}};
+let curAngMode='convert',curAngUnit='deg';
+function renderAngFields(){const wrap=document.getElementById('ang-fields');const m=ANG_MODES_DEF[curAngMode];wrap.innerHTML=`<div class="ang-grid">`+m.flds.map(f=>f.ta?`<div class="ang-box" style="grid-column:1/-1"><div class="ang-lbl">${lang==='ar'?f.lbl_ar:f.lbl_en}</div><textarea id="${f.id}" class="ang-inp ang-ta" placeholder="${f.ph}"></textarea></div>`:`<div class="ang-box"><div class="ang-lbl">${lang==='ar'?f.lbl_ar:f.lbl_en}</div><input id="${f.id}" class="ang-inp" type="text" placeholder="${f.ph}"/></div>`).join('')+`</div>`;}
 renderAngFields();
+document.querySelectorAll('.amode').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.amode').forEach(x=>x.classList.remove('active'));b.classList.add('active');curAngMode=b.dataset.am;renderAngFields();document.getElementById('ang-result').innerHTML='';}));
+document.querySelectorAll('.utn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.utn').forEach(x=>x.classList.remove('active'));b.classList.add('active');curAngUnit=b.dataset.u;}));
 
-document.querySelectorAll('.amode').forEach(b=>b.addEventListener('click',()=>{
-  document.querySelectorAll('.amode').forEach(x=>x.classList.remove('active'));
-  b.classList.add('active'); curAngMode=b.dataset.am; renderAngFields(); document.getElementById('ang-result').innerHTML='';
-}));
-document.querySelectorAll('.utn').forEach(b=>b.addEventListener('click',()=>{
-  document.querySelectorAll('.utn').forEach(x=>x.classList.remove('active'));
-  b.classList.add('active'); curAngUnit=b.dataset.u;
-}));
+// IMAGE UPLOAD
+let currentImageB64=null,currentImageMime=null;
+function handleImgFile(e){const f=e.target.files[0];if(f)loadImageFile(f);}
+function loadImageFile(file){
+  const r=new FileReader();
+  r.onload=e=>{const d=e.target.result;currentImageB64=d.split(',')[1];currentImageMime=file.type||'image/jpeg';
+    document.getElementById('img-preview').src=d;document.getElementById('img-fname-text').textContent=file.name;
+    document.getElementById('img-upload-area').style.display='none';document.getElementById('img-preview-area').style.display='block';};
+  r.readAsDataURL(file);
+}
+function clearImage(){currentImageB64=null;currentImageMime=null;document.getElementById('img-input').value='';document.getElementById('img-preview').src='';document.getElementById('img-upload-area').style.display='block';document.getElementById('img-preview-area').style.display='none';document.getElementById('img-result').innerHTML='';}
+function imgDragOver(e){e.preventDefault();document.getElementById('img-drop-zone').classList.add('drag-over');}
+function imgDragLeave(){document.getElementById('img-drop-zone').classList.remove('drag-over');}
+function imgDrop(e){e.preventDefault();document.getElementById('img-drop-zone').classList.remove('drag-over');const f=e.dataTransfer.files[0];if(f)loadImageFile(f);}
 
-// ═══════════════════════════════════════════════════
-//  GEMINI API (ΣolveX Engine)
-// ═══════════════════════════════════════════════════
-const SYS_PROMPT = `You are ΣolveX, an expert mathematics engine. When solving:
-1. State given information clearly
-2. Show step-by-step work
-3. Present final answers prominently
-4. Use this HTML structure:
-   - Final answers: <div class="answer-box">VALUE WITH UNITS</div>
-   - Steps: <div class="step"><div class="step-num">STEP N — TITLE</div>explanation</div>
-   - Section headers: <h3>Title</h3>
-   - Formulas: <div class="formula">formula here</div>
-5. Use exact values where possible, 4 significant figures for decimals
-6. Always verify your answer
-Output ONLY the HTML, no markdown or wrappers.`;
+// ═══════════════════════════════════════════════════════════════════
+//  SMART AI ENGINE  — Upgraded for accuracy, depth & edge-case handling
+// ═══════════════════════════════════════════════════════════════════
 
-async function callGemini(prompt) {
-  const API_KEY = "AIzaSyBVpxuA4T6MH2ja07ciq2-8fP253rNXowo";
-  
-  // Using the confirmed working model from your console output
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
+const SYS_PROMPT = `You are ΣolveX — a rigorous, expert-level mathematics engine with the precision of a PhD mathematician. Your role is to solve problems with full correctness, clear reasoning, and complete detail.
 
-  try {
-    const r = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{
-          parts: [{ text: SYS_PROMPT + "\n\nUser Request: " + prompt }]
-        }]
-      })
-    });
+═══ CORE ACCURACY RULES ═══
+• THINK before writing: silently reason through the problem first, then produce the solution.
+• State the EXACT mathematical domain being used (algebra, calculus, trigonometry, etc.).
+• Identify ALL special cases: no-solution, infinite-solutions, complex roots, domain restrictions, extraneous roots, ambiguous cases (SSA), etc.
+• When multiple solutions exist, FIND ALL of them (e.g., both roots of a quadratic, all angles in [0°,360°]).
+• Carry EXACT symbolic values (π, √2, fractions) throughout; only convert to decimal at the very end.
+• Round decimals to 6 significant figures minimum unless the problem specifies fewer.
+• Verify EVERY answer by substituting back or checking with an independent method.
+• If input is ambiguous or contradictory, say so clearly before attempting a solution.
+• Never invent or skip steps — show every algebraic manipulation.
+• For geometry: always apply the correct formula for the exact shape; double-check with dimensional analysis.
+• For trigonometry: specify the quadrant and all valid angle values.
+• For calculus: state domain, continuity, and any required conditions.
+• For systems: check for consistency (unique/infinite/no solution) before solving.
 
-    const d = await r.json();
+═══ CHAIN-OF-THOUGHT PROTOCOL ═══
+For every problem, follow these phases in order:
+1. PARSE — restate exactly what is given and what must be found.
+2. CLASSIFY — identify the mathematical type and the best method to use.
+3. SETUP — write the relevant formulas/theorems with variable definitions.
+4. EXECUTE — work through each algebraic step explicitly, one line at a time.
+5. SIMPLIFY — reduce to the simplest exact form.
+6. VERIFY — confirm the answer satisfies the original equation/condition.
+7. INTERPRET — state what the answer means in context (units, geometry, etc.).
 
-    if (d.error) {
-      throw new Error(`API Error: ${d.error.message}`);
-    }
-    
-    if (d.candidates && d.candidates[0].content && d.candidates[0].content.parts) {
-      let html = d.candidates[0].content.parts[0].text;
-      
-      // Clean up any markdown formatting to ensure raw HTML is injected
-      return html.replace(/```html|```/g, '').trim();
-    } else {
-      throw new Error("Received an empty response from the AI.");
-    }
+═══ HTML OUTPUT FORMAT ═══
+Use ONLY these HTML elements — no markdown, no backticks, no extra wrappers:
 
-  } catch (e) {
-    console.error("Gemini Engine Error:", e);
-    throw e;
-  }
+• <h3>Phase Title</h3>  — for PARSE / CLASSIFY / SETUP / EXECUTE / VERIFY / INTERPRET
+• <div class="formula">formula or equation here</div>  — for any mathematical expression or formula
+• <div class="step"><div class="step-num">STEP N — Action Title</div>detailed explanation with all arithmetic shown</div>
+• <div class="answer-box">FINAL ANSWER: value with units</div>  — for each distinct final answer
+• <div class="warn-box">⚠ NOTE: explanation</div>  — for special cases, warnings, extraneous roots
+• <div class="alt-box">ALTERNATIVE METHOD: brief description</div>  — when a second approach confirms the answer
+
+Output ONLY the HTML body content. Do NOT include html/head/body tags or any markdown.`;
+
+// Extra CSS classes referenced by the upgraded prompts
+const EXTRA_STYLES = `
+.result-body .warn-box{background:rgba(255,200,50,.07);border:1px solid rgba(255,200,50,.25);border-radius:10px;padding:12px 16px;margin:10px 0;font-size:.85rem;color:#ffe08a;}
+.result-body .alt-box{background:rgba(168,85,247,.06);border:1px solid rgba(168,85,247,.2);border-radius:10px;padding:12px 16px;margin:10px 0;font-size:.84rem;color:#c4a0f5;}
+.result-body .verify-ok{display:inline-flex;align-items:center;gap:6px;color:var(--green);font-size:.83rem;margin-top:4px;}
+`;
+// Inject extra styles
+(function(){ const s=document.createElement('style'); s.textContent=EXTRA_STYLES; document.head.appendChild(s); })();
+
+// ─── Auto-detect equation type from input ──────────────────────
+function detectEqType(eq){
+  const s=eq.toLowerCase();
+  if(/\bintegral\b|∫|dx|dy/.test(s)) return 'integral';
+  if(/\bd\/d[xyzt]|f'\(|derivative|d²/.test(s)) return 'differential';
+  if(/\blog\b|ln\(|log[₂₃]/.test(s)) return 'logarithmic';
+  if(/e\^|exp\(|\b\d+\s*\^[xyz]/.test(s)) return 'exponential';
+  if(/sin|cos|tan|csc|sec|cot|arcsin|arccos|arctan/.test(s)) return 'trigonometric';
+  if(/x\^3|x³|x\^4|x⁴|\^[3-9]/.test(s)) return 'polynomial';
+  if(/x\^2|x²/.test(s)) return 'quadratic';
+  return 'algebraic';
 }
 
+// ─── Prompt builders per domain ────────────────────────────────
+function buildGeneralPrompt(eq, sf, ctx, type){
+  const autoType = type==='algebraic' ? detectEqType(eq) : type;
+  const solveFor = sf || 'all unknowns';
+
+  const domainHints = {
+    algebraic: `Rules: isolate the variable step by step; check for extraneous solutions if square roots or denominators are present; verify by substitution.`,
+    quadratic: `Rules: try factoring first; if not factorable use the quadratic formula x = (−b ± √(b²−4ac)) / 2a; compute discriminant Δ=b²−4ac; classify as two real roots (Δ>0), one repeated root (Δ=0), or two complex conjugate roots (Δ<0); give both solutions.`,
+    polynomial: `Rules: find all rational roots via the Rational Root Theorem first; perform synthetic or polynomial long division; factor completely; confirm the degree matches the number of roots (counting multiplicity). List all roots.`,
+    trigonometric: `Rules: use fundamental identities where applicable; state the general solution (e.g., x = α + 2πk) AND the particular solutions within the principal domain [0°,360°] or [0,2π]; verify each solution.`,
+    logarithmic: `Rules: use log laws to consolidate; convert to exponential form; check domain restrictions (arguments must be positive); reject any extraneous solutions.`,
+    exponential: `Rules: take logarithm of both sides; handle any base; check for extraneous solutions; express result in exact form and decimal.`,
+    differential: `Rules: identify the type (basic power, product rule, quotient rule, chain rule, implicit); apply the correct differentiation rule; simplify fully; state domain.`,
+    integral: `Rules: identify type (power, substitution, by parts, partial fractions, trigonometric); show the antiderivative; add +C for indefinite; evaluate bounds for definite; verify by differentiating the result.`,
+  };
+
+  return `PROBLEM TYPE: ${autoType}
+EQUATION / EXPRESSION: ${eq}
+SOLVE FOR: ${solveFor}
+${ctx ? `CONSTRAINTS / CONTEXT: ${ctx}` : ''}
+
+DOMAIN-SPECIFIC RULES:
+${domainHints[autoType] || domainHints.algebraic}
+
+REQUIREMENTS:
+- Follow the 7-phase chain-of-thought protocol (PARSE → CLASSIFY → SETUP → EXECUTE → SIMPLIFY → VERIFY → INTERPRET).
+- Show every arithmetic and algebraic step explicitly — do not skip any manipulation.
+- Carry exact values (fractions, surds, π) throughout; give decimal approximations only at the end.
+- Find ALL solutions, not just one.
+- If the problem has no solution or infinitely many solutions, prove it.
+- Use a <div class="warn-box"> for any special case, restriction, or extraneous root.
+- End with a <div class="alt-box"> showing at least one alternative check or method where possible.`;
+}
+
+function buildGeoPrompt(shape, knownStr, findKey, units){
+  const shapeGuides = {
+    circle:`Key formulas: C=2πr, A=πr², chord=2r·sin(θ/2), arc=rθ (θ in radians), sector area=½r²θ, inscribed angle = ½ central angle. Use exact π; also give decimal. Check: diameter=2r.`,
+    rectangle:`Key formulas: A=l·w, P=2(l+w), d=√(l²+w²). Verify Pythagorean identity with diagonal.`,
+    square:`Key formulas: A=s², P=4s, d=s√2. All sides equal.`,
+    triangle:`Key formulas: area=½·base·height=√(s(s-a)(s-b)(s-c)) (Heron's), Law of Cosines: c²=a²+b²−2ab·cos(C), Law of Sines: a/sin(A)=b/sin(B)=c/sin(C). Check: A+B+C=180°, triangle inequality.`,
+    sphere:`Key formulas: V=(4/3)πr³, S=4πr², great circle C=2πr. Use exact π.`,
+    cylinder:`Key formulas: V=πr²h, Lateral=2πrh, Total=2πr(r+h). Show each formula substituted.`,
+    cone:`Key formulas: l=√(r²+h²), V=(1/3)πr²h, Lateral=πrl, Total=πr(r+l). Compute slant height first if not given.`,
+    ellipse:`Key formulas: A=πab, c=√(a²−b²), e=c/a, perimeter≈π(3(a+b)−√((3a+b)(a+3b))) [Ramanujan]. State eccentricity type.`,
+    trapezoid:`Key formulas: A=½(a+b)h, P=a+b+c+d, median=(a+b)/2. Verify with coordinate geometry if possible.`,
+    rhombus:`Key formulas: A=(p·q)/2, P=4a, a=½√(p²+q²), h=a·sin(α). Diagonals bisect each other at 90°.`,
+  };
+
+  return `GEOMETRY PROBLEM
+Shape: ${shape}
+Known values: ${knownStr}
+Find: ${findKey}
+Units: ${units}
+
+SHAPE-SPECIFIC GUIDE:
+${shapeGuides[shape] || 'Apply standard geometric formulas for this shape.'}
+
+REQUIREMENTS:
+- State each formula symbolically before substituting any numbers.
+- Substitute the known values, showing every arithmetic operation.
+- Carry exact values (keep π, √) until the final step; then give a decimal approximation.
+- Perform dimensional analysis to confirm units are consistent throughout.
+- If any input is inconsistent or over/under-determined, state this clearly.
+- Verify the result with at least one independent check (e.g., Pythagorean theorem cross-check, area formula alternative).
+- End by listing ALL computed values in a clear summary <div class="answer-box">.`;
+}
+
+function buildAnglePrompt(mode, vals, unit){
+  const modeGuides = {
+    convert:`Unit conversion factors: 1 revolution=360°=2π rad=400 grad=1 turn. Show the multiplication factor clearly. Give the result in ALL four units in the answer box.`,
+    complement:`Complement = 90°−θ (exists only if 0°<θ<90°). Supplement = 180°−θ (exists only if 0°<θ<180°). State if any result is undefined.`,
+    arc:`Arc length s=rθ (θ must be in radians — convert first if given in degrees). Sector area=½r²θ. Show the degree→radian conversion step explicitly.`,
+    central:`Central angle θ=s/r (rad). If given arc and radius compute θ; if given θ and r compute s; if given s and θ compute r. Show all steps. Give answer in both degrees and radians.`,
+    inscribed:`Inscribed Angle Theorem: inscribed angle = ½ × intercepted arc = ½ × central angle. Handle the three cases: arc on same side, arc on opposite side, angle in semicircle (=90°).`,
+    polygon:`Sum of interior angles = (n−2)×180°. Each interior angle of a regular polygon = (n−2)×180°/n. Each exterior angle = 360°/n. Sum of exterior angles always = 360°. Show all three values.`,
+    bearing:`Convert bearing to standard math angle: N=90°, E=0°, S=270°, W=180°. Compute x=d·cos(θ), y=d·sin(θ) displacement components. Show the vector calculation.`,
+    custom:`Identify the angle type, apply the relevant theorem, solve algebraically for any unknowns, then find all angle values. Verify the solution satisfies the original conditions.`,
+  };
+
+  return `ANGLE CALCULATION
+Mode: ${mode}
+Preferred output unit: ${unit}
+Input values:
+${vals}
+
+MODE-SPECIFIC GUIDE:
+${modeGuides[mode] || 'Apply appropriate angle theorems.'}
+
+REQUIREMENTS:
+- Convert between units explicitly, showing the conversion factor.
+- State which theorem or formula is being applied at each step.
+- Give the final answer in the preferred unit AND in all other relevant units.
+- Check for undefined or impossible cases (e.g., complement of 95° does not exist).
+- Verify by substituting back into the original conditions.`;
+}
+
+function buildTrianglePrompt(cfg, known, find, unk){
+  const cfgGuides = {
+    SSS:`Use Law of Cosines to find all angles: cos(A)=(b²+c²−a²)/(2bc), etc. Then verify A+B+C=180°. Check triangle inequality (a+b>c, etc.) first.`,
+    SAS:`Use Law of Cosines to find the third side, then Law of Sines or cosines for the remaining angles. Verify angle sum.`,
+    ASA:`Third angle = 180°−A−B. Use Law of Sines: a/sin(A)=b/sin(B)=c/sin(C) to find remaining sides.`,
+    AAS:`Third angle = 180°−A−B. Use Law of Sines for the sides. Note: this is NOT the ambiguous case.`,
+    right:`Apply Pythagorean theorem (a²+b²=c²) and basic trig ratios (sin=opp/hyp, cos=adj/hyp, tan=opp/adj). For angles use inverse trig. Verify with a²+b²=c².`,
+    custom:`Determine the best approach from the given data. Check if the case is SSS, SAS, ASA, AAS, or SSA (ambiguous). For SSA: use the Law of Sines and check the discriminant of sin(B) for 0, 1, or 2 valid triangles.`,
+  };
+
+  return `TRIANGLE PROBLEM
+Configuration: ${cfg}
+Known values: ${known}
+Find: ${find}${unk ? ` (specifically: ${unk})` : ''}
+
+TRIANGLE-SPECIFIC GUIDE:
+${cfgGuides[cfg] || cfgGuides.custom}
+
+REQUIREMENTS:
+- First verify the inputs form a valid triangle (triangle inequality, angle sum ≤ 180°, etc.).
+- For SSA (ambiguous case): explicitly compute whether 0, 1, or 2 triangles are possible.
+- Use exact trigonometric values where possible (sin30°=½, cos45°=√2/2, etc.).
+- State which law is applied at each step: Pythagorean / Law of Sines / Law of Cosines.
+- Final answer must include ALL six elements: sides a, b, c AND angles A, B, C.
+- Verify: (1) angle sum A+B+C=180°, (2) Law of Sines consistency, (3) area via two independent formulas.
+- Round to 4 decimal places minimum.`;
+}
+
+function buildSystemPrompt(sysType, equations, solveFor, method){
+  const methodGuides = {
+    substitution:`Solve one equation for one variable, substitute into the other(s), back-substitute. Show each substitution step explicitly.`,
+    elimination:`Multiply equations by constants to align coefficients, add/subtract to eliminate one variable. Reduce step by step.`,
+    matrix:`Write the augmented matrix [A|b]. Perform row reduction (Gaussian elimination) to RREF. State each row operation used: Ri ↔ Rj, cRi, Ri + cRj → Ri.`,
+    best:`Choose the most efficient method automatically. For 2 equations: prefer elimination or substitution. For 3+: prefer matrix/Gaussian. For non-linear: substitution or graphical analysis.`,
+  };
+
+  return `SYSTEM OF EQUATIONS
+Type: ${sysType}
+Equations:
+${equations}
+Solve for: ${solveFor || 'all variables'}
+Method: ${method}
+
+METHOD GUIDE:
+${methodGuides[method] || methodGuides.best}
+
+REQUIREMENTS:
+- First classify the system: consistent-independent (unique solution), consistent-dependent (infinite solutions), or inconsistent (no solution).
+- For a linear system: compute the determinant det(A) to confirm uniqueness before solving.
+- Show every row operation or substitution step explicitly — no skipping.
+- For non-linear systems: check all branches; report ALL solution pairs.
+- VERIFY the solution by substituting all values back into EVERY original equation.
+- For word problems: define variables clearly, write the equations, solve, then state the answer in plain language.
+- Use a <div class="warn-box"> for any degenerate case (det=0, parallel lines, etc.).`;
+}
+
+// ─── Claude API — Text ──────────────────────────────────────────
+async function callClaude(prompt){
+  const r = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 8000,
+      system: SYS_PROMPT,
+      messages: [{role:'user', content: prompt}]
+    })
+  });
+  const d = await r.json();
+  if(d.error) throw new Error(d.error.message);
+  return d.content.filter(b=>b.type==='text').map(b=>b.text||'').join('');
+}
+
+// ─── Claude API — Vision (Image) ────────────────────────────────
+async function callClaudeVision(prompt, imageB64, imageMime){
+  const r = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 8000,
+      system: SYS_PROMPT,
+      messages: [{
+        role: 'user',
+        content: [
+          { type: 'image', source: { type: 'base64', media_type: imageMime, data: imageB64 } },
+          { type: 'text', text: prompt }
+        ]
+      }]
+    })
+  });
+  const d = await r.json();
+  if(d.error) throw new Error(d.error.message);
+  return d.content.filter(b=>b.type==='text').map(b=>b.text||'').join('');
+}
+
+// UI HELPERS
 function showResult(id,html){
-  document.getElementById(id).innerHTML=`
-  <div class="result-panel">
-    <div class="result-header">
-      <div class="result-title"><div class="result-dot"></div>${t('result_ready')}</div>
-      <button class="copy-btn" onclick="copyRes('${id}')">
-        <svg class="icon"><use href="#ic-copy"/></svg>
-        ${t('btn_copy')}
-      </button>
-    </div>
-    <div class="result-body">${html}</div>
-  </div>`;
+  document.getElementById(id).innerHTML=`<div class="result-panel"><div class="result-header"><div class="result-title"><div class="result-dot"></div>${'SOLUTION_READY_PLACEHOLDER'}</div><button class="copy-btn" onclick="copyRes('${id}')"><svg class="icon"><use href="#ic-copy"/></svg>${'COPY_PLACEHOLDER'}</button></div><div class="result-body">${html}</div></div>`;
 }
-function showErr(id,msg){
-  document.getElementById(id).innerHTML=`<div class="error-panel"><svg class="icon"><use href="#ic-alert"/></svg><span>${msg}</span></div>`;
+function _showResult(id,html){
+  document.getElementById(id).innerHTML=`<div class="result-panel"><div class="result-header"><div class="result-title"><div class="result-dot"></div>${t('result_ready')}</div><button class="copy-btn" onclick="copyRes('${id}')"><svg class="icon"><use href="#ic-copy"/></svg>${t('btn_copy')}</button></div><div class="result-body">${html}</div></div>`;
 }
-function setBtn(btn,on,iconHref='',labelKey=''){
-  if(on){btn.disabled=true;btn.querySelector('.btn-inner').innerHTML=`<div class="loader"></div><span>${t('solving')}</span>`;}
-  else{btn.disabled=false;btn.querySelector('.btn-inner').innerHTML=`<svg class="icon"><use href="${iconHref}"/></svg><span>${t(labelKey)}</span>`;}
-}
-function copyRes(id){const b=document.querySelector(`#${id} .result-body`);if(b) navigator.clipboard.writeText(b.innerText).catch(()=>{});}
+// override with working version
+showResult=_showResult;
+function showErr(id,msg){document.getElementById(id).innerHTML=`<div class="error-panel"><svg class="icon"><use href="#ic-alert"/></svg><span>${msg}</span></div>`;}
+function setBtn(btn,on,iconHref='',labelKey=''){if(on){btn.disabled=true;btn.querySelector('.btn-inner').innerHTML=`<div class="loader"></div><span>${t('solving')}</span>`;}else{btn.disabled=false;btn.querySelector('.btn-inner').innerHTML=`<svg class="icon"><use href="${iconHref}"/></svg><span>${t(labelKey)}</span>`;}}
+function copyRes(id){const b=document.querySelector(`#${id} .result-body`);if(b)navigator.clipboard.writeText(b.innerText).catch(()=>{});}
 
-// ─── SOLVERS ─────────────────────────────────────────────────────
+// SOLVERS
 async function solveGeneral(){
   const eq=document.getElementById('equation-input').value.trim();
   const sf=document.getElementById('solve-for').value.trim();
   const ctx=document.getElementById('extra-context').value.trim();
   const type=getChip('type-chips','type');
   if(!eq){showErr('result-area',t('err_no_eq'));return;}
-  const btn=document.getElementById('solve-btn');
-  setBtn(btn,true);
-  try{
-    const h=await callGemini(`Solve this ${type} equation.\nEquation: ${eq}\nSolve for: ${sf||'all unknowns'}${ctx?'\nContext: '+ctx:''}\nProvide a complete step-by-step solution with verification.`);
-    showResult('result-area',h);
-  }catch(e){showErr('result-area','API Error: '+e.message);}
+  const btn=document.getElementById('solve-btn');setBtn(btn,true);
+  try{const h=await callClaude(buildGeneralPrompt(eq,sf,ctx,type));showResult('result-area',h);}
+  catch(e){showErr('result-area','API Error: '+e.message);}
   finally{setBtn(btn,false,'#ic-zap','btn_solve');}
 }
-
 async function solveGeo(){
   if(!addedFields.length){showErr('geo-result',t('err_no_fields'));return;}
   const filled=addedFields.filter(f=>f.val&&f.val.trim());
   if(!filled.length){showErr('geo-result',t('err_no_vals'));return;}
-  const btn=document.getElementById('geo-btn');
-  const units=gUnit();
-  setBtn(btn,true);
+  const btn=document.getElementById('geo-btn');const units=gUnit();setBtn(btn,true);
   const kStr=filled.map(f=>`${I18N.en[f.lbl]||f.lbl} = ${f.val} ${unitLabel(f.unit)}`).join(', ');
-  try{
-    const h=await callGemini(`Geometry — Shape: ${currentShape}\nKnown: ${kStr}\nFind: ${t(selectedFind)}\nUnits: ${units}\nShow formulas, substitute values, compute final answer with units, and verify.`);
-    showResult('geo-result',h);
-  }catch(e){showErr('geo-result','API Error: '+e.message);}
+  try{const h=await callClaude(buildGeoPrompt(currentShape,kStr,t(selectedFind),units));showResult('geo-result',h);}
+  catch(e){showErr('geo-result','API Error: '+e.message);}
   finally{setBtn(btn,false,'#ic-ruler','btn_calculate');}
 }
-
 async function solveAngle(){
   const btn=document.getElementById('ang-btn');
   const m=ANG_MODES_DEF[curAngMode];
@@ -1362,102 +919,87 @@ async function solveAngle(){
   const hasVal=m.flds.some(f=>{const el=document.getElementById(f.id);return el&&el.value.trim();});
   if(!hasVal){showErr('ang-result',t('err_no_ang'));return;}
   setBtn(btn,true);
-  try{
-    const h=await callGemini(`Angle calculation — Mode: ${curAngMode}\nPreferred unit: ${curAngUnit}\n${vals}\nSolve step by step. Verify your answer.`);
-    showResult('ang-result',h);
-  }catch(e){showErr('ang-result','API Error: '+e.message);}
+  try{const h=await callClaude(buildAnglePrompt(curAngMode,vals,curAngUnit));showResult('ang-result',h);}
+  catch(e){showErr('ang-result','API Error: '+e.message);}
   finally{setBtn(btn,false,'#ic-angle','btn_calc_angle');}
 }
-
 async function solveTriangle(){
   const cfg=getChip('tri-chips','tri');
   const known=document.getElementById('tri-input').value.trim();
   const find=document.getElementById('tri-find').value;
   const unk=document.getElementById('tri-unknown').value.trim();
   if(!known){showErr('tri-result',t('err_no_known'));return;}
-  const btn=document.getElementById('tri-btn'); setBtn(btn,true);
-  try{
-    const h=await callGemini(`Solve this triangle.\nConfiguration: ${cfg}\nKnown: ${known}\nFind: ${find}${unk?' (specifically: '+unk+')':''}\nUse appropriate law (Sines/Cosines/Pythagorean). Verify angles sum to 180°.`);
-    showResult('tri-result',h);
-  }catch(e){showErr('tri-result','API Error: '+e.message);}
+  const btn=document.getElementById('tri-btn');setBtn(btn,true);
+  try{const h=await callClaude(buildTrianglePrompt(cfg,known,find,unk));showResult('tri-result',h);}
+  catch(e){showErr('tri-result','API Error: '+e.message);}
   finally{setBtn(btn,false,'#ic-triangle','btn_solve_tri');}
 }
-
 async function solveSystem(){
-  const type=getChip('sys-chips','sys');
+  const sysType=getChip('sys-chips','sys');
   const sys=document.getElementById('sys-input').value.trim();
   const sf=document.getElementById('sys-solve').value.trim();
   const method=document.getElementById('sys-method').value;
   if(!sys){showErr('sys-result',t('err_no_sys'));return;}
-  const btn=document.getElementById('sys-btn'); setBtn(btn,true);
-  try{
-    const h=await callGemini(`Solve this ${type} system.\n${sys}\nSolve for: ${sf||'all variables'}\nMethod: ${method==='best'?'choose best':method}\nVerify by substituting back.`);
-    showResult('sys-result',h);
-  }catch(e){showErr('sys-result','API Error: '+e.message);}
+  const btn=document.getElementById('sys-btn');setBtn(btn,true);
+  try{const h=await callClaude(buildSystemPrompt(sysType,sys,sf,method));showResult('sys-result',h);}
+  catch(e){showErr('sys-result','API Error: '+e.message);}
   finally{setBtn(btn,false,'#ic-sigma','btn_solve_sys');}
 }
+async function solveImage(){
+  if(!currentImageB64){showErr('img-result',t('err_no_img'));return;}
+  const hint=document.getElementById('img-hint').value.trim();
+  const btn=document.getElementById('img-btn');setBtn(btn,true);
+  const modePrompts={
+    solve:'Carefully examine this image containing a math problem. Identify ALL mathematical content including equations, numbers, variables, and diagrams. Then apply the 7-phase chain-of-thought: PARSE what is given and what to find → CLASSIFY the math type → SETUP the formulas → EXECUTE every step explicitly → SIMPLIFY to exact form → VERIFY by substituting back → INTERPRET the result in context.',
+    explain:'Examine this math problem image. First transcribe all mathematical content exactly. Then provide a thorough pedagogical explanation: what mathematical concept is involved, why each step works, common mistakes to avoid, and the complete solution with reasoning behind every step.',
+    check:'Examine this image carefully. It may show a math problem with a student solution attempt. Transcribe everything you see. Then check the work line by line: identify any errors, explain precisely what went wrong and why, and provide the fully correct solution.',
+    extract:'Carefully transcribe ALL mathematical content from this image — every equation, number, variable, symbol, diagram label, and table entry. Format the output cleanly. Then identify the problem type and state what information is given vs. what is being asked.',
+    graph:'Analyze this mathematical graph or chart in detail. Identify: function type, domain and range, x-intercepts, y-intercepts, maxima and minima, asymptotes, slope/gradient, any labeled points, and any visible equations. Answer any questions shown on the image.',
+  };
+  const basePrompt=modePrompts[imgMode]||modePrompts.solve;
+  const fullPrompt=basePrompt+(hint?`\n\nAdditional instruction from user: ${hint}`:'');
+  try{const h=await callClaudeVision(fullPrompt,currentImageB64,currentImageMime);showResult('img-result',h);}
+  catch(e){showErr('img-result','API Error: '+e.message);}
+  finally{setBtn(btn,false,'#ic-sparkles','btn_analyze');}
+}
 
-// ─── EXAMPLES ────────────────────────────────────────────────────
+// EXAMPLES
 const EX=[
-  {type:'quadratic',  eq:'x² - 5x + 6 = 0',               find_en:'x',           find_ar:'س',          lbl_en:'Quadratic',    lbl_ar:'تربيعية'},
-  {type:'algebraic',  eq:'3x + 7 = 22',                    find_en:'x',           find_ar:'س',          lbl_en:'Linear',       lbl_ar:'خطية'},
-  {type:'algebraic',  eq:'(x+2)(x-3) = 0',                 find_en:'x',           find_ar:'س',          lbl_en:'Factored',     lbl_ar:'منشورة'},
-  {type:'trigonometric',eq:'sin(45°) + cos(45°)',           find_en:'exact value', find_ar:'القيمة الدقيقة',lbl_en:'Trig Value',lbl_ar:'مثلثاتية'},
-  {type:'algebraic',  eq:'2/x + 3/(x+1) = 1',              find_en:'x',           find_ar:'س',          lbl_en:'Rational',     lbl_ar:'كسرية'},
-  {type:'polynomial', eq:'x³ - 6x² + 11x - 6 = 0',         find_en:'all roots',   find_ar:'الجذور كلها',lbl_en:'Cubic',        lbl_ar:'تكعيبية'},
-  {type:'exponential',eq:'2^x = 32',                        find_en:'x',           find_ar:'س',          lbl_en:'Exponential',  lbl_ar:'أسية'},
-  {type:'logarithmic',eq:'log₂(x) + log₂(x-2) = 3',        find_en:'x',           find_ar:'س',          lbl_en:'Logarithmic',  lbl_ar:'لوغاريتمية'},
+  {type:'quadratic',eq:'x² - 5x + 6 = 0',find_en:'x',find_ar:'س',lbl_en:'Quadratic',lbl_ar:'تربيعية'},
+  {type:'algebraic',eq:'3x + 7 = 22',find_en:'x',find_ar:'س',lbl_en:'Linear',lbl_ar:'خطية'},
+  {type:'algebraic',eq:'(x+2)(x-3) = 0',find_en:'x',find_ar:'س',lbl_en:'Factored',lbl_ar:'منشورة'},
+  {type:'trigonometric',eq:'sin(45°) + cos(45°)',find_en:'exact value',find_ar:'القيمة الدقيقة',lbl_en:'Trig Value',lbl_ar:'مثلثاتية'},
+  {type:'algebraic',eq:'2/x + 3/(x+1) = 1',find_en:'x',find_ar:'س',lbl_en:'Rational',lbl_ar:'كسرية'},
+  {type:'polynomial',eq:'x³ - 6x² + 11x - 6 = 0',find_en:'all roots',find_ar:'الجذور كلها',lbl_en:'Cubic',lbl_ar:'تكعيبية'},
+  {type:'exponential',eq:'2^x = 32',find_en:'x',find_ar:'س',lbl_en:'Exponential',lbl_ar:'أسية'},
+  {type:'logarithmic',eq:'log₂(x) + log₂(x-2) = 3',find_en:'x',find_ar:'س',lbl_en:'Logarithmic',lbl_ar:'لوغاريتمية'},
 ];
-
 function buildExamples(){
-  const grid=document.getElementById('ex-grid'); grid.innerHTML='';
+  const grid=document.getElementById('ex-grid');grid.innerHTML='';
   EX.forEach(ex=>{
-    const c=document.createElement('div'); c.className='ex-card';
-    const lbl=lang==='ar'?ex.lbl_ar:ex.lbl_en;
-    const find=lang==='ar'?ex.find_ar:ex.find_en;
-    c.innerHTML=`
-      <div class="ex-type">${lbl.toUpperCase()}</div>
-      <div class="ex-eq">${ex.eq}</div>
-      <div class="ex-find">
-        <svg class="icon"><use href="#ic-arrow-right"/></svg>
-        <span>${t('ex_find_prefix')} ${find}</span>
-      </div>`;
-    c.onclick=()=>{
-      document.getElementById('equation-input').value=ex.eq;
-      document.getElementById('solve-for').value=ex.find_en;
-      document.querySelectorAll('#type-chips .chip').forEach(c=>c.classList.toggle('selected',c.dataset.type===ex.type));
-      document.getElementById('equation-input').scrollIntoView({behavior:'smooth',block:'center'});
-    };
+    const c=document.createElement('div');c.className='ex-card';
+    const lbl=lang==='ar'?ex.lbl_ar:ex.lbl_en;const find=lang==='ar'?ex.find_ar:ex.find_en;
+    c.innerHTML=`<div class="ex-type">${lbl.toUpperCase()}</div><div class="ex-eq">${ex.eq}</div><div class="ex-find"><svg class="icon"><use href="#ic-arrow-right"/></svg><span>${t('ex_find_prefix')} ${find}</span></div>`;
+    c.onclick=()=>{document.getElementById('equation-input').value=ex.eq;document.getElementById('solve-for').value=ex.find_en;document.querySelectorAll('#type-chips .chip').forEach(c=>c.classList.toggle('selected',c.dataset.type===ex.type));document.getElementById('equation-input').scrollIntoView({behavior:'smooth',block:'center'});};
     grid.appendChild(c);
   });
 }
 buildExamples();
 
-// Enter key
-document.getElementById('equation-input').addEventListener('keydown',e=>{
-  if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();solveGeneral();}
-});
+document.getElementById('equation-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();solveGeneral();}});
 
-// Override applyTranslations to also rebuild examples
-const _origApply=applyTranslations;
-// Add example rebuild to translation apply
-const origApply=applyTranslations;
 function applyTranslations(){
   const isAr=lang==='ar';
-  document.documentElement.lang=lang;
-  document.documentElement.dir=isAr?'rtl':'ltr';
+  document.documentElement.lang=lang;document.documentElement.dir=isAr?'rtl':'ltr';
   document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(k)el.innerHTML=t(k);});
   document.querySelectorAll('[data-i18n-ph]').forEach(el=>{el.placeholder=t(el.dataset.i18nPh);});
   document.querySelectorAll('[data-i18n-chip]').forEach(el=>{el.textContent=t(el.dataset.i18nChip);});
   document.querySelectorAll('[data-i18n-amode]').forEach(el=>{el.textContent=t(el.dataset.i18nAmode);});
   document.querySelectorAll('[data-i18n-opt]').forEach(el=>{el.textContent=t(el.dataset.i18nOpt);});
-  renderFindRow(); renderAddedFields(); renderAngFields(); buildExamples();
+  renderFindRow();renderAddedFields();renderAngFields();buildExamples();
   document.getElementById('lang-flag').textContent=isAr?'🇬🇧':'🇸🇦';
   document.getElementById('lang-label').textContent=isAr?'English':'العربية';
 }
 </script>
 </body>
-
 </html>
-
-
