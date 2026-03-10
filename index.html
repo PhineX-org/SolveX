@@ -7,7 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<link rel="icon" type="image/x-icon" href="solvex.png">
 <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
   <symbol id="ic-calculator" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8" y2="10" stroke-width="2.5"/><line x1="12" y1="10" x2="12" y2="10" stroke-width="2.5"/><line x1="16" y1="10" x2="16" y2="10" stroke-width="2.5"/><line x1="8" y1="14" x2="8" y2="14" stroke-width="2.5"/><line x1="12" y1="14" x2="12" y2="14" stroke-width="2.5"/><line x1="16" y1="14" x2="16" y2="14" stroke-width="2.5"/><line x1="8" y1="18" x2="12" y2="18"/><line x1="16" y1="18" x2="16" y2="18" stroke-width="2.5"/></symbol>
   <symbol id="ic-shapes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1z"/><rect x="3" y="14" width="7" height="7" rx="1"/><circle cx="17.5" cy="17.5" r="3.5"/></symbol>
@@ -251,7 +250,7 @@ footer p{font-family:var(--font-ui);font-size:.59rem;color:var(--muted);letter-s
 <div class="hero">
   <div class="hero-tag">
     <svg class="icon icon-sm"><use href="#ic-zap"/></svg>
-    <span data-i18n="hero_tag">POWERED BY GEMINI AI</span>
+    <span data-i18n="hero_tag">POWERED BY CLAUDE AI</span>
   </div>
   <h1 data-i18n="hero_h1">Solve Any<br>Math Problem</h1>
   <p data-i18n="hero_p">Algebra, geometry, trigonometry — type your problem or snap a photo and get a rigorous step-by-step solution instantly.</p>
@@ -422,7 +421,7 @@ footer p{font-family:var(--font-ui);font-size:.59rem;color:var(--muted);letter-s
 <footer>
   <p data-i18n="footer_l">ΣolveX — Advanced Math Engine</p>
   <p data-i18n="footer_c">© 2026 PhineX · All rights reserved</p>
-  <p data-i18n="footer_r">Powered by GEMINI AI · All math domains supported</p>
+  <p data-i18n="footer_r">Powered by Claude AI · All math domains supported</p>
 </footer>
 </div>
 <script>
@@ -434,7 +433,7 @@ footer p{font-family:var(--font-ui);font-size:.59rem;color:var(--muted);letter-s
 // ─── TRANSLATIONS ────────────────────────────────────────────────
 const I18N = {
   en: {
-    badge:'AI MATH ENGINE v4.0', hero_tag:'POWERED BY GEMINI AI',
+    badge:'AI MATH ENGINE v4.0', hero_tag:'POWERED BY CLAUDE AI',
     hero_h1:'Solve Any<br>Math Problem',
     hero_p:'Algebra, geometry, trigonometry — type your problem or snap a photo and get a rigorous step-by-step solution instantly.',
     tab_solver:'SOLVER', tab_geometry:'GEOMETRY', tab_angles:'ANGLES', tab_triangle:'TRIANGLE', tab_system:'SYSTEMS', tab_image:'IMAGE',
@@ -462,7 +461,7 @@ const I18N = {
     upload_title:'Drop your image here', upload_sub1:'Click to browse or drag & drop a photo of your math problem.', upload_sub2:'Works with photos, screenshots & scanned pages.',
     btn_remove_img:'Remove', cam_tip:'<strong>Pro tip:</strong> Ensure good lighting, keep image flat, and make all numbers/symbols clearly visible.',
     lbl_img_hint:'EXTRA INSTRUCTION (optional)', ph_img_hint:'e.g. Find x, explain each step, check if my answer is correct …', btn_analyze:'ANALYZE IMAGE',
-    footer_l:'ΣolveX — Advanced Math Engine', footer_c:'© 2026 PhineX · All rights reserved', footer_r:'Powered by GEMINI AI · All math domains supported',
+    footer_l:'ΣolveX — Advanced Math Engine', footer_c:'© 2026 PhineX · All rights reserved', footer_r:'Powered by Claude AI · All math domains supported',
     result_ready:'SOLUTION READY', btn_copy:'COPY', solving:'SOLVING…',
     err_no_eq:'Please enter an equation first.', err_no_fields:'Please add at least one known value (press /).', err_no_vals:'Please enter values for the added fields.', err_no_known:'Please enter known values.', err_no_sys:'Please enter the system of equations.', err_no_ang:'Please fill in at least one field.', err_no_img:'Please upload an image first.',
     ex_find_prefix:'Find:',
@@ -471,7 +470,7 @@ const I18N = {
     fo_all:'All measurements', fo_radius:'Radius', fo_diameter:'Diameter', fo_circumference:'Circumference', fo_area:'Area', fo_chord:'Chord Length', fo_arc_length:'Arc Length', fo_sector_area:'Sector Area', fo_central_angle:'Central Angle', fo_sagitta:'Sagitta', fo_length:'Length', fo_width:'Width', fo_perimeter:'Perimeter', fo_diagonal:'Diagonal', fo_side:'Side', fo_side_a:'Side a', fo_side_b:'Side b', fo_side_c:'Side c', fo_angle_A:'Angle A', fo_angle_B:'Angle B', fo_angle_C:'Angle C', fo_height:'Height', fo_volume:'Volume', fo_surface_area:'Surface Area', fo_lateral:'Lateral Area', fo_total_area:'Total Area', fo_slant:'Slant Height', fo_eccentricity:'Eccentricity', fo_diagonals:'Diagonals',
   },
   ar: {
-    badge:'محرك الرياضيات الذكي v4.0', hero_tag:'مدعوم بتقنية جيميني الذكي',
+    badge:'محرك الرياضيات الذكي v4.0', hero_tag:'مدعوم بتقنية كلود الذكي',
     hero_h1:'احل أي<br>مسألة رياضية',
     hero_p:'الجبر، الهندسة، المثلثات — اكتب مسألتك أو التقط صورة واحصل على الحل خطوة بخطوة فوراً.',
     tab_solver:'الحل', tab_geometry:'الهندسة', tab_angles:'الزوايا', tab_triangle:'المثلث', tab_system:'الأنظمة', tab_image:'صورة',
@@ -498,7 +497,7 @@ const I18N = {
     upload_title:'أسقط صورتك هنا', upload_sub1:'انقر للتصفح أو اسحب وأسقط صورة مسألتك.', upload_sub2:'يعمل مع الصور ولقطات الشاشة والصفحات الممسوحة.',
     btn_remove_img:'حذف', cam_tip:'<strong>نصيحة:</strong> تأكد من الإضاءة الجيدة ووضوح الأرقام والرموز.',
     lbl_img_hint:'تعليمات إضافية (اختياري)', ph_img_hint:'مثال: أوجد س، اشرح كل خطوة …', btn_analyze:'تحليل الصورة',
-    footer_l:'ΣolveX — محرك الرياضيات المتقدم', footer_c:'© 2026 PhineX · جميع الحقوق محفوظة', footer_r:'مدعوم بجيميني الذكي · جميع فروع الرياضيات',
+    footer_l:'ΣolveX — محرك الرياضيات المتقدم', footer_c:'© 2026 PhineX · جميع الحقوق محفوظة', footer_r:'مدعوم بكلود الذكي · جميع فروع الرياضيات',
     result_ready:'الحل جاهز', btn_copy:'نسخ', solving:'جارٍ الحل…',
     err_no_eq:'يرجى إدخال معادلة أولاً.', err_no_fields:'يرجى إضافة قيمة واحدة على الأقل (اضغط /).', err_no_vals:'يرجى إدخال قيم في الحقول المضافة.', err_no_known:'يرجى إدخال القيم المعروفة.', err_no_sys:'يرجى إدخال نظام المعادلات.', err_no_ang:'يرجى ملء حقل واحد على الأقل.', err_no_img:'يرجى رفع صورة أولاً.',
     ex_find_prefix:'إيجاد:',
@@ -842,12 +841,15 @@ REQUIREMENTS:
 const API_KEY = "AIzaSyBnTD4Kc1c7LfMUY4QWyOTSFEqrI6VO7iU";
 
 async function callGemini(prompt) {
+  const langDir = lang === 'ar'
+    ? '\n\nIMPORTANT: Respond ENTIRELY in Arabic. All explanations, labels, step titles, and text must be in Arabic. Keep mathematical symbols and numbers as-is.'
+    : '\n\nIMPORTANT: Respond entirely in English.';
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
   const r = await fetch(url, {
     method: 'POST',
     headers: {'Content-Type':'application/json'},
     body: JSON.stringify({
-      contents: [{parts: [{text: SYS_PROMPT + "\n\nUser Request: " + prompt}]}]
+      contents: [{parts: [{text: SYS_PROMPT + langDir + "\n\nUser Request: " + prompt}]}]
     })
   });
   const d = await r.json();
@@ -860,6 +862,9 @@ async function callGemini(prompt) {
 
 // ─── Gemini API — Vision (Image) ────────────────────────────────
 async function callGeminiVision(prompt, imageB64, imageMime) {
+  const langDir = lang === 'ar'
+    ? '\n\nIMPORTANT: Respond ENTIRELY in Arabic. All explanations, labels, step titles, and text must be in Arabic. Keep mathematical symbols and numbers as-is.'
+    : '\n\nIMPORTANT: Respond entirely in English.';
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
   const r = await fetch(url, {
     method: 'POST',
@@ -868,7 +873,7 @@ async function callGeminiVision(prompt, imageB64, imageMime) {
       contents: [{
         parts: [
           { inline_data: { mime_type: imageMime, data: imageB64 } },
-          { text: SYS_PROMPT + "\n\nUser Request: " + prompt }
+          { text: SYS_PROMPT + langDir + "\n\nUser Request: " + prompt }
         ]
       }]
     })
@@ -1003,8 +1008,22 @@ function applyTranslations(){
   renderFindRow();renderAddedFields();renderAngFields();buildExamples();
   document.getElementById('lang-flag').textContent=isAr?'🇬🇧':'🇸🇦';
   document.getElementById('lang-label').textContent=isAr?'English':'العربية';
+  // Re-render idle solve buttons so their labels update with the new language
+  const btnMap=[
+    {id:'solve-btn',  icon:'#ic-zap',      key:'btn_solve'},
+    {id:'geo-btn',    icon:'#ic-ruler',     key:'btn_calculate'},
+    {id:'ang-btn',    icon:'#ic-angle',     key:'btn_calc_angle'},
+    {id:'tri-btn',    icon:'#ic-triangle',  key:'btn_solve_tri'},
+    {id:'sys-btn',    icon:'#ic-sigma',     key:'btn_solve_sys'},
+    {id:'img-btn',    icon:'#ic-sparkles',  key:'btn_analyze'},
+  ];
+  btnMap.forEach(({id,icon,key})=>{
+    const btn=document.getElementById(id);
+    if(btn&&!btn.disabled){
+      btn.querySelector('.btn-inner').innerHTML=`<svg class="icon"><use href="${icon}"/></svg><span>${t(key)}</span>`;
+    }
+  });
 }
 </script>
 </body>
 </html>
-
