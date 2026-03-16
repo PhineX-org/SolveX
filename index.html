@@ -4,10 +4,34 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ΣolveX — Advanced Math Engine</title>
+<link rel="icon" href="solvex.png">
+<!-- PWA -->
+<meta name="theme-color" content="#0a0a1a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ΣolveX">
+<meta name="description" content="Advanced AI-powered math solver engine">
+<link rel="apple-touch-icon" href="solvex.png">
+<link rel="manifest" id="pwa-manifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+@keyframes bannerIn{from{opacity:0;transform:translateX(-50%) translateY(20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+/* LOADING SCREEN */
+#loading-screen{position:fixed;inset:0;z-index:99999;background:#03030a;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .7s ease, visibility .7s ease;}
+#loading-screen.fade-out{opacity:0;visibility:hidden;pointer-events:none;}
+#loading-canvas{width:260px;height:260px;}
+.loading-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:2.2rem;letter-spacing:-.04em;color:#00d4ff;text-shadow:0 0 40px rgba(0,212,255,.6);margin-top:12px;}
+.loading-logo span{color:#f5c842;}
+.loading-sub{font-family:'Space Mono',monospace;font-size:.62rem;color:rgba(0,212,255,.5);letter-spacing:.18em;margin-top:8px;animation:ldpulse 1.8s ease infinite;}
+.loading-bar-wrap{width:180px;height:2px;background:rgba(0,212,255,.1);border-radius:2px;margin-top:20px;overflow:hidden;}
+.loading-bar{height:100%;background:linear-gradient(90deg,#00d4ff,#a855f7,#f5c842);border-radius:2px;animation:ldbar 2s ease forwards;}
+@keyframes ldpulse{0%,100%{opacity:.5;}50%{opacity:1;}}
+@keyframes ldbar{from{width:0%;}to{width:100%;}}
+</style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<link rel="icon" href="solvex.png">
 <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
   <symbol id="ic-calculator" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8" y2="10" stroke-width="2.5"/><line x1="12" y1="10" x2="12" y2="10" stroke-width="2.5"/><line x1="16" y1="10" x2="16" y2="10" stroke-width="2.5"/><line x1="8" y1="14" x2="8" y2="14" stroke-width="2.5"/><line x1="12" y1="14" x2="12" y2="14" stroke-width="2.5"/><line x1="16" y1="14" x2="16" y2="14" stroke-width="2.5"/><line x1="8" y1="18" x2="12" y2="18"/><line x1="16" y1="18" x2="16" y2="18" stroke-width="2.5"/></symbol>
   <symbol id="ic-shapes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1z"/><rect x="3" y="14" width="7" height="7" rx="1"/><circle cx="17.5" cy="17.5" r="3.5"/></symbol>
@@ -231,17 +255,36 @@ footer p{font-family:var(--font-ui);font-size:.59rem;color:var(--muted);letter-s
 ::-webkit-scrollbar{width:5px;height:5px;}
 ::-webkit-scrollbar-track{background:transparent;}
 ::-webkit-scrollbar-thumb{background:rgba(100,150,200,.2);border-radius:10px;}
+/* FIXED INSTALL BAR */
+#fixed-install-bar{position:fixed;bottom:0;left:0;right:0;z-index:9000;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:linear-gradient(135deg,rgba(6,8,28,.97),rgba(10,5,30,.97));border-top:1px solid rgba(0,212,255,.2);backdrop-filter:blur(16px);box-shadow:0 -4px 32px rgba(0,0,0,.5);}
+.fib-left{display:flex;align-items:center;gap:12px;}
+.fib-icon{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,rgba(0,212,255,.15),rgba(124,58,237,.15));border:1px solid rgba(0,212,255,.3);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:#00d4ff;flex-shrink:0;}
+.fib-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.85rem;color:#e8f4ff;}
+.fib-sub{font-family:'Space Mono',monospace;font-size:.58rem;color:rgba(0,212,255,.6);letter-spacing:.06em;margin-top:1px;}
+.fib-btn{background:linear-gradient(135deg,#00a8cc,#7c3aed);border:none;border-radius:10px;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:.82rem;padding:10px 20px;cursor:pointer;white-space:nowrap;letter-spacing:.04em;box-shadow:0 4px 18px rgba(0,120,255,.35);transition:all .2s;}
+.fib-btn:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(0,120,255,.5);}
+.fib-btn:active{transform:translateY(0);}
+/* push footer content up so bar doesn't overlap */
+.solver-wrap{padding-bottom:100px!important;}
+@media(max-width:600px){#fixed-install-bar{padding:10px 14px;}.fib-sub{display:none;}.fib-btn{font-size:.76rem;padding:9px 14px;}}
 @media(max-width:600px){header{padding:14px 16px;}.hero{padding:28px 14px 20px;}.solver-body{padding:14px;}footer{padding:13px 16px;flex-direction:column;gap:5px;text-align:center;}.tabs{padding:0 8px;}.tab{padding:12px 10px;font-size:.6rem;}.field-row{grid-template-columns:1fr;}.afield-name{min-width:108px;}.img-caps{grid-template-columns:1fr 1fr;}.badge{display:none;}}
 </style>
 </head>
 <body>
+<!-- LOADING SCREEN -->
+<div id="loading-screen">
+  <canvas id="loading-canvas"></canvas>
+  <div class="loading-logo">Σolve<span>X</span></div>
+  <div class="loading-sub">loading AI ENGINE…</div>
+  <div class="loading-bar-wrap"><div class="loading-bar"></div></div>
+</div>
 <canvas id="bg-canvas"></canvas>
 <div id="app">
 <header>
   <div class="logo">Σolve<span>X</span></div>
   <div class="header-right">
     <span class="badge" data-i18n="badge">AI MATH ENGINE v4.0</span>
-    <button class="lang-btn" id="lang-toggle" onclick="toggleLang()">
+<button class="lang-btn" id="lang-toggle" onclick="toggleLang()">
       <svg class="icon"><use href="#ic-globe"/></svg>
       <span class="lang-flag" id="lang-flag">🇸🇦</span>
       <span id="lang-label">العربية</span>
@@ -251,7 +294,7 @@ footer p{font-family:var(--font-ui);font-size:.59rem;color:var(--muted);letter-s
 <div class="hero">
   <div class="hero-tag">
     <svg class="icon icon-sm"><use href="#ic-zap"/></svg>
-    <span data-i18n="hero_tag">POWERED BY CLAUDE AI</span>
+    <span data-i18n="hero_tag">POWERED BY Gemini AI | PhineX</span>
   </div>
   <h1 data-i18n="hero_h1">Solve Any<br>Math Problem</h1>
   <p data-i18n="hero_p">Algebra, geometry, trigonometry — type your problem or snap a photo and get a rigorous step-by-step solution instantly.</p>
@@ -419,22 +462,125 @@ footer p{font-family:var(--font-ui);font-size:.59rem;color:var(--muted);letter-s
   <div id="img-result"></div>
 </div>
 </div></div>
-<footer>
-  <p data-i18n="footer_l">ΣolveX — Advanced Math Engine</p>
-  <p data-i18n="footer_c">© 2026 PhineX · All rights reserved</p>
-  <p data-i18n="footer_r">Powered by Claude AI · All math domains supported</p>
-</footer>
-</div>
 <script>
-(function(){const cv=document.getElementById('bg-canvas');const rr=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});rr.setPixelRatio(Math.min(devicePixelRatio,2));rr.setClearColor(0,0);const sc=new THREE.Scene();const cam=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,.1,200);cam.position.z=50;function rsz(){rr.setSize(innerWidth,innerHeight);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();}rsz();window.addEventListener('resize',rsz);const pg=new THREE.BufferGeometry();const pp=new Float32Array(1400*3);for(let i=0;i<1400;i++){pp[i*3]=(Math.random()-.5)*210;pp[i*3+1]=(Math.random()-.5)*210;pp[i*3+2]=(Math.random()-.5)*120;}pg.setAttribute('position',new THREE.BufferAttribute(pp,3));sc.add(new THREE.Points(pg,new THREE.PointsMaterial({color:0x00d4ff,size:.28,transparent:true,opacity:.42})));const gs=[new THREE.OctahedronGeometry(2.5),new THREE.IcosahedronGeometry(2),new THREE.TetrahedronGeometry(2.2),new THREE.BoxGeometry(2.8,2.8,2.8),new THREE.TorusGeometry(2,.55,8,22)];const ms=[new THREE.MeshBasicMaterial({color:0x00d4ff,wireframe:true,transparent:true,opacity:.10}),new THREE.MeshBasicMaterial({color:0xf5c842,wireframe:true,transparent:true,opacity:.08}),new THREE.MeshBasicMaterial({color:0x00ff9d,wireframe:true,transparent:true,opacity:.08}),new THREE.MeshBasicMaterial({color:0xa855f7,wireframe:true,transparent:true,opacity:.08})];const sh=[];for(let i=0;i<16;i++){const m=new THREE.Mesh(gs[i%gs.length],ms[i%ms.length].clone());m.position.set((Math.random()-.5)*110,(Math.random()-.5)*85,-20-Math.random()*45);m.scale.setScalar(.5+Math.random()*1.6);m.ud={rx:(Math.random()-.5)*.005,ry:(Math.random()-.5)*.007,fa:1+Math.random()*3,ph:Math.random()*Math.PI*2,oy:m.position.y};sc.add(m);sh.push(m);}let mx=0,my=0;document.addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*.35;my=(e.clientY/innerHeight-.5)*.35;});let t=0;(function loop(){requestAnimationFrame(loop);t+=.005;sh.forEach(m=>{m.rotation.x+=m.ud.rx;m.rotation.y+=m.ud.ry;m.position.y=m.ud.oy+Math.sin(t+m.ud.ph)*m.ud.fa;});cam.position.x+=(mx*8-cam.position.x)*.02;cam.position.y+=(-my*5-cam.position.y)*.02;cam.lookAt(0,0,0);rr.render(sc,cam);})();})();
+(function(){
+// ── LOADING SCREEN 3D ──────────────────────────────────────────
+const lc=document.getElementById('loading-canvas');
+const lr=new THREE.WebGLRenderer({canvas:lc,antialias:true,alpha:true});
+lr.setPixelRatio(Math.min(devicePixelRatio,2));lr.setClearColor(0,0);lr.setSize(260,260);
+const lsc=new THREE.Scene();const lcam=new THREE.PerspectiveCamera(50,1,.1,100);lcam.position.z=7;
+// Torus knot as loading icon
+const ltkg=new THREE.TorusKnotGeometry(2,0.55,120,16,2,3);
+const ltkm=new THREE.MeshBasicMaterial({color:0x00d4ff,wireframe:true,transparent:true,opacity:.7});
+const ltk=new THREE.Mesh(ltkg,ltkm);lsc.add(ltk);
+// Orbiting dot ring
+const ldg=new THREE.BufferGeometry();const ldp=new Float32Array(60*3);
+for(let i=0;i<60;i++){const a=i/60*Math.PI*2;ldp[i*3]=3.2*Math.cos(a);ldp[i*3+1]=3.2*Math.sin(a);ldp[i*3+2]=0;}
+ldg.setAttribute('position',new THREE.BufferAttribute(ldp,3));
+lsc.add(new THREE.Points(ldg,new THREE.PointsMaterial({color:0xf5c842,size:.08,transparent:true,opacity:.6})));
+let lt=0;
+function lloop(){lt+=.018;ltk.rotation.x=lt*.7;ltk.rotation.y=lt;lr.render(lsc,lcam);if(!document.getElementById('loading-screen').classList.contains('fade-out'))requestAnimationFrame(lloop);}
+lloop();
+// Hide loading screen after 2.2s
+setTimeout(()=>{document.getElementById('loading-screen').classList.add('fade-out');},2200);
+
+// ── MAIN BACKGROUND ────────────────────────────────────────────
+const cv=document.getElementById('bg-canvas');
+const rr=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});
+rr.setPixelRatio(Math.min(devicePixelRatio,2));rr.setClearColor(0,0);
+const sc=new THREE.Scene();const cam=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,.1,200);
+cam.position.z=50;
+function rsz(){rr.setSize(innerWidth,innerHeight);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();}
+rsz();window.addEventListener('resize',rsz);
+
+// ── STAR FIELD ─────────────────────────────────────────────────
+const pg=new THREE.BufferGeometry();const pp=new Float32Array(1200*3);
+for(let i=0;i<1200;i++){pp[i*3]=(Math.random()-.5)*220;pp[i*3+1]=(Math.random()-.5)*220;pp[i*3+2]=(Math.random()-.5)*110;}
+pg.setAttribute('position',new THREE.BufferAttribute(pp,3));
+sc.add(new THREE.Points(pg,new THREE.PointsMaterial({color:0x00d4ff,size:.22,transparent:true,opacity:.35})));
+
+// ── MATH SHAPE FACTORY ─────────────────────────────────────────
+const COLS=[0x00d4ff,0xf5c842,0x00ff9d,0xa855f7,0xff6b35];
+function mat(col){return new THREE.MeshBasicMaterial({color:col,wireframe:true,transparent:true,opacity:.09});}
+
+const shapes=[];
+function addShape(geo,col,x,y,z,sx){
+  const m=new THREE.Mesh(geo,mat(col));
+  m.position.set(x,y,z);m.scale.setScalar(sx);
+  m.ud={rx:(Math.random()-.5)*.006,ry:(Math.random()-.5)*.008,
+        fa:.8+Math.random()*2.2,ph:Math.random()*Math.PI*2,oy:y};
+  sc.add(m);shapes.push(m);
+}
+
+// 1. TORUS = circle / angle
+addShape(new THREE.TorusGeometry(2.2,.5,12,40),0x00d4ff,-48,22,-28,1.2);
+addShape(new THREE.TorusGeometry(1.8,.4,10,32),0x00ff9d,50,-18,-35,1.0);
+addShape(new THREE.TorusGeometry(2.5,.6,12,40),0xa855f7,-20,-30,-42,0.8);
+
+// 2. TORUS KNOT = complex algebra / topology
+addShape(new THREE.TorusKnotGeometry(1.8,.5,80,12,2,3),0xf5c842,40,28,-30,0.9);
+addShape(new THREE.TorusKnotGeometry(1.4,.4,60,10,3,5),0xff6b35,-40,-14,-38,0.7);
+
+// 3. ICOSAHEDRON = polyhedra / number theory
+addShape(new THREE.IcosahedronGeometry(2.2),0x00ff9d,20,35,-32,0.9);
+addShape(new THREE.IcosahedronGeometry(1.6),0x00d4ff,-28,10,-45,0.7);
+
+// 4. OCTAHEDRON = coordinate axes / vectors
+addShape(new THREE.OctahedronGeometry(2.4),0xa855f7,34,-32,-26,1.1);
+addShape(new THREE.OctahedronGeometry(1.8),0xf5c842,-44,30,-40,0.8);
+
+// 5. TETRAHEDRON = triangle
+addShape(new THREE.TetrahedronGeometry(2.6),0x00d4ff,10,-38,-30,1.0);
+addShape(new THREE.TetrahedronGeometry(2.0),0xff6b35,46,12,-44,0.75);
+addShape(new THREE.TetrahedronGeometry(2.2),0x00ff9d,-10,40,-36,0.85);
+
+// 6. SINE WAVE TUBE = trigonometry
+(function(){
+  class SineCurve extends THREE.Curve{
+    getPoint(t){const x=(t-.5)*28;return new THREE.Vector3(x,3.5*Math.sin(x*.45),0);}
+  }
+  addShape(new THREE.TubeGeometry(new SineCurve(),80,.18,6,false),0x00d4ff,-10,24,-38,1.0);
+})();
+(function(){
+  class SineCurve2 extends THREE.Curve{
+    getPoint(t){const x=(t-.5)*22;return new THREE.Vector3(x,2.8*Math.cos(x*.5),Math.sin(t*Math.PI)*3);}
+  }
+  addShape(new THREE.TubeGeometry(new SineCurve2(),70,.14,5,false),0xa855f7,12,-20,-46,0.9);
+})();
+
+// 7. HELIX TUBE = spiral / sequences
+(function(){
+  class Helix extends THREE.Curve{
+    getPoint(t){return new THREE.Vector3(3*Math.cos(t*Math.PI*6),8*(t-.5),3*Math.sin(t*Math.PI*6));}
+  }
+  addShape(new THREE.TubeGeometry(new Helix(),100,.13,5,false),0xf5c842,-54,-8,-36,0.9);
+})();
+
+// 8. DODECAHEDRON = geometry
+addShape(new THREE.DodecahedronGeometry(2.0),0x00ff9d,54,22,-40,0.8);
+addShape(new THREE.DodecahedronGeometry(1.6),0xf5c842,-16,-42,-34,0.9);
+
+// ── MOUSE PARALLAX ─────────────────────────────────────────────
+let mx=0,my=0;
+document.addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*.35;my=(e.clientY/innerHeight-.5)*.35;});
+let t=0;
+(function loop(){
+  requestAnimationFrame(loop);t+=.005;
+  shapes.forEach(m=>{
+    m.rotation.x+=m.ud.rx;m.rotation.y+=m.ud.ry;
+    m.position.y=m.ud.oy+Math.sin(t+m.ud.ph)*m.ud.fa;
+  });
+  cam.position.x+=(mx*8-cam.position.x)*.02;
+  cam.position.y+=(-my*5-cam.position.y)*.02;
+  cam.lookAt(0,0,0);rr.render(sc,cam);
+})();
+})();
 </script>
 <script>
-
-
 // ─── TRANSLATIONS ────────────────────────────────────────────────
 const I18N = {
   en: {
-    badge:'AI MATH ENGINE v4.0', hero_tag:'POWERED BY CLAUDE AI',
+    badge:'AI MATH ENGINE v4.0', hero_tag:'POWERED BY GEMINI AI | PHINEX',
     hero_h1:'Solve Any<br>Math Problem',
     hero_p:'Algebra, geometry, trigonometry — type your problem or snap a photo and get a rigorous step-by-step solution instantly.',
     tab_solver:'SOLVER', tab_geometry:'GEOMETRY', tab_angles:'ANGLES', tab_triangle:'TRIANGLE', tab_system:'SYSTEMS', tab_image:'IMAGE',
@@ -462,16 +608,16 @@ const I18N = {
     upload_title:'Drop your image here', upload_sub1:'Click to browse or drag & drop a photo of your math problem.', upload_sub2:'Works with photos, screenshots & scanned pages.',
     btn_remove_img:'Remove', cam_tip:'<strong>Pro tip:</strong> Ensure good lighting, keep image flat, and make all numbers/symbols clearly visible.',
     lbl_img_hint:'EXTRA INSTRUCTION (optional)', ph_img_hint:'e.g. Find x, explain each step, check if my answer is correct …', btn_analyze:'ANALYZE IMAGE',
-    footer_l:'ΣolveX — Advanced Math Engine', footer_c:'© 2026 PhineX · All rights reserved', footer_r:'Powered by Claude AI · All math domains supported',
+    footer_l:'ΣolveX — Advanced Math Engine', footer_c:'© 2026 PhineX · All rights reserved', footer_r:'Powered by Gemini AI · All math domains supported',
     result_ready:'SOLUTION READY', btn_copy:'COPY', solving:'SOLVING…',
     err_no_eq:'Please enter an equation first.', err_no_fields:'Please add at least one known value (press /).', err_no_vals:'Please enter values for the added fields.', err_no_known:'Please enter known values.', err_no_sys:'Please enter the system of equations.', err_no_ang:'Please fill in at least one field.', err_no_img:'Please upload an image first.',
     ex_find_prefix:'Find:',
     grp_angle:'ANGLES & ROTATIONS', grp_length:'LENGTHS & DISTANCES', grp_area:'AREAS', grp_volume:'VOLUMES', grp_other:'OTHER',
     prop_radius:'Radius', prop_diameter:'Diameter', prop_circumference:'Circumference', prop_area:'Area', prop_chord:'Chord Length', prop_arc_length:'Arc Length', prop_sector_area:'Sector Area', prop_central_angle:'Central Angle', prop_inscribed_angle:'Inscribed Angle', prop_sagitta:'Sagitta', prop_length:'Length', prop_width:'Width', prop_perimeter:'Perimeter', prop_diagonal:'Diagonal', prop_side:'Side', prop_side_a:'Side a', prop_side_b:'Side b', prop_side_c:'Side c', prop_angle_A:'Angle A', prop_angle_B:'Angle B', prop_angle_C:'Angle C', prop_height:'Height', prop_volume:'Volume', prop_surface_area:'Surface Area', prop_lateral:'Lateral Area', prop_total_area:'Total Area', prop_slant:'Slant Height', prop_half_angle:'Half-Angle', prop_semi_a:'Semi-major a', prop_semi_b:'Semi-minor b', prop_eccentricity:'Eccentricity', prop_base1:'Base 1 (a)', prop_base2:'Base 2 (b)', prop_leg1:'Leg 1', prop_leg2:'Leg 2', prop_median:'Median', prop_diag1:'Diagonal 1', prop_diag2:'Diagonal 2', prop_diag_p:'Diagonal p', prop_diag_q:'Diagonal q', prop_angle:'Acute Angle', prop_great_circle:'Great Circle',
-    fo_all:'All measurements', fo_radius:'Radius', fo_diameter:'Diameter', fo_circumference:'Circumference', fo_area:'Area', fo_chord:'Chord Length', fo_arc_length:'Arc Length', fo_sector_area:'Sector Area', fo_central_angle:'Central Angle', fo_sagitta:'Sagitta', fo_length:'Length', fo_width:'Width', fo_perimeter:'Perimeter', fo_diagonal:'Diagonal', fo_side:'Side', fo_side_a:'Side a', fo_side_b:'Side b', fo_side_c:'Side c', fo_angle_A:'Angle A', fo_angle_B:'Angle B', fo_angle_C:'Angle C', fo_height:'Height', fo_volume:'Volume', fo_surface_area:'Surface Area', fo_lateral:'Lateral Area', fo_total_area:'Total Area', fo_slant:'Slant Height', fo_eccentricity:'Eccentricity', fo_diagonals:'Diagonals',
+    fo_all:'All measurements', fo_radius:'Radius',fib_sub: 'Install as mobile app' ,install_btn: 'Install' , fo_diameter:'Diameter', fo_circumference:'Circumference', fo_area:'Area', fo_chord:'Chord Length', fo_arc_length:'Arc Length', fo_sector_area:'Sector Area', fo_central_angle:'Central Angle', fo_sagitta:'Sagitta', fo_length:'Length', fo_width:'Width', fo_perimeter:'Perimeter', fo_diagonal:'Diagonal', fo_side:'Side', fo_side_a:'Side a', fo_side_b:'Side b', fo_side_c:'Side c', fo_angle_A:'Angle A', fo_angle_B:'Angle B', fo_angle_C:'Angle C', fo_height:'Height', fo_volume:'Volume', fo_surface_area:'Surface Area', fo_lateral:'Lateral Area', fo_total_area:'Total Area', fo_slant:'Slant Height', fo_eccentricity:'Eccentricity', fo_diagonals:'Diagonals',
   },
   ar: {
-    badge:'محرك الرياضيات الذكي v4.0', hero_tag:'مدعوم بتقنية كلود الذكي',
+    badge:'محرك الرياضيات الذكي v4.0', hero_tag:'مدعوم بتقنية جيميني للذكاء الاصطناعي | PhineX',
     hero_h1:'احل أي<br>مسألة رياضية',
     hero_p:'الجبر، الهندسة، المثلثات — اكتب مسألتك أو التقط صورة واحصل على الحل خطوة بخطوة فوراً.',
     tab_solver:'الحل', tab_geometry:'الهندسة', tab_angles:'الزوايا', tab_triangle:'المثلث', tab_system:'الأنظمة', tab_image:'صورة',
@@ -498,13 +644,13 @@ const I18N = {
     upload_title:'أسقط صورتك هنا', upload_sub1:'انقر للتصفح أو اسحب وأسقط صورة مسألتك.', upload_sub2:'يعمل مع الصور ولقطات الشاشة والصفحات الممسوحة.',
     btn_remove_img:'حذف', cam_tip:'<strong>نصيحة:</strong> تأكد من الإضاءة الجيدة ووضوح الأرقام والرموز.',
     lbl_img_hint:'تعليمات إضافية (اختياري)', ph_img_hint:'مثال: أوجد س، اشرح كل خطوة …', btn_analyze:'تحليل الصورة',
-    footer_l:'ΣolveX — محرك الرياضيات المتقدم', footer_c:'© 2026 PhineX · جميع الحقوق محفوظة', footer_r:'مدعوم بكلود الذكي · جميع فروع الرياضيات',
+    footer_l:'ΣolveX — محرك الرياضيات المتقدم', footer_c:'© 2026 PhineX · جميع الحقوق محفوظة', footer_r:'مدعوم بجيميني الذكي · جميع فروع الرياضيات',
     result_ready:'الحل جاهز', btn_copy:'نسخ', solving:'جارٍ الحل…',
     err_no_eq:'يرجى إدخال معادلة أولاً.', err_no_fields:'يرجى إضافة قيمة واحدة على الأقل (اضغط /).', err_no_vals:'يرجى إدخال قيم في الحقول المضافة.', err_no_known:'يرجى إدخال القيم المعروفة.', err_no_sys:'يرجى إدخال نظام المعادلات.', err_no_ang:'يرجى ملء حقل واحد على الأقل.', err_no_img:'يرجى رفع صورة أولاً.',
     ex_find_prefix:'إيجاد:',
     grp_angle:'الزوايا والدورات', grp_length:'الأطوال والمسافات', grp_area:'المساحات', grp_volume:'الأحجام', grp_other:'أخرى',
     prop_radius:'نصف القطر', prop_diameter:'القطر', prop_circumference:'المحيط', prop_area:'المساحة', prop_chord:'طول الوتر', prop_arc_length:'طول القوس', prop_sector_area:'مساحة القطاع', prop_central_angle:'الزاوية المركزية', prop_inscribed_angle:'الزاوية المحيطية', prop_sagitta:'السهم', prop_length:'الطول', prop_width:'العرض', prop_perimeter:'المحيط', prop_diagonal:'القطر', prop_side:'الضلع', prop_side_a:'الضلع أ', prop_side_b:'الضلع ب', prop_side_c:'الضلع ج', prop_angle_A:'الزاوية أ', prop_angle_B:'الزاوية ب', prop_angle_C:'الزاوية ج', prop_height:'الارتفاع', prop_volume:'الحجم', prop_surface_area:'مساحة السطح', prop_lateral:'المساحة الجانبية', prop_total_area:'إجمالي المساحة', prop_slant:'الارتفاع المائل', prop_half_angle:'نصف الزاوية', prop_semi_a:'نصف المحور الأكبر أ', prop_semi_b:'نصف المحور الأصغر ب', prop_eccentricity:'الانحراف المركزي', prop_base1:'القاعدة 1 (أ)', prop_base2:'القاعدة 2 (ب)', prop_leg1:'الساق 1', prop_leg2:'الساق 2', prop_median:'الوسيط', prop_diag1:'القطر 1', prop_diag2:'القطر 2', prop_diag_p:'القطر p', prop_diag_q:'القطر q', prop_angle:'الزاوية الحادة', prop_great_circle:'محيط الدائرة العظمى',
-    fo_all:'جميع القياسات', fo_radius:'نصف القطر', fo_diameter:'القطر', fo_circumference:'المحيط', fo_area:'المساحة', fo_chord:'طول الوتر', fo_arc_length:'طول القوس', fo_sector_area:'مساحة القطاع', fo_central_angle:'الزاوية المركزية', fo_sagitta:'السهم', fo_length:'الطول', fo_width:'العرض', fo_perimeter:'المحيط', fo_diagonal:'القطر', fo_side:'الضلع', fo_side_a:'الضلع أ', fo_side_b:'الضلع ب', fo_side_c:'الضلع ج', fo_angle_A:'الزاوية أ', fo_angle_B:'الزاوية ب', fo_angle_C:'الزاوية ج', fo_height:'الارتفاع', fo_volume:'الحجم', fo_surface_area:'مساحة السطح', fo_lateral:'المساحة الجانبية', fo_total_area:'إجمالي المساحة', fo_slant:'الارتفاع المائل', fo_eccentricity:'الانحراف', fo_diagonals:'الأقطار',
+    fo_all:'جميع القياسات', fo_radius:'نصف القطر', fo_diameter:'القطر',fib_sub:'حمل التطبيق',Install_btn: 'تنزيل' , fo_circumference:'المحيط', fo_area:'المساحة', fo_chord:'طول الوتر', fo_arc_length:'طول القوس', fo_sector_area:'مساحة القطاع', fo_central_angle:'الزاوية المركزية', fo_sagitta:'السهم', fo_length:'الطول', fo_width:'العرض', fo_perimeter:'المحيط', fo_diagonal:'القطر', fo_side:'الضلع', fo_side_a:'الضلع أ', fo_side_b:'الضلع ب', fo_side_c:'الضلع ج', fo_angle_A:'الزاوية أ', fo_angle_B:'الزاوية ب', fo_angle_C:'الزاوية ج', fo_height:'الارتفاع', fo_volume:'الحجم', fo_surface_area:'مساحة السطح', fo_lateral:'المساحة الجانبية', fo_total_area:'إجمالي المساحة', fo_slant:'الارتفاع المائل', fo_eccentricity:'الانحراف', fo_diagonals:'الأقطار',
   }
 };
 
@@ -838,51 +984,133 @@ REQUIREMENTS:
 - Use a <div class="warn-box"> for any degenerate case (det=0, parallel lines, etc.).`;
 }
 
-// ─── Gemini API — Text ──────────────────────────────────────────
+// ─── Gemini API Configuration ──────────────────────────────────────
 const WORKER_URL = 'https://super-paper-1cd0.ahmedelgoharymessi.workers.dev/';
-
+const API_TIMEOUT = 60000; // 60 seconds - prevents infinite hanging
+const MAX_RESPONSE_SIZE = 500000; // 500KB - prevents browser freezing on huge responses
+ 
+// ─── Gemini API — Text (WITH TIMEOUT PROTECTION) ───────────────────
 async function callGemini(prompt) {
   const langDir = lang === 'ar'
     ? '\n\nIMPORTANT: Respond ENTIRELY in Arabic. All explanations, labels, step titles, and text must be in Arabic. Keep mathematical symbols and numbers as-is.'
     : '\n\nIMPORTANT: Respond entirely in English.';
-  const r = await fetch(WORKER_URL, {
-    method: 'POST',
-    headers: {'Content-Type':'application/json'},
-    body: JSON.stringify({
-      contents: [{parts: [{text: SYS_PROMPT + langDir + "\n\nUser Request: " + prompt}]}]
-    })
-  });
-  const d = await r.json();
-  if (d.error) throw new Error(d.error.message);
-  if (d.candidates && d.candidates[0].content && d.candidates[0].content.parts) {
-    return d.candidates[0].content.parts[0].text.replace(/```html|```/g,'').trim();
+  
+  // Create abort controller for timeout
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), API_TIMEOUT);
+  
+  try {
+    const r = await fetch(WORKER_URL, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        contents: [{parts: [{text: SYS_PROMPT + langDir + "\n\nUser Request: " + prompt}]}]
+      }),
+      signal: controller.signal
+    });
+    
+    clearTimeout(timeoutId);
+    
+    if (!r.ok) {
+      throw new Error(`API returned status ${r.status}: ${r.statusText}`);
+    }
+    
+    const d = await r.json();
+    
+    if (d.error) {
+      throw new Error(d.error.message || 'API Error');
+    }
+    
+    if (d.candidates && d.candidates[0]?.content?.parts?.[0]?.text) {
+      let responseText = d.candidates[0].content.parts[0].text;
+      
+      // Check response size to prevent browser freezing
+      if (responseText.length > MAX_RESPONSE_SIZE) {
+        console.warn('Response too large, truncating...');
+        responseText = responseText.substring(0, MAX_RESPONSE_SIZE) + 
+          '\n\n<div class="warn-box">⚠ Response truncated due to length</div>';
+      }
+      
+      // Clean and sanitize
+      responseText = responseText
+        .replace(/```html|```/g, '')
+        .trim();
+      
+      return responseText;
+    }
+    
+    throw new Error("Empty or invalid response from AI.");
+    
+  } catch (error) {
+    clearTimeout(timeoutId);
+    
+    if (error.name === 'AbortError') {
+      throw new Error('Request timeout - please try again with a simpler problem');
+    }
+    
+    throw error;
   }
-  throw new Error("Empty response from AI.");
 }
-
-// ─── Gemini API — Vision (Image) ────────────────────────────────
+ 
+// ─── Gemini API — Vision (Image) WITH TIMEOUT ──────────────────────
 async function callGeminiVision(prompt, imageB64, imageMime) {
   const langDir = lang === 'ar'
     ? '\n\nIMPORTANT: Respond ENTIRELY in Arabic. All explanations, labels, step titles, and text must be in Arabic. Keep mathematical symbols and numbers as-is.'
     : '\n\nIMPORTANT: Respond entirely in English.';
-  const r = await fetch(WORKER_URL, {
-    method: 'POST',
-    headers: {'Content-Type':'application/json'},
-    body: JSON.stringify({
-      contents: [{
-        parts: [
-          { inline_data: { mime_type: imageMime, data: imageB64 } },
-          { text: SYS_PROMPT + langDir + "\n\nUser Request: " + prompt }
-        ]
-      }]
-    })
-  });
-  const d = await r.json();
-  if (d.error) throw new Error(d.error.message);
-  if (d.candidates && d.candidates[0].content && d.candidates[0].content.parts) {
-    return d.candidates[0].content.parts[0].text.replace(/```html|```/g,'').trim();
+  
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), API_TIMEOUT * 2); // Longer timeout for images
+  
+  try {
+    const r = await fetch(WORKER_URL, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        contents: [{
+          parts: [
+            { inline_data: { mime_type: imageMime, data: imageB64 } },
+            { text: SYS_PROMPT + langDir + "\n\nUser Request: " + prompt }
+          ]
+        }]
+      }),
+      signal: controller.signal
+    });
+    
+    clearTimeout(timeoutId);
+    
+    if (!r.ok) {
+      throw new Error(`API returned status ${r.status}: ${r.statusText}`);
+    }
+    
+    const d = await r.json();
+    
+    if (d.error) {
+      throw new Error(d.error.message || 'API Error');
+    }
+    
+    if (d.candidates && d.candidates[0]?.content?.parts?.[0]?.text) {
+      let responseText = d.candidates[0].content.parts[0].text;
+      
+      if (responseText.length > MAX_RESPONSE_SIZE) {
+        console.warn('Response too large, truncating...');
+        responseText = responseText.substring(0, MAX_RESPONSE_SIZE) +
+          '\n\n<div class="warn-box">⚠ Response truncated due to length</div>';
+      }
+      
+      return responseText.replace(/```html|```/g,'').trim();
+    }
+    
+    throw new Error("Empty or invalid response from AI.");
+    
+  } catch (error) {
+    clearTimeout(timeoutId);
+    
+    if (error.name === 'AbortError') {
+      throw new Error('Request timeout - image analysis taking too long, please try again');
+    }
+    
+    throw error;
   }
-  throw new Error("Empty response from AI.");
 }
 
 // UI HELPERS
@@ -1024,5 +1252,11 @@ function applyTranslations(){
   });
 }
 </script>
+<footer>
+  <p data-i18n="footer_l" style="margin-right: 15px;">ΣolveX — Advanced Math Engine</p>
+  <p data-i18n="footer_c" style="margin-right: 15px;">© 2026 PhineX · All rights reserved</p>
+  <p data-i18n="footer_r" style="margin-right: 15px;">Powered by Gemini AI · All math domains supported</p>
+</footer>
+<script src="solvex-api-fix.js"></script>
 </body>
 </html>
